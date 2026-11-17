@@ -1,0 +1,394 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="robots" content="noindex, nofollow">
+<base target="_blank">
+<meta name="description" content="Разбор и предложение по сайту для глэмпинга «Нарния», Павловка">
+<style>:root{padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}body{margin:0;font:14px system-ui,sans-serif}img{max-width:100%}[hidden]{display:none!important}</style>
+<title>Нарния: сайт с бронью</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Forum&family=Golos+Text:wght@400;500;600;700&display=swap">
+<style>
+/* Layout: одна колонка как буклет базы отдыха, лес сверху, вода в акцентах, пакеты карточками в ряд */
+:root{
+  --bg:#f3f2ea; --surface:#fbfaf5; --ink:#1f2a1c; --muted:#5d6656; --line:#d9d8cb;
+  --forest:#3d4a2a; --gold:#a8873a; --water:#3b6a78; --warn:#a24a2c; --good:#3f6b3a;
+  --hero-bg:#2c3620; --hero-ink:#f1eedd;
+  --display:"Forum", Georgia, "Times New Roman", serif;
+  --body:"Golos Text", -apple-system, "Segoe UI", Roboto, sans-serif;
+}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){
+  --bg:#151a12; --surface:#1d2419; --ink:#e9e7da; --muted:#a3a895; --line:#323b2b;
+  --forest:#a9b98a; --gold:#d2b067; --water:#7fb2c0; --warn:#e08a69; --good:#8fc184;
+  --hero-bg:#0f130c; --hero-ink:#efeadb; color-scheme:dark}}
+:root[data-theme="dark"]{
+  --bg:#151a12; --surface:#1d2419; --ink:#e9e7da; --muted:#a3a895; --line:#323b2b;
+  --forest:#a9b98a; --gold:#d2b067; --water:#7fb2c0; --warn:#e08a69; --good:#8fc184;
+  --hero-bg:#0f130c; --hero-ink:#efeadb; color-scheme:dark}
+*{box-sizing:border-box}
+body{background:var(--bg);color:var(--ink);font-family:var(--body);font-size:16px;line-height:1.55}
+.wrap{max-width:980px;margin:0 auto;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
+h1,h2,h3{font-family:var(--display);font-weight:400;text-wrap:balance;margin:0;line-height:1.1}
+h2{font-size:clamp(28px,4vw,38px)}
+h3{font-size:22px}
+p{margin:0;max-width:66ch}
+a{color:var(--water)}
+.eyebrow{font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:var(--gold);font-weight:600}
+section{padding-block:44px;border-top:1px solid var(--line)}
+section .head{display:grid;gap:10px;margin-bottom:24px}
+.lead{color:var(--muted);font-size:17px}
+
+/* hero */
+.hero{background:var(--hero-bg);color:var(--hero-ink)}
+.hero .wrap{padding-block:48px 40px;display:grid;gap:18px}
+.hero h1{font-size:clamp(38px,6.4vw,64px)}
+.hero h1 em{font-style:normal;color:var(--gold)}
+.hero p{color:color-mix(in srgb,var(--hero-ink) 78%,transparent);font-size:18px}
+.facts{display:flex;flex-wrap:wrap;gap:8px 18px;font-size:14px;color:color-mix(in srgb,var(--hero-ink) 70%,transparent)}
+.facts b{color:var(--hero-ink);font-weight:600}
+
+/* path */
+.path{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:10px;counter-reset:s}
+.step{background:var(--surface);border:1px solid var(--line);border-radius:10px;padding:14px;display:grid;gap:6px;align-content:start}
+.step .n{font-family:var(--display);font-size:26px;color:var(--gold);line-height:1}
+.step b{font-weight:600}
+.step span{color:var(--muted);font-size:14px}
+.step.lost{border-color:var(--warn)}
+.step.lost .n{color:var(--warn)}
+.note{margin-top:14px;font-size:15px;color:var(--muted)}
+
+/* pains */
+.pains{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:22px 32px}
+.pain{display:grid;gap:6px;padding-left:16px;border-left:2px solid var(--warn)}
+.pain h3{font-size:21px}
+.pain p{color:var(--muted);font-size:15px}
+
+/* table */
+.tbl{overflow-x:auto;border:1px solid var(--line);border-radius:10px;background:var(--surface)}
+table{border-collapse:collapse;width:100%;min-width:720px;font-size:14px}
+th,td{text-align:left;padding:12px 14px;border-bottom:1px solid var(--line);vertical-align:top}
+th{font-size:12px;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);font-weight:600}
+tr:last-child td{border-bottom:0}
+td b{font-weight:600}
+.pill{display:inline-block;font-size:12px;padding:2px 8px;border-radius:99px;font-weight:600;white-space:nowrap}
+.pill.no{background:color-mix(in srgb,var(--warn) 15%,transparent);color:var(--warn)}
+.pill.yes{background:color-mix(in srgb,var(--good) 15%,transparent);color:var(--good)}
+.pill.mid{background:color-mix(in srgb,var(--gold) 18%,transparent);color:var(--gold)}
+tr.us td{background:color-mix(in srgb,var(--gold) 8%,transparent)}
+
+.leaders{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px}
+.lead-card{background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:20px;display:grid;gap:10px;align-content:start;min-width:0}
+.lc-top{display:grid;gap:2px}
+.reg{font-size:13px;color:var(--muted)}
+.site{font-weight:600;font-size:15px;color:var(--water);text-decoration:none;overflow-wrap:anywhere}
+.site::after{content:" ↗"}
+.site:hover{text-decoration:underline}
+.lead-card p{font-size:15px}
+.lead-card ul{margin:0;padding-left:18px;display:grid;gap:4px;font-size:14px;color:var(--muted)}
+.lead-card li::marker{color:var(--gold)}
+@media (max-width:640px){.leaders{grid-template-columns:1fr}}
+.wins{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px;margin-top:26px}
+.win{display:grid;gap:6px}
+.win b{font-weight:600}
+.win span{color:var(--muted);font-size:15px}
+.verdict{margin-top:26px;font-family:var(--display);font-size:clamp(22px,3vw,28px);color:var(--forest);max-width:30ch}
+
+/* packages */
+.packs{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px;align-items:stretch}
+.pack{background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:22px;display:grid;grid-template-rows:auto auto auto 1fr auto;gap:12px}
+.pack.rec{border:2px solid var(--forest)}
+.tag{font-size:12px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:var(--muted)}
+.pack.rec .tag{color:var(--forest)}
+.price{font-family:var(--display);font-size:40px;line-height:1;font-variant-numeric:tabular-nums}
+.price small{font-family:var(--body);font-size:14px;color:var(--muted)}
+.pack ul{margin:0;padding-left:18px;display:grid;gap:6px;font-size:15px}
+.pack li::marker{color:var(--gold)}
+.closes{font-size:14px;color:var(--good);border-top:1px dashed var(--line);padding-top:10px}
+.small{font-size:14px;color:var(--muted);margin-top:14px}
+
+/* bonuses */
+.bonus{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px 28px}
+.bonus div{display:grid;grid-template-columns:22px 1fr;gap:10px;font-size:15px}
+.bonus div::before{content:"";width:12px;height:12px;margin-top:6px;border-radius:3px;background:var(--gold)}
+
+/* math */
+.math{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px}
+.m{background:var(--surface);border:1px solid var(--line);border-radius:10px;padding:18px;display:grid;gap:4px}
+.m .v{font-family:var(--display);font-size:34px;line-height:1;font-variant-numeric:tabular-nums;color:var(--water)}
+.m span{font-size:14px;color:var(--muted)}
+
+/* timeline */
+.plan{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:14px}
+.plan div{display:grid;gap:4px;font-size:15px}
+.plan b{font-weight:600}
+.plan .d{font-size:12px;letter-spacing:.08em;text-transform:uppercase;color:var(--gold);font-weight:600}
+.plan span{color:var(--muted)}
+
+footer{padding-block:28px 48px;border-top:1px solid var(--line);font-size:13px;color:var(--muted)}
+footer .src{display:flex;flex-wrap:wrap;gap:6px 14px;margin-top:8px}
+
+@media (max-width:860px){
+  .path{grid-template-columns:1fr 1fr}
+  .packs,.math,.wins{grid-template-columns:1fr}
+  .plan{grid-template-columns:1fr 1fr}
+}
+@media (max-width:560px){
+  .path,.pains,.bonus,.plan{grid-template-columns:1fr}
+}
+</style>
+
+</head>
+<body>
+<header class="hero">
+  <div class="wrap">
+    <div class="eyebrow">Для Юры и партнёров · 31 октября 2026</div>
+    <h1>Чтобы «Нарнию» находили и <em>бронировали без звонка</em></h1>
+    <p>Разобрал вашу Инсту, Таплинк и соседей по Павловке. Ниже, где сейчас теряются гости, как работают лучшие и что предлагаю сделать.</p>
+    <div class="facts">
+      <span><b>931</b> подписчик в Инсте</span>
+      <span><b>2</b> А-фрейма до 6 гостей</span>
+      <span><b>баня</b>, катера, квадроциклы, экоферма</span>
+      <span><b>0</b> работающих сайтов у глэмпингов Павловки</span>
+    </div>
+  </div>
+</header>
+
+<main class="wrap">
+
+<section>
+  <div class="head">
+    <div class="eyebrow">Путь гостя сейчас</div>
+    <h2>От рилса до брони пять шагов, и на третьем человек упирается в телефон</h2>
+  </div>
+  <div class="path">
+    <div class="step"><div class="n">1</div><b>Видит рилс</b><span>Дома, вода, лес. Хочет так же</span></div>
+    <div class="step"><div class="n">2</div><b>Жмёт «Забронировать ↓»</b><span>Ссылка из шапки ведёт на Таплинк</span></div>
+    <div class="step lost"><div class="n">3</div><b>Таплинк</b><span>Логотип, кнопка «Позвонить» и 4 ответа. Ни фото, ни цен, ни свободных дат</span></div>
+    <div class="step lost"><div class="n">4</div><b>Звонок или директ</b><span>Вечером с телефона многие не звонят и идут смотреть соседей</span></div>
+    <div class="step"><div class="n">5</div><b>Ждёт ответ</b><span>Цена и даты только после переписки</span></div>
+  </div>
+  <p class="note">Шаги 3 и 4 и есть место, где гости уходят. Сколько именно, по Инсте не видно, но этот путь длиннее, чем у тех, кто бронируется на агрегаторе за минуту.</p>
+</section>
+
+<section>
+  <div class="head">
+    <div class="eyebrow">Где теряются брони</div>
+    <h2>Четыре дыры, которые закрывает сайт</h2>
+  </div>
+  <div class="pains">
+    <div class="pain"><h3>Бронь только голосом</h3><p>Кто бронирует вечером с дивана, хочет сразу увидеть цену и свободную субботу. Если надо звонить, он открывает следующую вкладку.</p></div>
+    <div class="pain"><h3>Вас нет в поиске и на картах</h3><p>По «Нарния Павловка» в поиске ничего, по «Нарния глэмпинг» выходит отель в Архызе. В 2ГИС по названию «Нарния» рядом с Павловкой только магазин техники.</p></div>
+    <div class="pain"><h3>Всё держится на Инстаграме</h3><p>В России он открывается через VPN, рекламу в нём не запустить. Если аккаунт заблокируют, вместе с ним пропадёт и весь поток гостей.</p></div>
+    <div class="pain"><h3>Допы не продаются</h3><p>Баня, катера, квадроциклы, завтраки и ферма лежат в хайлайтах. На сайте их добавляют к брони галочкой, и чек растёт без лишних вопросов в директ.</p></div>
+  </div>
+</section>
+
+<section>
+  <div class="head">
+    <div class="eyebrow">Соседи по Павловке</div>
+    <h2>Кто рядом и как у них устроена бронь</h2>
+    <p class="lead">Все глэмпинги у Павловского водохранилища, которые нашёл в поиске, на агрегаторах и в 2ГИС.</p>
+  </div>
+  <div class="tbl">
+    <table>
+      <thead><tr><th>Место</th><th>Свой сайт</th><th>Как бронируют</th><th>Цена за ночь</th><th>Что у них сильное</th></tr></thead>
+      <tbody>
+        <tr><td><b>BoraBora.Pavlovka</b><br>Уразбахты, берег</td><td><span class="pill no">нет</span></td><td>101hotels, mirturbaz, бронь с мгновенным подтверждением</td><td>от 13 000 ₽</td><td>Свой пирс, баня, чан, зимняя рыбалка. Гости в отзывах просят досуг с ценами</td></tr>
+        <tr><td><b>My Glamp / Pavlovka Glamp</b><br>Нуримановский р-н</td><td><span class="pill no">был, домен истёк</span></td><td>WhatsApp и телефон</td><td>около 10 000 ₽ (данные 2025)</td><td>А-фреймы, баня, ресторан, SUP. Был сайт с заявкой, сейчас он не открывается</td></tr>
+        <tr><td><b>NEBESA</b><br>Красные Скалы</td><td><span class="pill no">нет</span></td><td>Otello, mirturbaz</td><td>нет данных</td><td>Шале с панорамными окнами и баней</td></tr>
+        <tr><td><b>Павлов глэмп</b><br>Павловка</td><td><span class="pill no">нет</span></td><td>2ГИС, телефон</td><td>от 7 000 ₽</td><td>Можно с животными</td></tr>
+        <tr class="us"><td><b>Нарния</b></td><td><span class="pill no">нет, Таплинк</span></td><td>Только звонок</td><td>не видно</td><td>Два берега, вид на воду, баня, катера, квадроциклы, ферма, меню</td></tr>
+      </tbody>
+    </table>
+  </div>
+  <p class="verdict">Рабочего своего сайта на Павловке сейчас нет ни у кого. «Нарния» может стать первой.</p>
+</section>
+
+<section>
+  <div class="head">
+    <div class="eyebrow">Лидеры по России</div>
+    <h2>Кто уже зарабатывает на своём сайте</h2>
+    <p class="lead">Глэмпинги из топов Башкирии, Татарстана и Подмосковья, у которых есть работающий сайт. Каждый открыл и проверил 31 октября 2026.</p>
+  </div>
+  <div class="leaders">
+    <article class="lead-card">
+      <div class="lc-top"><h3>Kedr Camp</h3><span class="reg">Башкирия, Охлебинино, 30 мин от Уфы</span></div>
+      <a class="site" href="https://kedr.camp/">kedr.camp</a>
+      <p>Лучший по отзывам в Башкирии: 5,0 по 201 отзыву. Дома в лесу, как у вас.</p>
+      <ul>
+        <li>Онлайн-бронь с календарём (Bnovo)</li>
+        <li>«Кедровый клуб»: баллы оплачивают часть следующего заезда</li>
+        <li>Цены на сайте, акции, подарочные сертификаты</li>
+      </ul>
+    </article>
+    <article class="lead-card">
+      <div class="lc-top"><h3>Отдыхаево</h3><span class="reg">Башкирия, озеро Кандры-Куль</span></div>
+      <a class="site" href="https://otdyhaevo.ru/">otdyhaevo.ru</a>
+      <p>Глэмпинг в лесу у озера, баня и чан. Цены от 10 900 ₽ прямо на сайте.</p>
+      <ul>
+        <li>Кнопка «Свободные даты» на первом экране</li>
+        <li>Цены по каждому дому, акции и скидки</li>
+        <li>Сертификаты, рейтинг из Яндекса на сайте</li>
+      </ul>
+    </article>
+    <article class="lead-card">
+      <div class="lc-top"><h3>Mia Terra</h3><span class="reg">Башкирия, озеро Шамсутдин, Бирск</span></div>
+      <a class="site" href="https://mia-terra.ru/">mia-terra.ru</a>
+      <p>Глэмпинги и домики у воды, фурако, кафе. Цены от 3 500 до 7 500 ₽.</p>
+      <ul>
+        <li>Онлайн-бронь с оплатой (TravelLine)</li>
+        <li>Отдельная страница на каждый тип дома</li>
+        <li>Карта территории, события («Хэллоуин в Миа Терра»)</li>
+      </ul>
+    </article>
+    <article class="lead-card">
+      <div class="lc-top"><h3>LIPA DA IVA</h3><span class="reg">Башкирия, геопарк Торатау</span></div>
+      <a class="site" href="https://lipadaiva.ru/">lipadaiva.ru</a>
+      <p>Сафари-кэмп в заповедной зоне. Продаёт не дома, а настроение.</p>
+      <ul>
+        <li>Сильная подача: «Dolce Vita», вино, гамаки, slow life</li>
+        <li>Атмосфера, территория, окрестности отдельными блоками</li>
+        <li>Цен на сайте нет, это их слабое место</li>
+      </ul>
+    </article>
+    <article class="lead-card">
+      <div class="lc-top"><h3>Urman Camp</h3><span class="reg">Татарстан, 1 час от Казани</span></div>
+      <a class="site" href="https://urman.camp/">urman.camp</a>
+      <p>«Самый чанный глэмпинг Татарстана». Домики от 7 000 ₽ в березовой роще.</p>
+      <ul>
+        <li>Бронь в Telegram и кнопка «Проверить цены»</li>
+        <li>Оплата долями: «покупайте сразу, платите потом»</li>
+        <li>SPA, развлечения, мероприятия, сертификаты отдельными разделами</li>
+      </ul>
+    </article>
+    <article class="lead-card">
+      <div class="lc-top"><h3>My Name is A-Frame</h3><span class="reg">Подмосковье, 35 км от Москвы</span></div>
+      <a class="site" href="https://mynameaframe.ru/">mynameaframe.ru</a>
+      <p>4 А-фрейма, у каждого своя баня, чан и закрытая территория.</p>
+      <ul>
+        <li>У каждого дома имя и стиль: «Бали», «Бохо», «Форест», «Неон»</li>
+        <li>Онлайн-бронь с календарём (Bnovo)</li>
+        <li>Повод на первом экране: годовщина, день рождения, сюрприз</li>
+      </ul>
+    </article>
+    <article class="lead-card">
+      <div class="lc-top"><h3>Vlesu glamping</h3><span class="reg">Подмосковье, 90 мин от Москвы</span></div>
+      <a class="site" href="https://vlesuglamping.ru/">vlesuglamping.ru</a>
+      <p>Два А-фрейма с баней и чаном, как у вас. Простой сайт, который отвечает на всё.</p>
+      <ul>
+        <li>Цены по дням: будни 9 000 ₽, суббота 13 000 ₽, выходные 22 000 ₽</li>
+        <li>Список «что есть в доме», видео, как доехать, вопросы</li>
+        <li>Правила для детей и животных прямо в цене</li>
+      </ul>
+    </article>
+  </div>
+
+  <div class="head" style="margin-top:36px">
+    <h3>Что у лидеров общего и что берём в сайт «Нарнии»</h3>
+  </div>
+  <div class="wins">
+    <div class="win"><b>Цена и свободные даты сразу</b><span>Kedr Camp, Отдыхаево, Vlesu. Гость ещё до переписки знает, сколько стоит ночь и свободна ли суббота.</span></div>
+    <div class="win"><b>Бронь без звонка</b><span>Kedr Camp и My Name через календарь, Mia Terra с оплатой, Urman в Telegram. Звонок нигде не единственный путь.</span></div>
+    <div class="win"><b>Повод и допы</b><span>Сертификаты, акции, клуб с баллами, баня и чан отдельной строкой. Так растёт чек и возвращаются гости.</span></div>
+  </div>
+  <p class="note">Агрегаторы вроде 101hotels и Островка лидеры тоже используют, но свой сайт у них главный: там нет комиссии и есть свои акции.</p>
+</section>
+
+<section>
+  <div class="head">
+    <div class="eyebrow">Предложение</div>
+    <h2>Три варианта, считаю по блокам</h2>
+    <p class="lead">Один блок сайта стоит 4 000 ₽. Блок это один экран по смыслу: дома, баня, отзывы и так далее. Любой блок можно убрать или добавить, сумма пересчитается.</p>
+  </div>
+  <div class="packs">
+    <div class="pack">
+      <div class="tag">Старт · 5 блоков</div>
+      <div class="price">20 000 <small>₽</small></div>
+      <h3>Красивая витрина</h3>
+      <ul>
+        <li>Первый экран с видео из ваших рилсов</li>
+        <li>Оба А-фрейма: фото, кто поместится, цена</li>
+        <li>Баня и активности</li>
+        <li>Отзывы</li>
+        <li>Кнопка брони в Telegram или WhatsApp, карта</li>
+      </ul>
+      <div class="closes">Закрывает: видно цены и фото без звонка. Готово за 4–5 дней</div>
+    </div>
+    <div class="pack">
+      <div class="tag">Полный · 8 блоков</div>
+      <div class="price">32 000 <small>₽</small></div>
+      <h3>Сайт, который находят</h3>
+      <ul>
+        <li>Всё из «Старта»</li>
+        <li>Меню и завтраки, экоферма</li>
+        <li>Вопросы: заезд, собаки, Wi-Fi, правила</li>
+        <li>Как доехать с двух берегов</li>
+        <li>Форма «даты + гости + допы», заявка сразу в Telegram</li>
+        <li>Базовая настройка под поиск «глэмпинг Павловка»</li>
+      </ul>
+      <div class="closes">Закрывает: бронь без звонка, вас находят в поиске, продаются допы. Готово за 8 рабочих дней</div>
+    </div>
+    <div class="pack rec">
+      <div class="tag">Советую · 11 блоков</div>
+      <div class="price">44 000 <small>₽</small></div>
+      <h3>Нарния целиком</h3>
+      <ul>
+        <li>Всё из «Полного»</li>
+        <li>Календарь свободных дат по каждому дому. Занятые даты вы отмечаете сами</li>
+        <li>Гость выбирает свободные дни, дом и допы, видит итоговую сумму</li>
+        <li>Готовая бронь приходит вам в Telegram, гостю подтверждение</li>
+        <li>Отдельный блок «Акции» вместо хайлайта SALE</li>
+      </ul>
+      <div class="closes">Закрывает все четыре дыры. Гость не пишет «а суббота свободна?», он это видит. Готово примерно за 11 рабочих дней</div>
+    </div>
+  </div>
+  <p class="small">Оплата двумя частями: половина на старте, вторая, когда сайт понравится. Правки по ходу работы входят в цену.</p>
+</section>
+
+<section>
+  <div class="head">
+    <div class="eyebrow">По-свойски, входит в любой вариант</div>
+    <h2>Что делаю сверх блоков</h2>
+  </div>
+  <div class="bonus">
+    <div>Пишу тексты сам, из ваших хайлайтов и постов. От вас только проверить</div>
+    <div>Собираю видео для первого экрана из ваших рилсов</div>
+    <div>Добавляю сайт в Яндекс, чтобы он появился в поиске. Продвижение выше соседей обсудим отдельно после запуска</div>
+    <div>Сайт на своём коде: быстро открывается с телефона за городом, без подписки на конструктор</div>
+  </div>
+</section>
+
+<section>
+  <div class="head">
+    <div class="eyebrow">Окупаемость</div>
+    <h2>Сайт окупается парой броней на выходные</h2>
+    <p class="lead">Ваших цен на странице нет, поэтому считаю по соседям: ночь на Павловке стоит от 7 000 до 13 000 ₽, у Vlesu выходные на 2 ночи стоят 22 000 ₽.</p>
+  </div>
+  <div class="math">
+    <div class="m"><div class="v">≈ 2</div><span>брони на выходные (2 ночи по ~11 000 ₽) окупают «Нарнию целиком» за 44 000 ₽</span></div>
+    <div class="m"><div class="v">0 ₽</div><span>комиссии с брони через свой сайт. Агрегаторы берут процент с каждого заезда</span></div>
+    <div class="m"><div class="v">24/7</div><span>сайт принимает брони круглосуточно, заявка сразу приходит вам в Telegram, даже ночью</span></div>
+  </div>
+</section>
+
+<section>
+  <div class="head">
+    <div class="eyebrow">Как пойдём</div>
+    <h2>От «давай» до запуска</h2>
+  </div>
+  <div class="plan">
+    <div><span class="d">День 1</span><b>Созвон на 15 минут</b><span>Цены по дням, правила, что показать первым</span></div>
+    <div><span class="d">Дни 2–3</span><b>Первый экран</b><span>Показываю вживую, правим до «нравится»</span></div>
+    <div><span class="d">Дальше</span><b>Весь сайт</b><span>Блоки по порядку, вы смотрите по ссылке</span></div>
+    <div><span class="d">Запуск</span><b>Сайт на вашем домене</b><span>Подключаю домен, проверяю бронь с телефона и отдаю готовую ссылку</span></div>
+  </div>
+  <p class="note">От вас: фото и видео (большая часть уже есть в Инсте), цены по дням недели и Telegram, куда слать брони.</p>
+</section>
+
+</main>
+
+
+</body>
+</html>
