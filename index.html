@@ -763,6 +763,8 @@
   .foot-bottom { max-width: 1312px; margin-left: auto; margin-right: auto; display: flex; flex-wrap: wrap; justify-content: space-between; gap: 8px 24px; margin-top: 44px; padding-top: 20px; border-top: 1px solid var(--hair); font-size: 14px; color: var(--snow-45); }
   /* До запуска на REG.RU переписка с менеджером выключена (класс tg-off на <html>). Канал работает */
   .tg-off a[href*="t.me/narnia_pavlovka_reservation"], .tg-off a[href*="t.me/+79177598811"] { opacity: .4; cursor: not-allowed; box-shadow: none; }
+  /* «Написать в Telegram» в шапке и в вопросах выглядит как обычно, просто пока не переводит (просьба Дмитрия 19 ноя) */
+  .tg-off a.nav-cta[href], .tg-off .faq-cta a.pick[href] { opacity: 1; cursor: pointer; }
   /* ОС Антона 19 ноя: меню на плашке, воздух на первом экране, бронь внизу */
   @media (min-width: 900px) {
     .links { padding: 12px 26px; border-radius: 999px; background: rgba(9, 16, 29, .46); border: 1px solid rgba(245, 242, 234, .16); -webkit-backdrop-filter: blur(14px) saturate(1.2); backdrop-filter: blur(14px) saturate(1.2); text-shadow: none; }
