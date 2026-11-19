@@ -249,6 +249,16 @@
 
   .gal { display: grid; gap: 10px; min-width: 0; }
   .gal-main { position: relative; aspect-ratio: 4 / 3; border-radius: 20px; overflow: hidden; background: var(--night); }
+  /* стрелки листания на большом фото */
+  .gal-arrow { position: absolute; top: 50%; z-index: 2; display: grid; place-items: center; width: 48px; height: 48px; margin-top: -24px; padding: 0; border: 1px solid rgba(245, 242, 234, .3); border-radius: 50%; background: rgba(9, 16, 29, .45); -webkit-backdrop-filter: blur(10px); backdrop-filter: blur(10px); color: var(--snow); cursor: pointer; transition: background-color .2s ease-out, transform .2s ease-out; }
+  .gal-arrow svg { width: 22px; height: 22px; }
+  .gal-prev { left: 14px; }
+  .gal-prev svg { transform: rotate(180deg); }
+  .gal-next { right: 14px; }
+  .gal-arrow:hover { background: rgba(9, 16, 29, .7); }
+  .gal-arrow:active { transform: scale(.94); }
+  .gal-arrow:focus-visible { outline: 2px solid var(--amber); outline-offset: 2px; }
+  @media (max-width: 899px) { .gal-arrow { width: 44px; height: 44px; margin-top: -22px; } .gal-prev { left: 10px; } .gal-next { right: 10px; } }
   .gal-main img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; outline: 1px solid rgba(255, 255, 255, .08); outline-offset: -1px; border-radius: inherit; transition: opacity .45s cubic-bezier(.2, .7, .1, 1), filter .45s cubic-bezier(.2, .7, .1, 1); }
   .gal-main img.is-out { opacity: 0; filter: blur(6px); }
   .gal-count { position: absolute; right: 14px; bottom: 14px; padding: 5px 10px; border-radius: 999px; background: var(--glass); backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px); font-size: 12.5px; font-variant-numeric: lining-nums tabular-nums; color: var(--snow-90); }
@@ -1748,6 +1758,20 @@
 document.querySelectorAll('.home').forEach(function (home) {
   var main = home.querySelector('.gal-main img'), count = home.querySelector('.gal-count');
   var thumbs = home.querySelectorAll('.thumb');
+  // Стрелки на большом фото: видно, что фото можно листать
+  if (thumbs.length > 1) {
+    var gm = home.querySelector('.gal-main');
+    var arrow = '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="m10 6 6 6-6 6" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"/></svg>';
+    [['prev', 'Предыдущее фото', -1], ['next', 'Следующее фото', 1]].forEach(function (a) {
+      var b = document.createElement('button');
+      b.type = 'button'; b.className = 'gal-arrow gal-' + a[0]; b.setAttribute('aria-label', a[1]); b.innerHTML = arrow;
+      b.addEventListener('click', function () {
+        var cur = 0; thumbs.forEach(function (t, k) { if (t.getAttribute('aria-current') === 'true') cur = k; });
+        thumbs[(cur + a[2] + thumbs.length) % thumbs.length].click();
+      });
+      gm.appendChild(b);
+    });
+  }
   thumbs.forEach(function (t, i) {
     t.addEventListener('click', function () {
       if (t.getAttribute('aria-current') === 'true') return;
