@@ -253,6 +253,12 @@
   .gal-main img.is-out { opacity: 0; filter: blur(6px); }
   .gal-count { position: absolute; right: 14px; bottom: 14px; padding: 5px 10px; border-radius: 999px; background: var(--glass); backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px); font-size: 12.5px; font-variant-numeric: lining-nums tabular-nums; color: var(--snow-90); }
   .gal-thumbs { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 10px; }
+  /* Больше 4 фото: миниатюры в одну ленту, видно 4, остальные листаются */
+  .gal-thumbs { grid-template-columns: none; grid-auto-flow: column; grid-auto-columns: calc((100% - 30px) / 4); overflow-x: auto; overscroll-behavior-x: contain; scroll-snap-type: x mandatory; scrollbar-width: none; }
+  .gal-thumbs::-webkit-scrollbar { display: none; }
+  .gal-thumbs .thumb { scroll-snap-align: start; }
+  /* Пятая миниатюра выглядывает краем, чтобы было видно, что лента листается */
+  .gal-thumbs:has(.thumb:nth-child(5)) { grid-auto-columns: calc((100% - 40px) / 4.4); }
   .thumb { position: relative; display: block; padding: 0; border: 0; background: none; cursor: pointer; aspect-ratio: 4 / 3; border-radius: 12px; overflow: hidden; opacity: .55; transition: opacity .2s ease-out; }
   .thumb img { width: 100%; height: 100%; object-fit: cover; display: block; }
   .thumb::after { content: ""; position: absolute; inset: 0; border-radius: inherit; box-shadow: inset 0 0 0 1px rgba(255, 255, 255, .08); transition: box-shadow .2s ease-out; }
@@ -292,7 +298,8 @@
     .home:nth-of-type(even) .gal { order: 0; }
     .gal { gap: 8px; }
     .gal-main { border-radius: 16px; }
-    .gal-thumbs { gap: 8px; }
+    .gal-thumbs { gap: 8px; grid-auto-columns: calc((100% - 24px) / 4); }
+    .gal-thumbs:has(.thumb:nth-child(5)) { grid-auto-columns: calc((100% - 32px) / 4.4); }
     .thumb { border-radius: 10px; }
     .info { padding: 0 4px; }
     .info h3 { font-size: 36px; }
@@ -915,8 +922,8 @@
   </article>
   <article class="home">
     <div class="gal">
-      <div class="gal-main"><img src="dom-big-1.jpg" alt="Большой А-фрейм с балконом среди сосен" loading="lazy"><span class="gal-count">1 / 4</span></div>
-      <div class="gal-thumbs"><button class="thumb" type="button" data-src="dom-big-1.jpg" data-alt="Большой А-фрейм с балконом среди сосен" aria-label="Фото 1 из 4" aria-current="true"><img src="dom-big-1.jpg" alt="" loading="lazy"></button><button class="thumb" type="button" data-src="dom-big-2.jpg" data-alt="Кухня с обеденным столом" aria-label="Фото 2 из 4"><img src="dom-big-2.jpg" alt="" loading="lazy"></button><button class="thumb" type="button" data-src="dom-small-4.jpg" data-alt="Спальня с окном в лес" aria-label="Фото 3 из 4"><img src="dom-small-4.jpg" alt="" loading="lazy"></button><button class="thumb" type="button" data-src="dom-big-4.jpg" data-alt="Терраса с видом на воду" aria-label="Фото 4 из 4"><img src="dom-big-4.jpg" alt="" loading="lazy"></button></div>
+      <div class="gal-main"><img src="dom-big-1.jpg" alt="Большой А-фрейм с балконом среди сосен" loading="lazy"><span class="gal-count">1 / 8</span></div>
+      <div class="gal-thumbs"><button class="thumb" type="button" data-src="dom-big-1.jpg" data-alt="Большой А-фрейм с балконом среди сосен" aria-label="Фото 1 из 8" aria-current="true"><img src="dom-big-1.jpg" alt="" loading="lazy"></button><button class="thumb" type="button" data-src="dom-big-5.jpg" data-alt="Фасад А-фрейма с подсветкой у входа" aria-label="Фото 2 из 8"><img src="dom-big-5.jpg" alt="" loading="lazy"></button><button class="thumb" type="button" data-src="dom-big-2.jpg" data-alt="Кухня с обеденным столом" aria-label="Фото 3 из 8"><img src="dom-big-2.jpg" alt="" loading="lazy"></button><button class="thumb" type="button" data-src="dom-big-6.jpg" data-alt="Гостиная с зелёным диваном и выходом на балкон" aria-label="Фото 4 из 8"><img src="dom-big-6.jpg" alt="" loading="lazy"></button><button class="thumb" type="button" data-src="dom-small-4.jpg" data-alt="Спальня с окном в лес" aria-label="Фото 5 из 8"><img src="dom-small-4.jpg" alt="" loading="lazy"></button><button class="thumb" type="button" data-src="dom-big-7.jpg" data-alt="Спальня с панорамным окном на водохранилище" aria-label="Фото 6 из 8"><img src="dom-big-7.jpg" alt="" loading="lazy"></button><button class="thumb" type="button" data-src="dom-big-8.jpg" data-alt="Ещё одна спальня с окном в зимний лес" aria-label="Фото 7 из 8"><img src="dom-big-8.jpg" alt="" loading="lazy"></button><button class="thumb" type="button" data-src="dom-big-4.jpg" data-alt="Терраса с видом на воду" aria-label="Фото 8 из 8"><img src="dom-big-4.jpg" alt="" loading="lazy"></button></div>
     </div>
     <div class="info">
       <h3>Большой А-фрейм</h3>
@@ -929,8 +936,8 @@
   </article>
   <article class="home">
     <div class="gal">
-      <div class="gal-main"><img src="dom-small-1.jpg" alt="Малый А-фрейм в заснеженных соснах" loading="lazy"><span class="gal-count">1 / 4</span></div>
-      <div class="gal-thumbs"><button class="thumb" type="button" data-src="dom-small-1.jpg" data-alt="Малый А-фрейм в заснеженных соснах" aria-label="Фото 1 из 4" aria-current="true"><img src="dom-small-1.jpg" alt="" loading="lazy"></button><button class="thumb" type="button" data-src="dom-small-2.jpg" data-alt="Обеденный стол у панорамной двери" aria-label="Фото 2 из 4"><img src="dom-small-2.jpg" alt="" loading="lazy"></button><button class="thumb" type="button" data-src="dom-small-3.jpg" data-alt="Кухня в доме" aria-label="Фото 3 из 4"><img src="dom-small-3.jpg" alt="" loading="lazy"></button><button class="thumb" type="button" data-src="dom-big-3.jpg" data-alt="Второй этаж с треугольным окном на водохранилище" aria-label="Фото 4 из 4"><img src="dom-big-3.jpg" alt="" loading="lazy"></button></div>
+      <div class="gal-main"><img src="dom-small-1.jpg" alt="Малый А-фрейм в заснеженных соснах" loading="lazy"><span class="gal-count">1 / 9</span></div>
+      <div class="gal-thumbs"><button class="thumb" type="button" data-src="dom-small-1.jpg" data-alt="Малый А-фрейм в заснеженных соснах" aria-label="Фото 1 из 9" aria-current="true"><img src="dom-small-1.jpg" alt="" loading="lazy"></button><button class="thumb" type="button" data-src="dom-small-5.jpg" data-alt="А-фреймы с террасами среди сосен" aria-label="Фото 2 из 9"><img src="dom-small-5.jpg" alt="" loading="lazy"></button><button class="thumb" type="button" data-src="dom-small-2.jpg" data-alt="Обеденный стол у панорамной двери" aria-label="Фото 3 из 9"><img src="dom-small-2.jpg" alt="" loading="lazy"></button><button class="thumb" type="button" data-src="dom-small-3.jpg" data-alt="Кухня в доме" aria-label="Фото 4 из 9"><img src="dom-small-3.jpg" alt="" loading="lazy"></button><button class="thumb" type="button" data-src="dom-small-6.jpg" data-alt="Гостиная с диваном и выходом на террасу" aria-label="Фото 5 из 9"><img src="dom-small-6.jpg" alt="" loading="lazy"></button><button class="thumb" type="button" data-src="dom-small-7.jpg" data-alt="Спальня на втором этаже" aria-label="Фото 6 из 9"><img src="dom-small-7.jpg" alt="" loading="lazy"></button><button class="thumb" type="button" data-src="dom-big-3.jpg" data-alt="Второй этаж с треугольным окном на водохранилище" aria-label="Фото 7 из 9"><img src="dom-big-3.jpg" alt="" loading="lazy"></button><button class="thumb" type="button" data-src="dom-small-8.jpg" data-alt="Кресло у окна с видом на лес" aria-label="Фото 8 из 9"><img src="dom-small-8.jpg" alt="" loading="lazy"></button><button class="thumb" type="button" data-src="dom-small-9.jpg" data-alt="Терраса со столом и скамьями у воды" aria-label="Фото 9 из 9"><img src="dom-small-9.jpg" alt="" loading="lazy"></button></div>
     </div>
     <div class="info">
       <h3>Малый А-фрейм</h3>
@@ -1694,6 +1701,9 @@ document.querySelectorAll('.home').forEach(function (home) {
       if (t.getAttribute('aria-current') === 'true') return;
       thumbs.forEach(function (x) { x.removeAttribute('aria-current'); });
       t.setAttribute('aria-current', 'true');
+      // Выбранная миниатюра целиком в ленте
+      var strip = t.parentElement, sr = strip.getBoundingClientRect(), tr = t.getBoundingClientRect();
+      if (tr.left < sr.left || tr.right > sr.right) strip.scrollBy({ left: tr.left - sr.left - (sr.width - tr.width) / 2, behavior: 'smooth' });
       count.textContent = (i + 1) + ' / ' + thumbs.length;
       main.classList.add('is-out');
       setTimeout(function () { main.onload = function () { main.classList.remove("is-out"); }; main.src = t.dataset.src; main.alt = t.dataset.alt; }, 180);
