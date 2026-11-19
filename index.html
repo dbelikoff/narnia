@@ -807,7 +807,7 @@
         <i></i>
         <div class="tag"><b>Классический дом</b><span>до&nbsp;6&nbsp;гостей</span></div>
       </div>
-      <div class="pin pin--down pin--pool" style="--x:42;--y:62.5;--mx:16;--my:61">
+      <div class="pin pin--down pin--pool" style="--x:33;--y:65.4;--mx:16;--my:61" data-img="1500 1180">
         <i></i>
         <div class="tag"><b>Большая терраса</b><span>с видом на сосновый лес</span></div>
       </div>
@@ -1670,6 +1670,28 @@
   var hh = Math.floor(s), mm = Math.round((s - hh) * 60);
   if (mm === 60) { hh++; mm = 0; }
   document.querySelector('[data-sunset]').textContent = 'Сегодня закат в ' + hh + ':' + (mm < 10 ? '0' : '') + mm;
+
+  // Метка с data-img стоит на точке самой фотографии (пиксели исходника), а не в процентах блока:
+  // фото обрезается по-разному на разных экранах, проценты съезжают. На телефоне свои --mx и --my.
+  (function () {
+    var photo = document.getElementById('photo'), pins = document.querySelector('.pins');
+    var list = [].slice.call(document.querySelectorAll('.pin[data-img]'));
+    if (!photo || !pins || !list.length) return;
+    function place() {
+      if (innerWidth < 900 || !photo.naturalWidth) return;
+      var box = photo.parentElement.getBoundingClientRect(), pr = pins.getBoundingClientRect();
+      var nw = photo.naturalWidth, nh = photo.naturalHeight, k = Math.max(box.width / nw, box.height / nh);
+      var pos = getComputedStyle(photo).objectPosition.split(' ');
+      var ox = (box.width - nw * k) * parseFloat(pos[0]) / 100, oy = (box.height - nh * k) * parseFloat(pos[1]) / 100;
+      list.forEach(function (pin) {
+        var xy = pin.dataset.img.split(' ');
+        pin.style.setProperty('--x', ((box.left + ox + xy[0] * k - pr.left) / pr.width * 100).toFixed(2));
+        pin.style.setProperty('--y', ((box.top + oy + xy[1] * k - pr.top) / pr.height * 100).toFixed(2));
+      });
+    }
+    if (photo.complete) place(); else photo.addEventListener('load', place);
+    addEventListener('resize', place);
+  })();
 
 })();
 </script>
