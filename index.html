@@ -783,7 +783,7 @@
       <span><b>НАРНИЯ</b><small>ПАВЛОВКА</small></span>
     </a>
     <nav class="links" aria-label="Разделы">
-      <a href="#doma">Дома</a><a href="#banya">Баня</a><a href="#">Ресторан</a><a href="#fun">Развлечения</a><a href="#">Как добраться</a>
+      <a href="#doma" id="nav-doma">Дома</a><a href="#banya">Баня</a><a href="#">Ресторан</a><a href="#fun">Развлечения</a><a href="#">Как добраться</a>
     </nav>
     <a class="nav-cta" href="https://t.me/+79177598811" target="_blank" rel="noopener" aria-label="Написать в Telegram">
       <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20.5 4.5 3.8 11c-.9.4-.9 1.6.1 1.9l4.1 1.3 1.6 5c.2.7 1.1.9 1.6.4l2.3-2.2 4.2 3.1c.6.4 1.4.1 1.6-.6l2.6-13.3c.2-.9-.6-1.5-1.4-1.1z" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/><path d="m8 14.2 8.6-6.1-6.6 7.3" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/></svg>
@@ -799,7 +799,7 @@
       <img src="house-wide.jpg" alt="Классические дома «Нарнии» на склоне в заснеженном лесу, в окнах тёплый свет" id="photo">
     </div>
     <div class="pins">
-      <div class="pin pin--right" style="--x:52;--y:14;--mx:38;--my:11" data-img="1818 250">
+      <div class="pin pin--right" style="--x:52;--y:14;--mx:38;--my:11" data-img="1818 250" data-under="nav-doma">
         <i></i>
         <div class="tag"><b data-sunset>Сегодня закат в 16:30</b></div>
       </div>
@@ -1685,12 +1685,18 @@
       var ox = (box.width - nw * k) * parseFloat(pos[0]) / 100, oy = (box.height - nh * k) * parseFloat(pos[1]) / 100;
       list.forEach(function (pin) {
         var xy = pin.dataset.img.split(' ');
-        pin.style.setProperty('--x', ((box.left + ox + xy[0] * k - pr.left) / pr.width * 100).toFixed(2));
+        var x = box.left + ox + xy[0] * k, under = pin.dataset.under && document.getElementById(pin.dataset.under);
+        // Точка прямо под пунктом меню, по просьбе Дмитрия «под словом Дома»
+        if (under) { var u = under.getBoundingClientRect(); x = u.left + u.width / 2; }
+        pin.style.setProperty('--x', ((x - pr.left) / pr.width * 100).toFixed(2));
         pin.style.setProperty('--y', ((box.top + oy + xy[1] * k - pr.top) / pr.height * 100).toFixed(2));
       });
     }
     if (photo.complete) place(); else photo.addEventListener('load', place);
     addEventListener('resize', place);
+    // Меню меняет ширину, когда догружается шрифт
+    if (document.fonts) document.fonts.ready.then(place);
+    addEventListener('load', place);
   })();
 
 })();
