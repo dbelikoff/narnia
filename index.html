@@ -751,6 +751,8 @@
   .foot-col a:hover { color: var(--amber); }
   .foot-ico svg { flex: none; width: 18px; height: 18px; color: var(--amber); }
   .foot-bottom { max-width: 1312px; margin-left: auto; margin-right: auto; display: flex; flex-wrap: wrap; justify-content: space-between; gap: 8px 24px; margin-top: 44px; padding-top: 20px; border-top: 1px solid var(--hair); font-size: 14px; color: var(--snow-45); }
+  /* До запуска на REG.RU переписка с менеджером выключена (класс tg-off на <html>). Канал работает */
+  .tg-off a[href*="t.me/narnia_pavlovka_reservation"], .tg-off a[href*="t.me/+79177598811"] { opacity: .4; cursor: not-allowed; box-shadow: none; }
   /* сноска про Instagram, 19 ноя */
   .foot-star { margin-left: 1px; font-size: .7em; line-height: 0; vertical-align: .55em; color: var(--snow-70); }
   .foot-note { flex-basis: 100%; max-width: 46em; margin: 0; font-size: 13px; line-height: 1.5; color: var(--snow-45); text-wrap: pretty; }
@@ -1276,6 +1278,15 @@
   FOOD.forEach(function (x) { x.min = 1; x.max = 20; x.unit = 'шт'; x.msg = 'завтрак «' + x.name + '»'; x.sub = money(x.price) + ' · ' + x.sub; });
   HOURS.forEach(function (x) { x.unit = 'ч'; });
   var TG = 'https://t.me/narnia_pavlovka_reservation';
+  // До запуска на хостинге REG.RU кнопки переписки с менеджером не работают. На запуске поставить false
+  var TG_OFF = true;
+  if (TG_OFF) {
+    document.documentElement.classList.add('tg-off');
+    document.addEventListener('click', function (e) {
+      var a = e.target.closest && e.target.closest('a[href*="t.me/narnia_pavlovka_reservation"], a[href*="t.me/+79177598811"]');
+      if (a) { e.preventDefault(); e.stopImmediatePropagation(); }
+    }, true);
+  }
 
   // Полгода дат с понедельника текущей недели. На компьютере видно 14 дней, стрелки листают по две недели.
   var today = new Date(); today.setHours(0, 0, 0, 0);
