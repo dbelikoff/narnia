@@ -317,6 +317,9 @@
   .ban-stage { position: relative; aspect-ratio: 1672 / 941; }
   .ban-photo { position: absolute; inset: 0; -webkit-mask-image: linear-gradient(180deg, transparent 0, #000 14%, #000 84%, transparent 100%); mask-image: linear-gradient(180deg, transparent 0, #000 14%, #000 84%, transparent 100%); }
   .ban-photo img { width: 100%; height: 100%; object-fit: cover; object-position: 75% 50%; display: block; }
+  /* Пока грузится большое фото, видна размытая мини-копия, а не пустота */
+  .ban-photo { background: var(--night) url(banya-taiga-mini.jpg) 75% 50% / cover no-repeat; }
+  .ban-photo img { color: transparent; }
   .ban-wrap { position: relative; z-index: 2; width: min(1312px, 100% - var(--g) * 2); margin-inline: auto; }
   .ban-grid { display: grid; grid-template-columns: minmax(0, 1.25fr) minmax(0, 1fr); grid-template-rows: auto 1fr; column-gap: 80px; margin-top: -28px; }
   .ban-grid .h2 em { display: block; }
