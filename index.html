@@ -12,6 +12,10 @@
 </script>
 <link rel="icon" type="image/png" href="favicon.png">
 <link rel="apple-touch-icon" href="apple-touch-icon.png">
+<!-- Шрифт первого экрана грузится сразу, а текст ждет его, а не показывается сначала другим шрифтом: иначе надпись «Нарния» и заголовок прыгают (21 ноя) -->
+<link rel="preload" href="fonts/cormorant-cyrillic-600.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="fonts/cormorant-cyrillic-500.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="fonts/cormorant-cyrillic-500-italic.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="stylesheet" href="fonts/cormorant.css">
 <title>Нарния · Павловка</title>
 
