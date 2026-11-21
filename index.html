@@ -1037,6 +1037,18 @@
   }
   /* первый экран на телефоне: высота по первому замеру, iPhone Safari не дёргает страницу (21 ноя) */
   @media (max-width: 899px) { .hero { height: var(--hero-h, 100svh); } }
+
+  /* телефон: над лентой список месяцев, лента листается до конца 2027 (21 ноя) */
+  .msel { display: none; position: relative; align-items: center; }
+  .msel select { appearance: none; -webkit-appearance: none; height: 36px; padding: 0 36px 0 15px; border-radius: 999px; border: 1px solid var(--hair); background: rgba(245, 242, 234, .07); color: var(--snow-90); font: inherit; font-size: 16px; cursor: pointer; }
+  .msel select:focus-visible { outline: 2px solid var(--amber); outline-offset: 2px; }
+  .msel select option, .msel select optgroup { background: #101622; color: #f5f2ea; }
+  .msel svg { position: absolute; right: 12px; width: 16px; height: 16px; color: var(--amber); pointer-events: none; }
+  @media (max-width: 899px) {
+    .book .book-head { display: flex; margin-bottom: 10px; }
+    .book .book-label, .book .month { display: none; }
+    .msel { display: inline-flex; }
+  }
 </style>
 
 <section class="hero">
@@ -1102,6 +1114,10 @@
         <span id="month">ноябрь</span>
         <button id="next" aria-label="Позже"><svg viewBox="0 0 24 24"><path d="m10 6 6 6-6 6" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg></button>
       </div>
+      <label class="msel">
+        <select id="msel" aria-label="Выбрать месяц"></select>
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="m7 10 5 5 5-5" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </label>
     </div>
     <div class="days" id="days"></div>
     <div class="book-foot">
@@ -1598,7 +1614,8 @@
     }
   })();
   var monday = new Date(today); monday.setDate(today.getDate() - (today.getDay() + 6) % 7);
-  var N = 7 * 26, days = [], idx = {};
+  // Даты до конца 2027 года
+  var N = Math.round((new Date(2027, 11, 31) - monday) / 864e5) + 1, days = [], idx = {};
   function iso(d) { return d.getFullYear() + '-' + (d.getMonth() < 9 ? '0' : '') + (d.getMonth() + 1) + '-' + (d.getDate() < 10 ? '0' : '') + d.getDate(); }
   for (var i = 0; i < N; i++) { var d = new Date(monday); d.setDate(monday.getDate() + i); days.push(d); idx[iso(d)] = i; }
   var todayI = idx[iso(today)] || 0;
@@ -1683,7 +1700,40 @@
     box.appendChild(b);
   });
 
+  // ---------- телефон: список месяцев над лентой ----------
+  var firstM = new Date(today.getFullYear(), today.getMonth(), 1), lastD = days[N - 1];
+  var MV_MAX = (lastD.getFullYear() - firstM.getFullYear()) * 12 + lastD.getMonth() - firstM.getMonth(), mv = 0;
+  var msel = $('msel'), grp = null;
+  for (var q = 0; q <= MV_MAX; q++) {
+    var md = new Date(firstM.getFullYear(), firstM.getMonth() + q, 1);
+    if (!grp || +grp.label !== md.getFullYear()) { grp = document.createElement('optgroup'); grp.label = md.getFullYear(); msel.appendChild(grp); }
+    var o = document.createElement('option'), nmq = NOM[md.getMonth()];
+    o.value = q; o.textContent = nmq.charAt(0).toUpperCase() + nmq.slice(1) + ' ' + md.getFullYear();
+    grp.appendChild(o);
+  }
+  function monthOf(i) { var d = days[i]; return Math.max(0, Math.min(MV_MAX, (d.getFullYear() - firstM.getFullYear()) * 12 + d.getMonth() - firstM.getMonth())); }
+  // Выбрали месяц, и лента плавно едет к его первому числу
+  msel.addEventListener('change', function () {
+    mv = +msel.value;
+    var d1 = new Date(firstM.getFullYear(), firstM.getMonth() + mv, 1);
+    var el = box.children[Math.max(idx[iso(d1)], todayI)];
+    box.scrollTo({ left: el.offsetLeft - box.firstElementChild.offsetLeft, behavior: 'smooth' });
+  });
+  // Листаешь ленту пальцем, и в списке меняется месяц, который виден слева
+  var stripTick = 0;
+  box.addEventListener('scroll', function () {
+    if (stripTick) return;
+    stripTick = requestAnimationFrame(function () {
+      stripTick = 0;
+      var x = box.scrollLeft + box.firstElementChild.offsetLeft + 4, kids = box.children, lo = 0, hi = kids.length - 1;
+      while (lo < hi) { var mid = (lo + hi + 1) >> 1; if (kids[mid].offsetLeft <= x) lo = mid; else hi = mid - 1; }
+      var m = monthOf(Math.max(lo, todayI));
+      if (m !== mv) { mv = m; msel.value = mv; }
+    });
+  }, { passive: true });
+
   function scrollStrip() {
+    if (start !== null) { mv = monthOf(start); msel.value = mv; }
     if (box.scrollWidth <= box.clientWidth || start === null) return;
     var el = box.children[Math.max(start - 2, 0)];
     box.scrollLeft = el.offsetLeft - box.firstElementChild.offsetLeft;
@@ -2081,6 +2131,4 @@ document.querySelectorAll('.home').forEach(function (home) {
   });
 });
 </script>
-
-</body>
-</html>
+</body></html>
