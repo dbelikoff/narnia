@@ -857,6 +857,13 @@
     .bk .bk-go { display: flex; justify-content: center; width: 100%; }
     .bk-sum b { font-size: 30px; }
   }
+  /* телефон: бронь сразу под названием дома, состав и цены ниже (просьба Дмитрия 21 ноя) */
+  @media (max-width: 899px) {
+    .home .info { display: flex; flex-direction: column; }
+    .home .bk { order: 1; margin-top: 18px; }
+    .home .facts, .home .price, .home .price-note { order: 2; }
+    .home .facts { margin-top: 24px; }
+  }
   /* свайп по большому фото */
   .gal-main { touch-action: pan-y; }
 
