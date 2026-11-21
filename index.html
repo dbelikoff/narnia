@@ -957,6 +957,8 @@
   .ds[aria-pressed="true"] i { background: var(--amber); box-shadow: none; }
   .ds[aria-pressed="true"] i::after { content: ""; width: 5px; height: 10px; margin-top: -2px; border: solid var(--amber-ink); border-width: 0 2px 2px 0; transform: rotate(40deg); }
   .st-ex .ex-more { margin-top: 0; }
+  .dt-desc { margin: 6px 4px 0; font-size: 14px; line-height: 1.4; color: var(--snow-70); text-wrap: pretty; }
+  .dg-note { margin: 12px 0 0; font-size: 14px; color: var(--snow-70); }
   .ex-sum { position: sticky; top: 0; padding: 22px 22px 20px; border-radius: 20px; background: rgba(245, 242, 234, .05); box-shadow: inset 0 0 0 1px var(--hair); }
   .ex-sum h3 { margin: 10px 0 0; font-family: var(--serif); font-weight: 600; font-size: 30px; line-height: 1.05; font-size-adjust: none; }
   .ex-sum .sum-total b { font-size: 36px; }
@@ -1165,13 +1167,6 @@
           <h3 class="ex-h">Добавить к&nbsp;отдыху</h3>
           <p class="ex-p">Отметьте, что хотите, и&nbsp;сумма посчитается сразу. Время бани, чана и&nbsp;катания администратор согласует с&nbsp;вами в&nbsp;Telegram.</p>
           <div id="ex-groups"></div>
-          <section class="dg">
-            <h4 class="dg-t">Завтраки</h4>
-            <details class="ex-more" id="ex-more">
-              <summary><span class="ex-more-t"><b>Завтраки</b><small>каждый день с&nbsp;09:30</small><span class="ex-more-n" id="ex-more-n" hidden></span></span><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m6 9 6 6 6-6" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></summary>
-              <ul class="ex-rows ex-food" id="ex-food"></ul>
-            </details>
-          </section>
         </div>
         <aside class="ex-sum" aria-live="polite">
           <p class="sum-label">Ваша бронь</p>
@@ -1531,10 +1526,14 @@
     { id: 'z-trad', name: 'Традиционный', sub: 'яйца вкрутую, омлет, драник, свежие овощи, сметана', price: 690 },
     { id: 'z-syt', name: 'Сытный', sub: 'глазунья, омлет, яйца вкрутую, блины с' + NB + 'ветчиной и' + NB + 'сыром, свежие овощи', price: 590 }
   ];
-  FOOD.forEach(function (x) { x.min = 1; x.max = 20; x.unit = 'шт'; x.msg = 'завтрак «' + x.name + '»'; x.sub = money(x.price) + ' · ' + x.sub; });
+  // Завтраки плитками с фото из меню Аделии (просьба Дмитрия 21 ноя)
+  var ZIMG = { 'z-firm': 'zav-firm.jpg', 'z-klass': 'zav-klass.jpg', 'z-legk': 'zav-legk.jpg', 'z-avt': 'zav-avt.jpg', 'z-ferm': 'zav-ferm.jpg', 'z-dom': 'zav-dom.jpg', 'z-trad': 'zav-trad.jpg', 'z-syt': 'zav-syt.jpg' };
+  FOOD.forEach(function (x) {
+    DOPS[x.id] = { name: x.name, sub: money(x.price) + ' за' + NB + 'набор', desc: x.sub.charAt(0).toUpperCase() + x.sub.slice(1), price: x.price, min: 1, max: 20, unit: 'шт', msg: 'завтрак «' + x.name + '»', img: ZIMG[x.id], food: true };
+  });
+  GROUPS.push({ title: 'Завтраки, каждый день с' + NB + '09:30', tiles: FOOD.map(function (x) { return x.id; }), note: 'Подача может отличаться от фото' });
   var qty = {};
   Object.keys(DOPS).forEach(function (k) { qty[k] = 0; });
-  FOOD.forEach(function (x) { qty[x.id] = 0; });
 
   var TG = 'https://t.me/narnia_pavlovka_reservation';
   // До запуска на хостинге REG.RU кнопки переписки с менеджером не работают. На запуске поставить false
@@ -1812,12 +1811,12 @@
     if (p.wd) lines += line(nightsText(p.wd) + ' в' + NB + 'будни', money(p.wdSum));
     if (p.we) lines += line(nightsText(p.we) + ' на' + NB + 'Пт и' + NB + 'Сб', money(p.weSum));
     LINE_ORDER.concat(FOOD.map(function (x) { return x.id; })).forEach(function (id) {
-      var x = DOPS[id] || FOOD.filter(function (f) { return f.id === id; })[0], q = qty[id];
+      var x = DOPS[id], q = qty[id];
       if (!q) return;
       if (x.toggle) { total += x.price; extra.push(x.msg); lines += line(x.name, money(x.price)); return; }
       var s = x.price * q; total += s;
       extra.push(x.msg + ' ' + q + (x.unit ? ' ' + x.unit : ''));
-      var nm = x.unit === 'шт' ? 'Завтрак ' + x.name.toLowerCase() : x.name;
+      var nm = x.food ? 'Завтрак ' + x.name.toLowerCase() : x.name;
       lines += line(nm + (q > 1 || x.unit ? ', ' + q + (x.unit ? NB + x.unit : '') : ''), money(s));
     });
     return { lines: lines, total: total, extra: extra };
@@ -1877,8 +1876,6 @@
     if (r.extra.length) msg += '\nДопы: ' + r.extra.join(', ') + '.';
     msg += '\nСумма по сайту ' + money(r.total) + '.';
     cta.href = TG + '?text=' + encodeURIComponent(msg.replace(/\u00a0/g, ' '));
-    var foodN = 0; FOOD.forEach(function (x) { foodN += qty[x.id]; });
-    $('ex-more-n').hidden = !foodN; $('ex-more-n').textContent = 'выбрано' + NB + foodN;
   }
 
   // Плитки допов
@@ -1894,7 +1891,7 @@
     var el = document.createElement('div');
     el.className = 'dt';
     el.innerHTML = (img ? '<span class="dt-ph"><img src="' + img + '" alt="" loading="lazy"></span>' : '<span class="dt-ph dt-ph--icon">' + ICON[x0.icon] + '</span>') +
-      '<b class="dt-name">' + (isKater ? 'Катер' : x0.name) + '</b><small class="dt-sub"></small>' +
+      '<b class="dt-name">' + (isKater ? 'Катер' : x0.name) + '</b><small class="dt-sub"></small>' + (x0.desc ? '<small class="dt-desc">' + x0.desc + '</small>' : '') +
       (isKater ? '<div class="dt-seg" role="group" aria-label="Размер катера"><button type="button" data-v="kater4">4 места</button><button type="button" data-v="kater10">10 мест</button></div>' : '') +
       '<div class="dt-act"><button type="button" class="dt-add">' + PLUS + 'Добавить</button>' +
       '<div class="dt-step"><button type="button" class="dt-minus">' + MINUS + '</button><output aria-live="polite"></output><button type="button" class="dt-plus">' + PLUS + '</button></div></div>';
@@ -1936,45 +1933,11 @@
   GROUPS.forEach(function (g) {
     var wrap = document.createElement('section');
     wrap.className = 'dg';
-    wrap.innerHTML = '<h4 class="dg-t">' + g.title + '</h4><div class="dg-grid"></div>' + (g.small ? '<div class="dg-small"></div>' : '');
+    wrap.innerHTML = '<h4 class="dg-t">' + g.title + '</h4><div class="dg-grid"></div>' + (g.small ? '<div class="dg-small"></div>' : '') + (g.note ? '<p class="dg-note">' + g.note + '</p>' : '');
     g.tiles.forEach(function (id) { wrap.querySelector('.dg-grid').appendChild(makeTile(id)); });
     if (g.small) g.small.forEach(function (id) { wrap.querySelector('.dg-small').appendChild(makeSmall(id)); });
     groupsEl.appendChild(wrap);
   });
-
-  // Завтраки списком со счётчиком
-  FOOD.forEach(function (x) {
-    var li = document.createElement('li');
-    li.className = 'ex-row';
-    li.innerHTML = '<div><b>' + x.name + '</b><small>' + x.sub + '</small></div>' +
-      '<div class="step"><button type="button" aria-label="Меньше: ' + x.name + '">' + MINUS + '</button><output>нет</output><button type="button" aria-label="Больше: ' + x.name + '">' + PLUS + '</button></div>';
-    var bt = li.querySelectorAll('button'), out = li.querySelector('output');
-    function upd() { var h = qty[x.id]; out.textContent = h ? h + NB + 'шт' : 'нет'; out.classList.toggle('on', h > 0); bt[0].disabled = h === 0; bt[1].disabled = h >= x.max; }
-    bt[0].addEventListener('click', function () { qty[x.id] = Math.max(0, qty[x.id] - 1); upd(); renderSheet(); });
-    bt[1].addEventListener('click', function () { qty[x.id] = Math.min(x.max, qty[x.id] + 1); upd(); renderSheet(); });
-    upd();
-    $('ex-food').appendChild(li);
-  });
-  // Плашка завтраков раскрывается и сворачивается плавно
-  (function () {
-    var more = $('ex-more'), body = $('ex-food'), anim = null;
-    more.querySelector('summary').addEventListener('click', function (e) {
-      e.preventDefault();
-      var opening = !more.classList.contains('is-open');
-      more.classList.toggle('is-open', opening);
-      if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) { more.open = opening; return; }
-      var from = more.open ? body.offsetHeight : 0;
-      if (anim) anim.cancel();
-      if (opening) {
-        more.open = true;
-        anim = body.animate([{ height: from + 'px', opacity: from ? 1 : 0, transform: from ? 'none' : 'translateY(-8px)' }, { opacity: from ? 1 : 0, offset: .2 }, { height: body.scrollHeight + 'px', opacity: 1, transform: 'none' }], { duration: 650, easing: 'cubic-bezier(.45, 0, .25, 1)' });
-      } else {
-        anim = body.animate([{ height: from + 'px', opacity: 1 }, { opacity: 0, offset: .6 }, { height: '0px', opacity: 0 }], { duration: 500, easing: 'cubic-bezier(.45, 0, .25, 1)', fill: 'forwards' });
-        anim.onfinish = function () { more.open = false; if (anim) anim.cancel(); anim = null; };
-        setTimeout(function () { if (!more.classList.contains('is-open')) { if (anim) anim.cancel(); anim = null; more.open = false; } }, 560);
-      }
-    });
-  })();
 
   render();
   scrollStrip();
