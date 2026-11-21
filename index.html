@@ -1104,7 +1104,7 @@
         <i></i>
         <div class="tag"><b>Классический дом</b><span>до&nbsp;6&nbsp;гостей</span></div>
       </div>
-      <div class="pin pin--down pin--pool" style="--x:33;--y:65.4;--mx:24;--my:61" data-img="1500 1180" data-mimg="2180 1058">
+      <div class="pin pin--down pin--pool" style="--x:33;--y:65.4;--mx:24;--my:61" data-img="1500 1180" data-mimg="1364 1079" data-mfall="22">
         <i></i>
         <div class="tag"><b>Большая терраса</b><span>с видом на сосновый лес</span></div>
       </div>
@@ -2113,7 +2113,10 @@
       if (innerWidth < 900) {
         mlist.forEach(function (pin) {
           var xy = pin.dataset.mimg.split(' ');
-          pin.style.setProperty('--mx', ((box.left + ox + xy[0] * k - pr.left) / pr.width * 100).toFixed(2));
+          var mx = (box.left + ox + xy[0] * k - pr.left) / pr.width * 100;
+          // На высоких телефонах фото обрезано сильнее, и точка уходит за край: тогда запасное место
+          if (pin.dataset.mfall && (mx < 5 || mx > 95)) mx = +pin.dataset.mfall;
+          pin.style.setProperty('--mx', mx.toFixed(2));
           pin.style.setProperty('--my', ((box.top + oy + xy[1] * k - pr.top) / pr.height * 100).toFixed(2));
         });
         return;
