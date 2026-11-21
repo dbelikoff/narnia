@@ -1049,6 +1049,25 @@
     .book .book-label, .book .month { display: none; }
     .msel { display: inline-flex; }
   }
+
+  /* телефон: заголовок в две строки на всю ширину, размер подбирает скрипт (21 ноя) */
+  @media (max-width: 899px) {
+    .title { white-space: nowrap; }
+    .title .ln:nth-child(1) { font-size: var(--t1, 46px); }
+    .title .ln:nth-child(2), .title .ln:nth-child(3) { display: inline-block; vertical-align: top; font-size: var(--t2, 30px); }
+  }
+  /* телефон: метки на фото меньше */
+  @media (max-width: 899px) {
+    .hero .pin { --len: 16px; }
+    .hero .pin > i { left: -3.5px; top: -3.5px; width: 7px; height: 7px; box-shadow: 0 0 0 2.5px rgba(245, 242, 234, .22), 0 0 9px rgba(255, 255, 255, .5); }
+    .hero .pin > i::after { inset: -2.5px; }
+    .hero .tag { padding: 4px 7px 5px; border-radius: 7px; font-size: 10px; }
+    .hero .tag b { font-size: 10.5px; }
+    .hero .pin--right::before, .hero .pin--pool::before { left: 6px; }
+    .hero .pin--right .tag, .hero .pin--pool .tag { left: calc(var(--len) + 9px); }
+    .hero .pin--up::before { right: 6px; }
+    .hero .pin--up .tag { right: calc(var(--len) + 6px); }
+  }
 </style>
 
 <section class="hero">
@@ -1524,6 +1543,23 @@
     var w = innerWidth;
     // Высота первого экрана = видимое окно браузера. Поправку -100 для Яндекс Браузера убрал 21 ноя:
     // на скрине Дмитрия панель не закрывала окно, а под первым экраном оставалась пустая полоса и фото было обрезано
+
+    // Телефон: заголовок в две строки, каждая строка ровно по ширине колонки
+    (function () {
+      var tl = document.querySelector('.hero .title'), ln = tl.querySelectorAll('.ln > span'), lw = -1;
+      function wid(a, b) { var r = document.createRange(); r.setStartBefore(a.firstChild); r.setEndAfter(b.lastChild); return r.getBoundingClientRect().width; }
+      function fitTitle() {
+        if (innerWidth >= 900) { tl.style.removeProperty('--t1'); tl.style.removeProperty('--t2'); return; }
+        var W = tl.clientWidth;
+        tl.style.setProperty('--t1', '100px'); tl.style.setProperty('--t2', '100px');
+        var w1 = wid(ln[0], ln[0]), w2 = wid(ln[1], ln[2]);
+        tl.style.setProperty('--t1', (100 * W / w1 * .995).toFixed(2) + 'px');
+        tl.style.setProperty('--t2', (100 * W / w2 * .995).toFixed(2) + 'px');
+      }
+      fitTitle();
+      if (document.fonts && document.fonts.ready) document.fonts.ready.then(fitTitle);
+      addEventListener('resize', function () { if (innerWidth !== lw) { lw = innerWidth; fitTitle(); } });
+    })();
     function fix() {
       var h = innerHeight, r = document.documentElement;
       r.style.setProperty('--hero-h', h + 'px');
