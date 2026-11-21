@@ -1061,6 +1061,11 @@
     .title .ln:nth-child(1) { font-size: min(calc((100vw - 40px) * .1737), 83px); }
     .title .ln:nth-child(2), .title .ln:nth-child(3) { display: inline-block; vertical-align: top; font-size: min(calc((100vw - 40px) * .1049), 50.1px); }
   }
+  /* телефон: место под ленту дат занято сразу, пока скрипт не нарисовал дни, чтобы фото не прыгало */
+  @media (max-width: 899px) {
+    .book .days { min-height: 54px; }
+    html.hero-low .book .days { min-height: 48px; }
+  }
   /* телефон: метки на фото меньше */
   @media (max-width: 899px) {
     .hero .pin { --len: 16px; }
