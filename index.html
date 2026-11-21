@@ -1085,11 +1085,7 @@
 <section class="homes" id="doma" aria-labelledby="doma-h">
   <header class="homes-head">
     <h2 class="h2" id="doma-h">Пять домов <em>на двух берегах</em></h2>
-    <div>
-      <p>Классические дома стоят в «Нарнии» на&nbsp;лесном склоне, А-фреймы на&nbsp;острове у&nbsp;самой воды. Цена&nbsp;за&nbsp;весь дом за&nbsp;ночь.</p>
-      <p class="homes-when" id="homes-when"></p>
-      <p class="free-status is-wait" id="free-status">Проверяю свободные даты</p>
-    </div>
+    <p>Классические дома стоят в «Нарнии» на&nbsp;лесном склоне, А-фреймы на&nbsp;острове у&nbsp;самой воды. Цена&nbsp;за&nbsp;весь дом за&nbsp;ночь.</p>
   </header>
   <article class="home">
     <div class="gal">
@@ -1698,16 +1694,6 @@
 
   function renderHomes() {
     var has = start !== null && end !== null, n = has ? end - start : 0;
-    $('homes-when').innerHTML = has
-      ? 'На ' + rangeI(start, end) + ', ' + nightsText(n) + ', ' + guestsText(guests) + '. <a class="free-change" href="#daty">Изменить даты</a>'
-      : 'Отметьте в календаре заезд и' + NB + 'выезд, и' + NB + 'покажем, какие дома свободны. <a class="free-change" href="#daty">К календарю</a>';
-    var st = $('free-status');
-    st.className = 'free-status' + (load === 'wait' ? ' is-wait' : load === 'err' ? ' is-err' : '');
-    if (load === 'ok') {
-      var u = new Date(updated * 1000);
-      st.textContent = 'Свободные даты из календаря бронирований, обновлено' + NB + 'в' + NB + u.getHours() + ':' + (u.getMinutes() < 10 ? '0' : '') + u.getMinutes();
-    } else st.textContent = load === 'wait' ? 'Проверяю свободные даты' : 'Календарь бронирований не ответил. Свободен ли дом, подтвердит администратор';
-
     BK.forEach(function (c) {
       var t = TYPES[c.type], cls = 'idle', text, sum = '', per = '', label, step = 'cal';
       c.alt.hidden = true;
