@@ -1067,6 +1067,9 @@
     .hero .pin--right .tag, .hero .pin--pool .tag { left: calc(var(--len) + 9px); }
     .hero .pin--up::before { right: 6px; }
     .hero .pin--up .tag { right: calc(var(--len) + 6px); }
+    /* классический дом: точка справа, подпись слева от нее */
+    .hero .pin--mleft::before { left: auto; right: 6px; top: -.5px; width: var(--len); height: 1px; }
+    .hero .pin--mleft .tag { left: auto; right: calc(var(--len) + 9px); top: 0; transform: translateY(-50%); }
   }
 </style>
 
@@ -1097,11 +1100,11 @@
         <i></i>
         <div class="tag"><b data-sunset>Сегодня закат в 16:30</b></div>
       </div>
-      <div class="pin pin--right" style="--x:65;--y:38;--mx:45;--my:38">
+      <div class="pin pin--right pin--mleft" style="--x:65;--y:38;--mx:63;--my:38" data-mimg="2274 683">
         <i></i>
         <div class="tag"><b>Классический дом</b><span>до&nbsp;6&nbsp;гостей</span></div>
       </div>
-      <div class="pin pin--down pin--pool" style="--x:33;--y:65.4;--mx:16;--my:61" data-img="1500 1180">
+      <div class="pin pin--down pin--pool" style="--x:33;--y:65.4;--mx:24;--my:61" data-img="1500 1180" data-mimg="2180 1058">
         <i></i>
         <div class="tag"><b>Большая терраса</b><span>с видом на сосновый лес</span></div>
       </div>
@@ -2098,13 +2101,23 @@
   (function () {
     var photo = document.getElementById('photo'), pins = document.querySelector('.pins');
     var list = [].slice.call(document.querySelectorAll('.pin[data-img]'));
+    // На телефоне свои точки фото (data-mimg): терраса на заборе, классический дом на окне, 21 ноя
+    var mlist = [].slice.call(document.querySelectorAll('.pin[data-mimg]'));
     if (!photo || !pins || !list.length) return;
     function place() {
-      if (innerWidth < 900 || !photo.naturalWidth) return;
+      if (!photo.naturalWidth) return;
       var box = photo.parentElement.getBoundingClientRect(), pr = pins.getBoundingClientRect();
       var nw = photo.naturalWidth, nh = photo.naturalHeight, k = Math.max(box.width / nw, box.height / nh);
       var pos = getComputedStyle(photo).objectPosition.split(' ');
       var ox = (box.width - nw * k) * parseFloat(pos[0]) / 100, oy = (box.height - nh * k) * parseFloat(pos[1]) / 100;
+      if (innerWidth < 900) {
+        mlist.forEach(function (pin) {
+          var xy = pin.dataset.mimg.split(' ');
+          pin.style.setProperty('--mx', ((box.left + ox + xy[0] * k - pr.left) / pr.width * 100).toFixed(2));
+          pin.style.setProperty('--my', ((box.top + oy + xy[1] * k - pr.top) / pr.height * 100).toFixed(2));
+        });
+        return;
+      }
       list.forEach(function (pin) {
         var xy = pin.dataset.img.split(' ');
         var x = box.left + ox + xy[0] * k, under = pin.dataset.under && document.getElementById(pin.dataset.under);
