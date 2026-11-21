@@ -1010,6 +1010,24 @@
     .day { height: 48px; }
     .book-foot { margin-top: 8px; }
   }
+  /* Яндекс Браузер на iPhone: нижняя панель лежит поверх сайта (~100 точек), высоту первого экрана считает скрипт, 21 ноя */
+  @media (max-width: 899px) {
+    html.hero-short .hero { padding-top: 66px; }
+    html.hero-short .nav { padding-top: 12px; }
+    html.hero-short .eyebrow { margin-bottom: 8px; font-size: 9.5px; letter-spacing: .05em; }
+    html.hero-short .title { font-size: 36px; }
+    html.hero-short .media { margin-top: 10px; }
+    html.hero-short .pin:nth-child(1) { display: none; }
+    html.hero-short .book { margin-top: -44px; }
+    html.hero-low .hero { padding-top: 60px; padding-bottom: 10px; }
+    html.hero-low .nav { padding-top: 10px; }
+    html.hero-low .eyebrow { margin-bottom: 6px; }
+    html.hero-low .title { font-size: 32px; }
+    html.hero-low .media { margin-top: 6px; }
+    html.hero-low .book { margin-top: -36px; padding: 10px; }
+    html.hero-low .day { height: 48px; }
+    html.hero-low .book-foot { margin-top: 8px; }
+  }
   /* первый экран на телефоне: высота по первому замеру, iPhone Safari не дёргает страницу (21 ноя) */
   @media (max-width: 899px) { .hero { height: var(--hero-h, 100svh); } }
 </style>
@@ -1481,7 +1499,14 @@
   // меняет высоту окна при прокрутке, первый экран не должен из-за этого менять размер (жалоба Юры 20 ноя).
   (function () {
     var w = innerWidth;
-    function fix() { document.documentElement.style.setProperty('--hero-h', innerHeight + 'px'); }
+    // В Яндекс Браузере развёрнутая нижняя панель закрывает около 100 точек окна (замер Дмитрия 21 ноя: окно 670, видно ~570)
+    var ya = /YaBrowser/.test(navigator.userAgent);
+    function fix() {
+      var h = innerHeight - (ya && innerWidth < 900 ? 100 : 0), r = document.documentElement;
+      r.style.setProperty('--hero-h', h + 'px');
+      r.classList.toggle('hero-short', h <= 740);
+      r.classList.toggle('hero-low', h <= 620);
+    }
     fix();
     addEventListener('resize', function () { if (innerWidth !== w) { w = innerWidth; fix(); } });
   })();

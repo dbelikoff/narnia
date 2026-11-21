@@ -29,7 +29,7 @@
 <div id="bar"></div>
 <script>
   var site = 'проверяю…';
-  fetch('index.html?v=' + Date.now(), { cache: 'no-store' }).then(function (r) { return r.text(); }).then(function (t) { site = t.indexOf('max-height: 620px') > -1 ? 'новая' : 'старая'; show(); }).catch(function () { site = 'не открылась'; show(); });
+  fetch('index.html?v=' + Date.now(), { cache: 'no-store' }).then(function (r) { return r.text(); }).then(function (t) { site = t.indexOf('YaBrowser') > -1 ? 'новая' : 'старая'; show(); }).catch(function () { site = 'не открылась'; show(); });
   function h(id) { return Math.round(document.getElementById(id).getBoundingClientRect().height); }
   function show() {
     var rows = [
@@ -39,6 +39,7 @@
       ['Отступ снизу (safe-area)', h('sab')],
       ['Ширина', innerWidth],
       ['Экран', screen.width + '×' + screen.height],
+      ['Яндекс Браузер', /YaBrowser/.test(navigator.userAgent) ? 'да' : 'нет'],
       ['Версия сайта на сервере', site]
     ];
     document.getElementById('out').innerHTML = rows.map(function (r) { return '<dt>' + r[0] + '</dt><dd>' + r[1] + '</dd>'; }).join('');
