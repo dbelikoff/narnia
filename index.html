@@ -232,12 +232,19 @@
     .ln:nth-child(2) > span { animation-delay: .27s; }
     .ln:nth-child(3) > span { animation-delay: .39s; }
     .eyebrow, .lead, .route { animation: fade-up .9s .55s cubic-bezier(.2, .7, .1, 1) both; }
-    .book { animation: fade-up 1s .7s cubic-bezier(.2, .7, .1, 1) both; }
+    /* Плашки с размытием (календарь, подписи меток) появляются без прозрачности: при opacity браузер
+       не рисует размытие, и плашка сначала прозрачная, а потом резко мутнеет (21 ноя). Вместо этого раскрываются. */
+    @keyframes reveal-up { from { clip-path: inset(100% 0 0 0); transform: translateY(14px); } to { clip-path: inset(-80px); transform: none; } }
+    @keyframes reveal-x { from { clip-path: inset(0 100% 0 0); } to { clip-path: inset(-30px); } }
+    @keyframes reveal-xl { from { clip-path: inset(0 0 0 100%); } to { clip-path: inset(-30px); } }
+    .book { animation: reveal-up 1s .7s cubic-bezier(.2, .7, .1, 1) both; }
     .day { animation: fade-up .6s calc(.9s + var(--i) * 35ms) cubic-bezier(.2, .7, .1, 1) both; }
-    .pin { animation: fade .8s both; }
-    .pin:nth-child(1) { animation-delay: 1.3s; }
-    .pin:nth-child(2) { animation-delay: 1.55s; }
-    .pin:nth-child(3) { animation-delay: 1.8s; }
+    .pin:nth-child(1) { --pd: 1.3s; }
+    .pin:nth-child(2) { --pd: 1.55s; }
+    .pin:nth-child(3) { --pd: 1.8s; }
+    .pin > i, .pin::before { animation: fade .8s var(--pd, 0s) both; }
+    .pin .tag { animation: reveal-x .8s var(--pd, 0s) cubic-bezier(.2, .7, .1, 1) both; }
+    @media (max-width: 899px) { .hero .pin--mleft .tag { animation-name: reveal-xl; } }
     .pin > i::after { animation: pulse 2.4s 2s ease-out infinite; }
     .tw { display: block; animation: twinkle var(--d) var(--delay) ease-in-out infinite; }
     .moon-glow { animation: breathe 6s ease-in-out infinite; }
