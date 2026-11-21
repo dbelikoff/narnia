@@ -205,7 +205,6 @@
     .eyebrow { margin-bottom: 8px; font-size: 9.5px; letter-spacing: .05em; }
     .title { font-size: 36px; }
     .media { margin-top: 10px; }
-    .pin:nth-child(1) { display: none; }
     .book { margin-top: -44px; }
   }
 
@@ -1013,6 +1012,7 @@
     .eyebrow { margin-bottom: 6px; }
     .title { font-size: 32px; }
     .media { margin-top: 6px; }
+    .pin:nth-child(1) { display: none; }
     .book { margin-top: -36px; padding: 10px; }
     .day { height: 48px; }
     .book-foot { margin-top: 8px; }
@@ -1024,13 +1024,13 @@
     html.hero-short .eyebrow { margin-bottom: 8px; font-size: 9.5px; letter-spacing: .05em; }
     html.hero-short .title { font-size: 36px; }
     html.hero-short .media { margin-top: 10px; }
-    html.hero-short .pin:nth-child(1) { display: none; }
     html.hero-short .book { margin-top: -44px; }
     html.hero-low .hero { padding-top: 60px; padding-bottom: 10px; }
     html.hero-low .nav { padding-top: 10px; }
     html.hero-low .eyebrow { margin-bottom: 6px; }
     html.hero-low .title { font-size: 32px; }
     html.hero-low .media { margin-top: 6px; }
+    html.hero-low .pin:nth-child(1) { display: none; }
     html.hero-low .book { margin-top: -36px; padding: 10px; }
     html.hero-low .day { height: 48px; }
     html.hero-low .book-foot { margin-top: 8px; }
@@ -1522,10 +1522,10 @@
   // меняет высоту окна при прокрутке, первый экран не должен из-за этого менять размер (жалоба Юры 20 ноя).
   (function () {
     var w = innerWidth;
-    // В Яндекс Браузере развёрнутая нижняя панель закрывает около 100 точек окна (замер Дмитрия 21 ноя: окно 670, видно ~570)
-    var ya = /YaBrowser/.test(navigator.userAgent);
+    // Высота первого экрана = видимое окно браузера. Поправку -100 для Яндекс Браузера убрал 21 ноя:
+    // на скрине Дмитрия панель не закрывала окно, а под первым экраном оставалась пустая полоса и фото было обрезано
     function fix() {
-      var h = innerHeight - (ya && innerWidth < 900 ? 100 : 0), r = document.documentElement;
+      var h = innerHeight, r = document.documentElement;
       r.style.setProperty('--hero-h', h + 'px');
       r.classList.toggle('hero-short', h <= 740);
       r.classList.toggle('hero-low', h <= 620);
