@@ -1079,7 +1079,7 @@
     .eyebrow { margin-bottom: 6px; }
     .title { font-size: 32px; }
     .media { margin-top: 6px; }
-    .pin:nth-child(1) { display: none; }
+    .pins-0 .pin:nth-child(1) { display: none; }
     .book { margin-top: -36px; padding: 10px; }
     .day { height: 48px; }
     .book-foot { margin-top: 8px; }
@@ -1097,7 +1097,7 @@
     html.hero-low .eyebrow { margin-bottom: 6px; }
     html.hero-low .title { font-size: 32px; }
     html.hero-low .media { margin-top: 6px; }
-    html.hero-low .pin:nth-child(1) { display: none; }
+    html.hero-low .pins-0 .pin:nth-child(1) { display: none; }
     html.hero-low .book { margin-top: -36px; padding: 10px; }
     html.hero-low .day { height: 48px; }
     html.hero-low .book-foot { margin-top: 8px; }
@@ -1130,8 +1130,16 @@
   .hero .photo img.slide { position: absolute; inset: 0; opacity: 0; animation: none; }
   .hero .photo img.slide.on { opacity: 1; }
   .hero .photo img.sl-af { object-position: 50% 62%; }
-  .hero > .media > .pins { transition: opacity .5s ease-out; }
-  .hero.alt > .media > .pins { opacity: 0; visibility: hidden; transition: opacity .5s ease-out, visibility 0s .5s; }
+  /* метки у правого края фото: подпись слева от точки, чтобы не уходила за экран */
+  @media (min-width: 900px) {
+    .hero .pin--left::before { left: auto; right: 11px; top: -.5px; width: var(--len); height: 1px; }
+    .hero .pin--left .tag { left: auto; right: calc(var(--len) + 17px); top: 0; transform: translateY(-50%); animation-name: reveal-xl; }
+  }
+  /* телефон: у бани только одна метка, терраса внизу ложится на календарь */
+  @media (max-width: 899px) { .hero .pins-2 .pin:nth-child(2) { display: none; } }
+  /* у каждого фото свои метки: видны только метки текущего фото */
+  .hero > .media > .pins { opacity: 0; visibility: hidden; transition: opacity .5s ease-out, visibility 0s .5s; }
+  .hero[data-slide="0"] > .media > .pins-0, .hero[data-slide="1"] > .media > .pins-1, .hero[data-slide="2"] > .media > .pins-2 { opacity: 1; visibility: visible; transition: opacity .7s .4s ease-out, visibility 0s; }
   @media (prefers-reduced-motion: no-preference) { .hero .photo img.slide { transition: opacity 1.4s ease-in-out; } }
   @media (max-width: 899px) {
     .hero .photo img.sl-af { object-position: 64% 50%; }
@@ -1193,7 +1201,7 @@
   }
 </style>
 
-<section class="hero">
+<section class="hero" data-slide="0">
   <header class="nav">
     <a class="brand" href="#">
       <img src="logo-znak.jpg" alt="" width="42" height="42">
@@ -1217,7 +1225,7 @@
       <img class="slide sl-af" data-src="hero-afreim.jpg" alt="Два А-фрейма «Нарнии» в заснеженном лесу на закате">
       <img class="slide sl-ban" data-src="hero-banya.jpg" alt="Таежная баня на лесном склоне зимой, терраса с огоньками">
     </div>
-    <div class="pins">
+    <div class="pins pins-0">
       <div class="pin pin--right" style="--x:52;--y:14;--mx:38;--my:11" data-img="1818 250" data-under="nav-doma">
         <i></i>
         <div class="tag"><b data-sunset>Сегодня закат в 16:30</b></div>
@@ -1229,6 +1237,27 @@
       <div class="pin pin--down pin--pool" style="--x:33;--y:65.4;--mx:24;--my:61" data-img="1500 1180" data-mimg="1364 1079" data-mfall="22">
         <i></i>
         <div class="tag"><b>Большая терраса</b><span>с видом на хвойный лес</span></div>
+      </div>
+    </div>
+    <!-- Метки на фото А-фреймов и бани (Дмитрий, 22 ноя). Точки в пикселях своих фото: data-img для ПК, data-mimg для телефона -->
+    <div class="pins pins-1" aria-hidden="true">
+      <div class="pin pin--right pin--mleft pin--left" style="--x:71;--y:42;--mx:74;--my:40" data-img="2048 960" data-mimg="2048 960">
+        <i></i>
+        <div class="tag"><b>А-фреймы на&nbsp;Острове</b><span>у&nbsp;самой воды</span></div>
+      </div>
+      <div class="pin pin--right pin--mleft pin--left" style="--x:77;--y:64;--mx:82;--my:62" data-img="2208 1440" data-mimg="2208 1440">
+        <i></i>
+        <div class="tag"><b>Своя терраса</b><span>у&nbsp;каждого дома</span></div>
+      </div>
+    </div>
+    <div class="pins pins-2" aria-hidden="true">
+      <div class="pin pin--right pin--mleft pin--left" style="--x:65;--y:50;--mx:66;--my:50" data-img="1821 720" data-mimg="1330 720">
+        <i></i>
+        <div class="tag"><b>Таежная баня</b><span>бревенчатый сруб в&nbsp;лесу</span></div>
+      </div>
+      <div class="pin pin--right pin--mleft pin--left" style="--x:76;--y:83;--mx:85;--my:83" data-img="1824 1121" data-mimg="1824 1121">
+        <i></i>
+        <div class="tag"><b>Терраса у&nbsp;бани</b><span>остыть между заходами</span></div>
       </div>
     </div>
   </div>
@@ -2316,12 +2345,15 @@
   // Метка с data-img стоит на точке самой фотографии (пиксели исходника), а не в процентах блока:
   // фото обрезается по-разному на разных экранах, проценты съезжают. На телефоне свои --mx и --my.
   (function () {
-    var photo = document.getElementById('photo'), pins = document.querySelector('.pins');
-    var list = [].slice.call(document.querySelectorAll('.pin[data-img]'));
-    // На телефоне свои точки фото (data-mimg): терраса на заборе, классический дом на окне, 21 ноя
-    var mlist = [].slice.call(document.querySelectorAll('.pin[data-mimg]'));
-    if (!photo || !pins || !list.length) return;
-    function place() {
+    // Каждый набор меток считается по своему фото: 0 — классический дом, 1 — А-фреймы, 2 — баня (22 ноя)
+    var SETS = [['.pins-0', '#photo'], ['.pins-1', '.hero .sl-af'], ['.pins-2', '.hero .sl-ban']].map(function (x) {
+      var pins = document.querySelector('.hero ' + x[0]);
+      return { pins: pins, photo: document.querySelector(x[1]), list: pins ? [].slice.call(pins.querySelectorAll('.pin[data-img]')) : [], mlist: pins ? [].slice.call(pins.querySelectorAll('.pin[data-mimg]')) : [] };
+    });
+    var photo = SETS[0].photo;
+    if (!photo || !SETS[0].pins) return;
+    function place() { SETS.forEach(function (st) { if (st.photo && st.pins) placeSet(st.photo, st.pins, st.list, st.mlist); }); }
+    function placeSet(photo, pins, list, mlist) {
       if (!photo.naturalWidth) return;
       var box = photo.parentElement.getBoundingClientRect(), pr = pins.getBoundingClientRect();
       var nw = photo.naturalWidth, nh = photo.naturalHeight, k = Math.max(box.width / nw, box.height / nh);
@@ -2348,12 +2380,14 @@
       });
     }
     if (photo.complete) place(); else photo.addEventListener('load', place);
+    SETS.slice(1).forEach(function (st) { if (st.photo) st.photo.addEventListener('load', place); });
     // Смена фото: после загрузки страницы подгружаем остальные два и меняем по кругу, первое (с метками) дольше
     var hero = document.querySelector('.hero'), slides = [].slice.call(document.querySelectorAll('.hero .photo img.slide')), cur = 0;
     function nextSlide() {
       cur = (cur + 1) % (slides.length + 1);
       slides.forEach(function (im, i) { im.classList.toggle('on', i === cur - 1); });
       hero.classList.toggle('alt', cur !== 0);
+      hero.dataset.slide = cur;
       setTimeout(nextSlide, cur === 0 ? 7000 : 5000);
     }
     function startSlides() {
