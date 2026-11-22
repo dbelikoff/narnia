@@ -17,7 +17,7 @@
 <link rel="preload" href="fonts/cormorant-cyrillic-500.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="preload" href="fonts/cormorant-cyrillic-500-italic.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="stylesheet" href="fonts/cormorant.css">
-<title>Нарния · Павловка</title>
+<title>Нарния · Усадьбы в хвойном лесу на Павловском водохранилище</title>
 
 <style>
   :root {
@@ -29,7 +29,7 @@
     --snow: #f5f2ea;
     --snow-90: rgba(245, 242, 234, .9);
     --snow-70: rgba(245, 242, 234, .72);
-    --snow-45: rgba(245, 242, 234, .48);
+    --snow-45: rgba(245, 242, 234, .58);
     --hair: rgba(245, 242, 234, .16);
     --glass: rgba(9, 16, 29, .56);
     --amber: #f4b860;
@@ -135,7 +135,7 @@
   .day .wd { font-size: 11px; font-weight: 400; color: var(--snow-45); }
   .day:hover { background: rgba(245, 242, 234, .14); }
   .day.is-past { opacity: .35; pointer-events: none; }
-  .day.is-busy { background: transparent; box-shadow: inset 0 0 0 1px rgba(245, 242, 234, .1); color: rgba(245, 242, 234, .38); pointer-events: none; }
+  .day.is-busy { background: transparent; box-shadow: inset 0 0 0 1px rgba(245, 242, 234, .1); color: rgba(245, 242, 234, .5); pointer-events: none; }
   .day.is-busy .dn { text-decoration: line-through; text-decoration-thickness: 1px; }
   .day.is-in { background: rgba(244, 184, 96, .2); box-shadow: inset 0 0 0 1px rgba(244, 184, 96, .55); color: #ffdca6; }
   .day.is-in .wd { color: rgba(255, 220, 166, .7); }
@@ -161,15 +161,22 @@
     .nav { padding: 16px 16px 0 20px; gap: 10px; }
     .brand img { width: 36px; height: 36px; }
     .brand b { font-size: 13.5px; }
-    .brand small { font-size: 9px; }
+    .brand small { font-size: 11px; letter-spacing: .28em; }
     .links { display: none; }
-    .nav-cta { margin-left: auto; padding: 0; width: 42px; height: 42px; justify-content: center; }
+    .nav-cta { margin-left: auto; padding: 0; width: 44px; height: 44px; justify-content: center; }
     .nav-cta span { display: none; }
-    .menu { display: grid; place-items: center; width: 42px; height: 42px; border-radius: 50%; border: 1px solid rgba(245, 242, 234, .42); background: rgba(9, 16, 29, .18); }
+    .menu { display: grid; place-items: center; width: 44px; height: 44px; border-radius: 50%; border: 1px solid rgba(245, 242, 234, .42); background: rgba(9, 16, 29, .18); }
     .menu svg { width: 18px; height: 18px; }
+    /* меню по кнопке (22 ноя): выпадает плашкой под шапкой справа */
+    .menu { cursor: pointer; color: var(--snow); padding: 0; }
+    .menu .i-close, .nav.is-open .menu .i-open { display: none; }
+    .nav.is-open .menu .i-close { display: block; }
+    .nav.is-open .links { display: flex; flex-direction: column; gap: 2px; position: absolute; top: calc(100% + 10px); right: 16px; min-width: 220px; padding: 8px; margin: 0; border-radius: 18px; background: rgba(16, 21, 17, .94); border: 1px solid rgba(245, 242, 234, .16); -webkit-backdrop-filter: blur(14px); backdrop-filter: blur(14px); box-shadow: 0 24px 60px -20px rgba(0, 0, 0, .7); font-size: 17px; text-shadow: none; }
+    .nav.is-open .links a { display: flex; align-items: center; min-height: 48px; padding: 0 16px; border-radius: 12px; }
+    .nav.is-open .links a:active { background: rgba(244, 184, 96, .18); }
 
     .intro { order: 1; width: auto; padding: 0 20px; text-align: center; }
-    .eyebrow { justify-content: center; font-size: 10px; letter-spacing: .07em; white-space: nowrap; margin-bottom: 12px; }
+    .eyebrow { justify-content: center; font-size: 11px; letter-spacing: .05em; white-space: nowrap; margin-bottom: 12px; }
     .eyebrow svg { width: 14px; height: 14px; }
     .title { font-size: 46px; line-height: .94; }
     .lead, .route { display: none; }
@@ -201,7 +208,7 @@
     .cta .full { display: none; }
     .cta .short { display: inline; }
   }
-  /* узкий телефон: ровно 7 дат, без обрезанных краёв */
+  /* узкий телефон: ровно 7 дат, без обрезанных краев */
   @media (max-width: 480px) {
     .days { margin: 0; padding: 0; scroll-padding: 0; }
     .day { flex: 0 0 calc((100% - 24px) / 7); }
@@ -210,7 +217,7 @@
   @media (max-width: 899px) and (max-height: 740px) {
     .hero { padding-top: 66px; }
     .nav { padding-top: 12px; }
-    .eyebrow { margin-bottom: 8px; font-size: 9.5px; letter-spacing: .05em; }
+    .eyebrow { margin-bottom: 8px; font-size: 10.5px; letter-spacing: .03em; }
     .title { font-size: 36px; }
     .media { margin-top: 10px; }
     .book { margin-top: -44px; }
@@ -420,6 +427,9 @@
   .fun-row p { margin: 8px 0 0; font-size: 16px; line-height: 1.45; color: var(--snow-90); text-wrap: pretty; }
   .fun-link { display: inline-block; margin-top: 14px; padding-bottom: 1px; font-size: 15.5px; color: var(--amber); border-bottom: 1px solid rgba(244, 184, 96, .45); transition: border-color .2s ease-out; }
   .fun-link:hover { border-color: var(--amber); }
+  /* зона нажатия 44 px без изменения вида (22 ноя) */
+  .fun-link, .ban-also a { position: relative; }
+  .fun-link::after, .ban-also a::after { content: ""; position: absolute; left: -6px; right: -6px; top: 50%; height: 44px; transform: translateY(-50%); }
   .fun-main h3 { font-size-adjust: none; }
 
   @media (max-width: 1180px) {
@@ -842,7 +852,7 @@
     /* пункты меню при наведении загораются горчичным, как кнопка Telegram */
     .links a { padding: 7px 16px; border-radius: 999px; border: 1px solid transparent; transition: background-color .2s ease-out, border-color .2s ease-out, color .2s ease-out; }
     .links a:hover, .links a:focus-visible { background: rgba(244, 184, 96, .3); border-color: rgba(244, 184, 96, .75); color: #ffe3b8; outline: none; }
-    /* первый экран растёт под содержимое: форма брони не обрезается на невысоких экранах */
+    /* первый экран растет под содержимое: форма брони не обрезается на невысоких экранах */
     .hero { height: auto; min-height: max(100vh, 780px); padding-bottom: 72px; }
     .lead { margin-top: 30px; }
     .route { margin-top: 26px; }
@@ -899,7 +909,7 @@
   .ex-food .ex-row b { grid-column: 1; grid-row: 1; align-self: center; }
   .ex-food .ex-row .step { grid-column: 2; grid-row: 1; }
   .ex-food .ex-row small { grid-column: 1 / -1; grid-row: 2; margin-top: 0; max-width: 62ch; text-wrap: pretty; }
-  /* ---------- новая схема брони, 21 ноя: дома с бронью, окно с календарём дома и допами ---------- */
+  /* ---------- новая схема брони, 21 ноя: дома с бронью, окно с календарем дома и допами ---------- */
   .homes-head .homes-when { margin-top: 16px; font-size: 18px; line-height: 1.5; color: var(--snow); }
   .homes-head .free-status { margin-top: 10px !important; }
   .homes .home:first-of-type { border-top: 0; }
@@ -950,7 +960,7 @@
   .sh-t { flex: 1; min-width: 0; }
   .sh-t h2 { margin: 0; font-family: var(--serif); font-weight: 600; font-size: 30px; line-height: 1.05; font-size-adjust: none; }
   .sh-sub { margin: 4px 0 0; font-size: 16px; line-height: 1.4; color: var(--snow-70); }
-  .sh-edit { display: inline-flex; align-items: center; min-height: 32px; margin: -6px 0; padding: 0; color: var(--amber); text-decoration: underline; text-decoration-color: rgba(244, 184, 96, .45); text-underline-offset: 4px; }
+  .sh-edit { display: inline-flex; align-items: center; min-height: 44px; margin: -12px 0; padding: 0; color: var(--amber); text-decoration: underline; text-decoration-color: rgba(244, 184, 96, .45); text-underline-offset: 4px; }
   .sh-edit:hover { text-decoration-color: var(--amber); }
   .sh-x { flex: none; display: grid; place-items: center; width: 44px; height: 44px; border-radius: 50%; box-shadow: inset 0 0 0 1px rgba(245, 242, 234, .24); color: var(--snow-90); transition: background-color .2s ease-out; }
   .sh-x:hover { background: rgba(245, 242, 234, .08); }
@@ -978,7 +988,7 @@
   .cd:hover { background: rgba(245, 242, 234, .14); }
   .cd.is-past { opacity: .3; cursor: default; }
   .cd.is-past:hover { background: rgba(245, 242, 234, .07); }
-  .cd.is-busy { background: transparent; box-shadow: inset 0 0 0 1px rgba(245, 242, 234, .1); color: rgba(245, 242, 234, .38); cursor: default; }
+  .cd.is-busy { background: transparent; box-shadow: inset 0 0 0 1px rgba(245, 242, 234, .1); color: rgba(245, 242, 234, .5); cursor: default; }
   .cd.is-busy span { text-decoration: line-through; text-decoration-thickness: 1px; }
   .cd.is-in { background: rgba(244, 184, 96, .2); box-shadow: inset 0 0 0 1px rgba(244, 184, 96, .55); color: #ffdca6; }
   .cd.is-start, .cd.is-end { background: var(--amber); color: var(--amber-ink); box-shadow: none; }
@@ -1088,7 +1098,7 @@
   @media (max-width: 899px) {
     html.hero-short .hero { padding-top: 66px; }
     html.hero-short .nav { padding-top: 12px; }
-    html.hero-short .eyebrow { margin-bottom: 8px; font-size: 9.5px; letter-spacing: .05em; }
+    html.hero-short .eyebrow { margin-bottom: 8px; font-size: 10.5px; letter-spacing: .03em; }
     html.hero-short .title { font-size: 36px; }
     html.hero-short .media { margin-top: 10px; }
     html.hero-short .book { margin-top: -44px; }
@@ -1102,7 +1112,7 @@
     html.hero-low .day { height: 48px; }
     html.hero-low .book-foot { margin-top: 8px; }
   }
-  /* первый экран на телефоне: высота по первому замеру, iPhone Safari не дёргает страницу (21 ноя) */
+  /* первый экран на телефоне: высота по первому замеру, iPhone Safari не дергает страницу (21 ноя) */
   @media (max-width: 899px) { .hero { height: var(--hero-h, 100svh); } }
 
   /* телефон: над лентой список месяцев, лента листается до конца 2027 (21 ноя) */
@@ -1208,20 +1218,21 @@
       <span><b>НАРНИЯ</b><small>ПАВЛОВКА</small></span>
     </a>
     <nav class="links" aria-label="Разделы">
-      <a href="#doma" id="nav-doma">Дома</a><a href="#banya">Баня</a><a href="#">Ресторан</a><a href="#fun">Развлечения</a><a href="https://yandex.ru/maps/?rtext=~55.459549%2C56.534324&amp;rtt=auto" target="_blank" rel="noopener">Как добраться</a>
+      <a href="#doma" id="nav-doma">Дома</a><a href="#banya">Баня</a><a href="#fun">Развлечения</a><a href="https://yandex.ru/maps/?rtext=~55.459549%2C56.534324&amp;rtt=auto" target="_blank" rel="noopener">Как добраться</a>
     </nav>
-    <a class="nav-cta" href="https://t.me/narnia_pavlovka_reservation" target="_blank" rel="noopener" aria-label="Написать в Telegram">
+    <a class="nav-cta" href="https://t.me/narnia_pavlovka_reservation?text=%D0%97%D0%B4%D1%80%D0%B0%D0%B2%D1%81%D1%82%D0%B2%D1%83%D0%B9%D1%82%D0%B5%21%20%D0%A5%D0%BE%D1%87%D1%83%20%D1%83%D0%B7%D0%BD%D0%B0%D1%82%D1%8C%20%D0%BF%D1%80%D0%BE%20%D0%BE%D1%82%D0%B4%D1%8B%D1%85%20%D0%B2%20%D0%9D%D0%B0%D1%80%D0%BD%D0%B8%D0%B8%E2%98%80%EF%B8%8F" target="_blank" rel="noopener" aria-label="Написать в Telegram">
       <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20.5 4.5 3.8 11c-.9.4-.9 1.6.1 1.9l4.1 1.3 1.6 5c.2.7 1.1.9 1.6.4l2.3-2.2 4.2 3.1c.6.4 1.4.1 1.6-.6l2.6-13.3c.2-.9-.6-1.5-1.4-1.1z" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/><path d="m8 14.2 8.6-6.1-6.6 7.3" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/></svg>
       <span>Написать в Telegram</span>
     </a>
-    <button class="menu" aria-label="Меню">
-      <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 8h16M4 16h16" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/></svg>
+    <button class="menu" type="button" aria-label="Меню" aria-expanded="false">
+      <svg class="i-open" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 8h16M4 16h16" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/></svg>
+      <svg class="i-close" viewBox="0 0 24 24" aria-hidden="true"><path d="M6 6l12 12M18 6 6 18" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/></svg>
     </button>
   </header>
 
   <div class="media">
     <div class="photo">
-      <img src="house-wide.jpg" alt="Классические дома «Нарнии» на склоне в заснеженном лесу, в окнах тёплый свет" id="photo">
+      <img src="house-wide.jpg" alt="Классические дома «Нарнии» на склоне в заснеженном лесу, в окнах теплый свет" id="photo">
       <img class="slide sl-af" data-src="hero-afreim.jpg" alt="Два А-фрейма «Нарнии» в заснеженном лесу на закате">
       <img class="slide sl-ban" data-src="hero-banya.jpg" alt="Таежная баня на лесном склоне зимой, терраса с огоньками">
     </div>
@@ -1352,7 +1363,7 @@
   <article class="home">
     <div class="gal">
       <div class="gal-main"><img src="dom-big-1.jpg" alt="Большой А-фрейм с балконом в хвойном лесу" loading="lazy"><span class="gal-count">1 / 8</span></div>
-      <div class="gal-thumbs"><button class="thumb" type="button" data-src="dom-big-1.jpg" data-alt="Большой А-фрейм с балконом в хвойном лесу" aria-label="Фото 1 из 8" aria-current="true"><img src="dom-big-1.jpg" alt="" loading="lazy"></button><button class="thumb" type="button" data-src="dom-big-vhod.jpg" data-alt="Большой А-фрейм со стороны входа, у двери окно" aria-label="Фото 2 из 8"><img src="dom-big-vhod.jpg" alt="" loading="lazy"></button><button class="thumb" type="button" data-src="dom-big-2.jpg" data-alt="Кухня с обеденным столом" aria-label="Фото 3 из 8"><img src="dom-big-2.jpg" alt="" loading="lazy"></button><button class="thumb" type="button" data-src="dom-big-6.jpg" data-alt="Гостиная с зелёным диваном и выходом на балкон" aria-label="Фото 4 из 8"><img src="dom-big-6.jpg" alt="" loading="lazy"></button><button class="thumb" type="button" data-src="dom-small-4.jpg" data-alt="Спальня с окном в лес" aria-label="Фото 5 из 8"><img src="dom-small-4.jpg" alt="" loading="lazy"></button><button class="thumb" type="button" data-src="dom-big-7.jpg" data-alt="Спальня с панорамным окном на водохранилище" aria-label="Фото 6 из 8"><img src="dom-big-7.jpg" alt="" loading="lazy"></button><button class="thumb" type="button" data-src="dom-big-8.jpg" data-alt="Ещё одна спальня с окном в зимний лес" aria-label="Фото 7 из 8"><img src="dom-big-8.jpg" alt="" loading="lazy"></button><button class="thumb" type="button" data-src="dom-big-4.jpg" data-alt="Терраса с видом на воду" aria-label="Фото 8 из 8"><img src="dom-big-4.jpg" alt="" loading="lazy"></button></div>
+      <div class="gal-thumbs"><button class="thumb" type="button" data-src="dom-big-1.jpg" data-alt="Большой А-фрейм с балконом в хвойном лесу" aria-label="Фото 1 из 8" aria-current="true"><img src="dom-big-1.jpg" alt="" loading="lazy"></button><button class="thumb" type="button" data-src="dom-big-vhod.jpg" data-alt="Большой А-фрейм со стороны входа, у двери окно" aria-label="Фото 2 из 8"><img src="dom-big-vhod.jpg" alt="" loading="lazy"></button><button class="thumb" type="button" data-src="dom-big-2.jpg" data-alt="Кухня с обеденным столом" aria-label="Фото 3 из 8"><img src="dom-big-2.jpg" alt="" loading="lazy"></button><button class="thumb" type="button" data-src="dom-big-6.jpg" data-alt="Гостиная с зеленым диваном и выходом на балкон" aria-label="Фото 4 из 8"><img src="dom-big-6.jpg" alt="" loading="lazy"></button><button class="thumb" type="button" data-src="dom-small-4.jpg" data-alt="Спальня с окном в лес" aria-label="Фото 5 из 8"><img src="dom-small-4.jpg" alt="" loading="lazy"></button><button class="thumb" type="button" data-src="dom-big-7.jpg" data-alt="Спальня с панорамным окном на водохранилище" aria-label="Фото 6 из 8"><img src="dom-big-7.jpg" alt="" loading="lazy"></button><button class="thumb" type="button" data-src="dom-big-8.jpg" data-alt="Еще одна спальня с окном в зимний лес" aria-label="Фото 7 из 8"><img src="dom-big-8.jpg" alt="" loading="lazy"></button><button class="thumb" type="button" data-src="dom-big-4.jpg" data-alt="Терраса с видом на воду" aria-label="Фото 8 из 8"><img src="dom-big-4.jpg" alt="" loading="lazy"></button></div>
     </div>
     <div class="info">
       <h3>Большой А-фрейм</h3>
@@ -1392,7 +1403,7 @@
   <div class="sh-body">
     <div class="st-cal" id="st-cal">
       <div class="cal-top">
-        <p class="cal-lead">Нажмите день заезда, потом день выезда. Зачёркнуты ночи, когда дом занят.</p>
+        <p class="cal-lead">Нажмите день заезда, потом день выезда. Зачеркнуты ночи, когда дом занят.</p>
         <div class="month">
           <button type="button" id="cal-prev" aria-label="Раньше"><svg viewBox="0 0 24 24"><path d="m14 6-6 6 6 6" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg></button>
           <span id="cal-month"></span>
@@ -1441,7 +1452,7 @@
       </div>
       <div class="pin pin--right" style="--x:66;--y:50;--mx:50;--my:50">
         <i></i>
-        <div class="tag"><b>Таёжная баня</b><span>бревенчатый сруб в лесу</span></div>
+        <div class="tag"><b>Таежная баня</b><span>бревенчатый сруб в лесу</span></div>
       </div>
       <div class="pin pin--right" style="--x:76;--y:83;--mx:76;--my:83">
         <i></i>
@@ -1452,14 +1463,14 @@
   <div class="ban-wrap">
     <div class="ban-grid">
       <div class="ban-top">
-        <h2 class="h2" id="banya-h">Таёжная баня <em>у&nbsp;водохранилища</em></h2>
+        <h2 class="h2" id="banya-h">Таежная баня <em>у&nbsp;водохранилища</em></h2>
         <p class="place"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 21s-6.5-5.6-6.5-11a6.5 6.5 0 0 1 13 0c0 5.4-6.5 11-6.5 11z" fill="none" stroke="currentColor" stroke-width="1.6"/><circle cx="12" cy="10" r="2.3" fill="currentColor"/></svg>Нарния, лесной берег</p>
-        <p class="ban-lead">Баня стоит в лесу на берегу Павловки. После парной спускаетесь к&nbsp;воде, там зона купания, лежаки и&nbsp;костровая чаша.</p>
+        <p class="ban-lead">Баня стоит в лесу на берегу Павловки. После&nbsp;парной спускаетесь к&nbsp;воде, там зона купания, лежаки и&nbsp;костровая чаша.</p>
         <dl class="ban-list">
-          <div><dt>Баня</dt><dd>Таёжная, в лесу на склоне</dd></div>
+          <div><dt>Баня</dt><dd>Таежная, в лесу на склоне</dd></div>
           <div><dt>Пирс</dt><dd>Большой пирс и зона купания</dd></div>
           <div><dt>Лежаки</dt><dd>Отдых у самой воды</dd></div>
-          <div><dt>Костёр</dt><dd>Костровая чаша на берегу</dd></div>
+          <div><dt>Костер</dt><dd>Костровая чаша на берегу</dd></div>
         </dl>
       </div>
       <figure class="ban-side">
@@ -1477,8 +1488,8 @@
           <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20.5 4.5 3.8 11c-.9.4-.9 1.6.1 1.9l4.1 1.3 1.6 5c.2.7 1.1.9 1.6.4l2.3-2.2 4.2 3.1c.6.4 1.4.1 1.6-.6l2.6-13.3c.2-.9-.6-1.5-1.4-1.1z" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/><path d="m8 14.2 8.6-6.1-6.6 7.3" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/></svg>
           Забронировать баню
         </a>
-        <p class="ban-note">Отдельно можно взять веник, хвойный, дубовый или берёзовый, эфирные масла и&nbsp;подушку с&nbsp;сеном в&nbsp;аренду, по&nbsp;500&nbsp;₽.</p>
-        <p class="ban-also">Живете на&nbsp;острове? Там две модульные бани по&nbsp;той же цене. <a href="https://t.me/narnia_pavlovka_reservation?text=%D0%97%D0%B4%D1%80%D0%B0%D0%B2%D1%81%D1%82%D0%B2%D1%83%D0%B9%D1%82%D0%B5%2C%20%D1%85%D0%BE%D1%87%D1%83%20%D0%B7%D0%B0%D0%B1%D1%80%D0%BE%D0%BD%D0%B8%D1%80%D0%BE%D0%B2%D0%B0%D1%82%D1%8C%20%D0%BC%D0%BE%D0%B4%D1%83%D0%BB%D1%8C%D0%BD%D1%83%D1%8E%20%D0%B1%D0%B0%D0%BD%D1%8E%E2%98%80%EF%B8%8F" target="_blank" rel="noopener">Спросить про&nbsp;модульную&nbsp;баню</a></p>
+        <p class="ban-note">Отдельно можно взять веник, хвойный, дубовый или березовый, эфирные масла и&nbsp;подушку с&nbsp;сеном в&nbsp;аренду, по&nbsp;500&nbsp;₽.</p>
+        <p class="ban-also">Живете на&nbsp;острове? Там две модульные бани по&nbsp;той же цене. <a href="https://t.me/narnia_pavlovka_reservation?text=%D0%97%D0%B4%D1%80%D0%B0%D0%B2%D1%81%D1%82%D0%B2%D1%83%D0%B9%D1%82%D0%B5%2C%20%D1%85%D0%BE%D1%87%D1%83%20%D0%B7%D0%B0%D0%B1%D1%80%D0%BE%D0%BD%D0%B8%D1%80%D0%BE%D0%B2%D0%B0%D1%82%D1%8C%20%D0%BC%D0%BE%D0%B4%D1%83%D0%BB%D1%8C%D0%BD%D1%83%D1%8E%20%D0%B1%D0%B0%D0%BD%D1%8E%E2%98%80%EF%B8%8F" target="_blank" rel="noopener">Спросить&nbsp;про&nbsp;модульную&nbsp;баню</a></p>
       </div>
     </div>
   </div>
@@ -1487,11 +1498,11 @@
 <section class="fun" id="fun" aria-labelledby="fun-h">
   <header class="homes-head">
     <h2 class="h2" id="fun-h">Снегоходы зимой, <em>катера летом</em></h2>
-    <p>Цена указана за час. Напишите в&nbsp;Telegram, и&nbsp;договоримся о&nbsp;времени.</p>
+    <p>Цена указана за час. Напишите&nbsp;в&nbsp;Telegram, и&nbsp;договоримся о&nbsp;времени.</p>
   </header>
   <div class="fun-grid">
     <article class="fun-main">
-      <figure class="fun-photo"><img src="fun-snegohod.jpg" alt="Чёрный снегоход с включёнными фарами на заснеженной дороге в лесу" loading="lazy"></figure>
+      <figure class="fun-photo"><img src="fun-snegohod.jpg" alt="Черный снегоход с включенными фарами на заснеженной дороге в лесу" loading="lazy"></figure>
       <h3>Снегоход</h3>
       <p>Катаетесь по зимнему лесу и заснеженным дорогам вокруг водохранилища.</p>
       <dl class="fun-prices"><div><dt>в час</dt><dd>5&nbsp;000&nbsp;₽</dd></div></dl>
@@ -1528,8 +1539,8 @@
       <article class="fun-row">
         <figure class="fun-photo"><img src="fun-dog.jpg" alt="Спаниель в леопардовой попоне на деревянной лестнице в лесу" loading="lazy"></figure>
         <div>
-          <h3>Можно с&nbsp;собакой</h3>
-          <p>Ждём собак до&nbsp;10&nbsp;кг. В&nbsp;доме для&nbsp;неё будут лежанка, игрушка и&nbsp;миска.</p>
+          <h3>Можно&nbsp;с&nbsp;собакой</h3>
+          <p>Ждем собак до&nbsp;10&nbsp;кг. В&nbsp;доме&nbsp;для&nbsp;нее будут лежанка, игрушка и&nbsp;миска.</p>
           <dl class="fun-prices"><div><dt>за питомца</dt><dd>1&nbsp;500&nbsp;₽</dd></div></dl>
           <a class="fun-link" href="https://t.me/narnia_pavlovka_reservation?text=%D0%97%D0%B4%D1%80%D0%B0%D0%B2%D1%81%D1%82%D0%B2%D1%83%D0%B9%D1%82%D0%B5%2C%20%D1%85%D0%BE%D1%87%D1%83%20%D0%BF%D1%80%D0%B8%D0%B5%D1%85%D0%B0%D1%82%D1%8C%20%D1%81%20%D1%81%D0%BE%D0%B1%D0%B0%D0%BA%D0%BE%D0%B9%E2%98%80%EF%B8%8F" target="_blank" rel="noopener">Забронировать с&nbsp;собакой</a>
         </div>
@@ -1554,13 +1565,13 @@
     </div>
   </header>
   <div class="rev-stage" id="rev-stage" role="group" aria-roledescription="карусель" aria-label="Отзывы гостей" aria-live="polite">
-    <figure class="rev-card"><div class="rev-top"><span class="rev-ava rev-ava--letter" aria-hidden="true">К</span><span class="rev-stars" role="img" aria-label="Оценка 5 из 5"></span></div><blockquote><p>Вернулись сюда второй раз за сезон, и это лучшее доказательство, как тут здорово! В августе покорила баня с выходом к реке (прыгать в воду после пара — просто кайф!) и теплые посиделки на веранде.</p></blockquote><figcaption>— Ксения, октябрь</figcaption></figure>
-    <figure class="rev-card"><div class="rev-top"><span class="rev-ava rev-ava--letter" aria-hidden="true">С</span><span class="rev-stars" role="img" aria-label="Оценка 5 из 5"></span></div><blockquote><p>Отличная туристическая база, шикарный дом: новый ремонт, интерьер, техника. Отличный вид на Павловское водохранилище, иллюминация. Развлечения на базе, баня на дровах. Сервис на высшем уровне!</p></blockquote><figcaption>— Сергей, февраль</figcaption></figure>
-    <figure class="rev-card"><div class="rev-top"><span class="rev-ava rev-ava--letter" aria-hidden="true">Д</span><span class="rev-stars" role="img" aria-label="Оценка 5 из 5"></span></div><blockquote><p>Выбирали Ваш комплекс из многочисленных вариантов, отмечали сразу 2 дня рождения. С первой же минуты поняли, что приехали не зря. У вас ПЕРВОКЛАСНЫЙ СЕРВИС!!! Отдельное спасибо за суперскую баньку и покатушки на квадриках. Обязательно вернёмся вновь!</p></blockquote><figcaption>— Данила, июнь</figcaption></figure>
-    <figure class="rev-card"><div class="rev-top"><span class="rev-ava rev-ava--letter" aria-hidden="true">В</span><span class="rev-stars" role="img" aria-label="Оценка 5 из 5"></span></div><blockquote><p>Абсолютная перезагрузка. Лёгкое дыхание, глубочайший сон после бани и полное ощущение покоя. Здесь удивительным образом отдыхает не только тело, но и разум — мысли становятся ясными, а усталость исчезает без следа.</p></blockquote><figcaption>— Василиса, июль</figcaption></figure>
-    <figure class="rev-card"><div class="rev-top"><span class="rev-ava rev-ava--letter" aria-hidden="true">Р</span><span class="rev-stars" role="img" aria-label="Оценка 5 из 5"></span></div><blockquote><p>Очень сказочное место, тихо, красиво, в доме уютно, очень тепло. Продумано все до мелочей, баня отличная. Подросткам трудно угодить, но нашим понравилось.</p></blockquote><figcaption>— Регина, март</figcaption></figure>
-    <figure class="rev-card"><div class="rev-top"><span class="rev-ava rev-ava--letter" aria-hidden="true">Л</span><span class="rev-stars" role="img" aria-label="Оценка 5 из 5"></span></div><blockquote><p>Отличная база отдыха! Всё свежее, новенькое, в домиках идеальная чистота и есть всё необходимое. Очень красивое место, вокруг тишина и природа. Персонал приветливый, заботливый. Спасибо за классные выходные!</p></blockquote><figcaption>— Людмила, октябрь</figcaption></figure>
-    <figure class="rev-card"><div class="rev-top"><span class="rev-ava rev-ava--letter" aria-hidden="true">С</span><span class="rev-stars" role="img" aria-label="Оценка 5 из 5"></span></div><blockquote><p>Потрясающее место! Потрясающие виды, настоящая Нарния! Уютно. Идеально для семейного отдыха.</p></blockquote><figcaption>— Светлана, февраль</figcaption></figure>
+    <figure class="rev-card"><div class="rev-top"><span class="rev-ava rev-ava--letter" aria-hidden="true">К</span><span class="rev-stars" role="img" aria-label="Оценка 5 из 5"></span></div><blockquote><p>Вернулись сюда второй раз за сезон, и это лучшее доказательство, как тут здорово! В&nbsp;августе покорила баня с выходом к реке (прыгать в воду после пара — просто кайф!) и теплые посиделки на веранде.</p></blockquote><figcaption>— Ксения, октябрь</figcaption></figure>
+    <figure class="rev-card"><div class="rev-top"><span class="rev-ava rev-ava--letter" aria-hidden="true">С</span><span class="rev-stars" role="img" aria-label="Оценка 5 из 5"></span></div><blockquote><p>Отличная туристическая база, шикарный дом: новый ремонт, интерьер, техника. Отличный&nbsp;вид на&nbsp;Павловское водохранилище, иллюминация. Развлечения на&nbsp;базе, баня на дровах. Сервис на&nbsp;высшем&nbsp;уровне!</p></blockquote><figcaption>— Сергей, февраль</figcaption></figure>
+    <figure class="rev-card"><div class="rev-top"><span class="rev-ava rev-ava--letter" aria-hidden="true">Д</span><span class="rev-stars" role="img" aria-label="Оценка 5 из 5"></span></div><blockquote><p>Выбирали Ваш комплекс из многочисленных вариантов, отмечали сразу 2 дня рождения. С&nbsp;первой же минуты поняли, что приехали не зря. У&nbsp;вас ПЕРВОКЛАСНЫЙ СЕРВИС!!! Отдельное&nbsp;спасибо за суперскую баньку и покатушки на квадриках. Обязательно вернемся&nbsp;вновь!</p></blockquote><figcaption>— Данила, июнь</figcaption></figure>
+    <figure class="rev-card"><div class="rev-top"><span class="rev-ava rev-ava--letter" aria-hidden="true">В</span><span class="rev-stars" role="img" aria-label="Оценка 5 из 5"></span></div><blockquote><p>Абсолютная перезагрузка. Легкое&nbsp;дыхание, глубочайший сон после бани и полное ощущение покоя. Здесь&nbsp;удивительным образом отдыхает не только тело, но и разум — мысли становятся ясными, а усталость исчезает без&nbsp;следа.</p></blockquote><figcaption>— Василиса, июль</figcaption></figure>
+    <figure class="rev-card"><div class="rev-top"><span class="rev-ava rev-ava--letter" aria-hidden="true">Р</span><span class="rev-stars" role="img" aria-label="Оценка 5 из 5"></span></div><blockquote><p>Очень сказочное место, тихо, красиво, в доме уютно, очень тепло. Продумано&nbsp;все до&nbsp;мелочей, баня отличная. Подросткам&nbsp;трудно угодить, но&nbsp;нашим&nbsp;понравилось.</p></blockquote><figcaption>— Регина, март</figcaption></figure>
+    <figure class="rev-card"><div class="rev-top"><span class="rev-ava rev-ava--letter" aria-hidden="true">Л</span><span class="rev-stars" role="img" aria-label="Оценка 5 из 5"></span></div><blockquote><p>Отличная база отдыха! Все&nbsp;свежее, новенькое, в домиках идеальная чистота и есть все необходимое. Очень&nbsp;красивое место, вокруг тишина и природа. Персонал&nbsp;приветливый, заботливый. Спасибо за&nbsp;классные&nbsp;выходные!</p></blockquote><figcaption>— Людмила, октябрь</figcaption></figure>
+    <figure class="rev-card"><div class="rev-top"><span class="rev-ava rev-ava--letter" aria-hidden="true">С</span><span class="rev-stars" role="img" aria-label="Оценка 5 из 5"></span></div><blockquote><p>Потрясающее место! Потрясающие&nbsp;виды, настоящая Нарния! Уютно. Идеально для&nbsp;семейного&nbsp;отдыха.</p></blockquote><figcaption>— Светлана, февраль</figcaption></figure>
     <div class="rev-ctrl">
       <button class="rev-btn" type="button" id="rev-prev" aria-label="Предыдущий отзыв"><svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m15 18-6-6 6-6"/></svg></button>
       <button class="rev-btn" type="button" id="rev-next" aria-label="Следующий отзыв"><svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m9 18 6-6-6-6"/></svg></button>
@@ -1579,7 +1590,7 @@
       var step = cards[0].offsetWidth / 1.5;
       cards.forEach(function (c, i) {
         var p = posOf(i), center = p === 0;
-        // При загрузке и при прыжке с края на край карточка встаёт без анимации, иначе пролетит через весь блок.
+        // При загрузке и при прыжке с края на край карточка встает без анимации, иначе пролетит через весь блок.
         var jump = last[i] === null || Math.abs(p - last[i]) > half;
         if (jump) c.style.transition = 'none';
         c.style.transform = 'translate(-50%, -50%) translateX(' + (step * p) + 'px) translateY(' +
@@ -1629,7 +1640,7 @@
       </details>
       <details class="faq-item">
         <summary><h3>Есть ли в доме Wi-Fi и кухня?</h3><span class="faq-plus" aria-hidden="true"></span></summary>
-        <div class="faq-body"><p>Wi-Fi есть в&nbsp;каждом доме. Там же кухня с&nbsp;посудой, телевизор, постельное бельё, полотенца и&nbsp;принадлежности для душа.</p></div>
+        <div class="faq-body"><p>Wi-Fi есть в&nbsp;каждом доме. Там же кухня с&nbsp;посудой, телевизор, постельное белье, полотенца и&nbsp;принадлежности для душа.</p></div>
       </details>
       <details class="faq-item">
         <summary><h3>Можно приехать с собакой?</h3><span class="faq-plus" aria-hidden="true"></span></summary>
@@ -1638,11 +1649,11 @@
       <details class="faq-item">
         <summary><h3>Где жарить шашлык?</h3><span class="faq-plus" aria-hidden="true"></span></summary>
         <div class="faq-body">
-          <p>У&nbsp;каждого дома своя мангальная зона. Уголь, решётку и&nbsp;розжиг оплачиваете отдельно.</p>
+          <p>У&nbsp;каждого дома своя мангальная зона. Уголь,&nbsp;решетку и&nbsp;розжиг оплачиваете отдельно.</p>
           <dl class="faq-prices">
             <div><dt>Уголь</dt><dd>800 ₽</dd></div>
-            <div><dt>Решётка, купить</dt><dd>1 500 ₽</dd></div>
-            <div><dt>Решётка, в аренду</dt><dd>500 ₽</dd></div>
+            <div><dt>Решетка, купить</dt><dd>1 500 ₽</dd></div>
+            <div><dt>Решетка, в аренду</dt><dd>500 ₽</dd></div>
             <div><dt>Розжиг</dt><dd>500 ₽ за штуку</dd></div>
             <div><dt>Горелка</dt><dd>500 ₽ за штуку</dd></div>
             <div><dt>Газ</dt><dd>300 ₽ за штуку</dd></div>
@@ -1659,7 +1670,7 @@
       <details class="faq-item">
         <summary><h3>Что на каком берегу?</h3><span class="faq-plus" aria-hidden="true"></span></summary>
         <div class="faq-body">
-          <p><b>Нарния.</b> Классические дома, таёжная баня, большой пирс, зона купания и лежаки.</p>
+          <p><b>Нарния.</b> Классические дома, таежная баня, большой пирс, зона купания и лежаки.</p>
           <p><b>Нарния Остров.</b> А-фреймы, две модульные бани, юрта, зоны отдыха с&nbsp;костровыми чашами и&nbsp;экоферма.</p>
         </div>
       </details>
@@ -1675,7 +1686,7 @@
   <div class="final-in">
     <div>
       <h2 class="final-h" id="final-h">Выберите даты, <em>покажем свободные&nbsp;дома</em></h2>
-      <p>Цена сразу за&nbsp;весь отдых, с&nbsp;баней и&nbsp;допами.</p>
+      <p>Цена сразу за&nbsp;весь отдых, с&nbsp;баней&nbsp;и&nbsp;допами.</p>
     </div>
     <a class="cta" href="#daty"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="4" y="5.5" width="16" height="14" rx="3" fill="none" stroke="currentColor" stroke-width="1.7"/><path d="M4 10h16M8.5 3.5v4M15.5 3.5v4" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/></svg>Выбрать даты</a>
   </div>
@@ -1696,7 +1707,7 @@
     </nav>
     <div class="foot-col">
       <h2>Связь</h2>
-      <a class="foot-ico" href="https://t.me/narnia_pavlovka_reservation" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20.5 4.5 3.8 11c-.9.4-.9 1.6.1 1.9l4.1 1.3 1.6 5c.2.7 1.1.9 1.6.4l2.3-2.2 4.2 3.1c.6.4 1.4.1 1.6-.6l2.6-13.3c.2-.9-.6-1.5-1.4-1.1z" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/><path d="m8 14.2 8.6-6.1-6.6 7.3" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/></svg>Бронь в&nbsp;Telegram</a>
+      <a class="foot-ico" href="https://t.me/narnia_pavlovka_reservation?text=%D0%97%D0%B4%D1%80%D0%B0%D0%B2%D1%81%D1%82%D0%B2%D1%83%D0%B9%D1%82%D0%B5%21%20%D0%A5%D0%BE%D1%87%D1%83%20%D1%83%D0%B7%D0%BD%D0%B0%D1%82%D1%8C%20%D0%BF%D1%80%D0%BE%20%D0%BE%D1%82%D0%B4%D1%8B%D1%85%20%D0%B2%20%D0%9D%D0%B0%D1%80%D0%BD%D0%B8%D0%B8%E2%98%80%EF%B8%8F" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20.5 4.5 3.8 11c-.9.4-.9 1.6.1 1.9l4.1 1.3 1.6 5c.2.7 1.1.9 1.6.4l2.3-2.2 4.2 3.1c.6.4 1.4.1 1.6-.6l2.6-13.3c.2-.9-.6-1.5-1.4-1.1z" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/><path d="m8 14.2 8.6-6.1-6.6 7.3" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/></svg>Бронь в&nbsp;Telegram</a>
       <a class="foot-ico" href="tel:+79177598811"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5.5 4h3l1.5 4-2 1.2a11 11 0 0 0 6.8 6.8L16 14l4 1.5v3A2 2 0 0 1 18 20.5 15.5 15.5 0 0 1 3.5 6 2 2 0 0 1 5.5 4z" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/></svg>+7&nbsp;917&nbsp;759-88-11</a>
       <a class="foot-ico" href="https://t.me/narnia_pavlovka" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20.5 4.5 3.8 11c-.9.4-.9 1.6.1 1.9l4.1 1.3 1.6 5c.2.7 1.1.9 1.6.4l2.3-2.2 4.2 3.1c.6.4 1.4.1 1.6-.6l2.6-13.3c.2-.9-.6-1.5-1.4-1.1z" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/><path d="m8 14.2 8.6-6.1-6.6 7.3" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/></svg>Канал «Нарнии»</a>
       <a class="foot-ico" href="https://www.instagram.com/narnia.pavlovka/" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3.5" y="3.5" width="17" height="17" rx="5" fill="none" stroke="currentColor" stroke-width="1.6"/><circle cx="12" cy="12" r="4" fill="none" stroke="currentColor" stroke-width="1.6"/><circle cx="17.2" cy="6.8" r="1.1" fill="currentColor"/></svg><span>Инстаграм «Нарнии»<sup class="foot-star" aria-hidden="true">*</sup></span></a>
@@ -1758,8 +1769,8 @@
   var DOPS = {
     guest: { name: 'Дополнительный гость', sub: '1' + NB + '500' + NB + '₽, дополнительное спальное место', price: 1500, min: 1, max: 2, unit: 'чел', msg: 'доп. гость', img: 'dop-gost.jpg' },
     pet: { name: 'Питомец', sub: '1' + NB + '500' + NB + '₽, лежанка, игрушка и' + NB + 'миска', price: 1500, min: 1, max: 2, unit: '', msg: 'питомец', img: 'dop-pitomec.jpg' },
-    banya: { name: 'Таёжная баня', sub: '2' + NB + '500' + H + ', от' + NB + '2' + NB + 'часов', price: 2500, min: 2, max: 8, unit: 'ч', msg: 'баня', img: 'dop-banya.jpg' },
-    chan: { name: 'Таёжный чан', sub: '2' + NB + '500' + H + ', от' + NB + '2' + NB + 'часов', price: 2500, min: 2, max: 8, unit: 'ч', msg: 'таежный чан', icon: 'chan' },
+    banya: { name: 'Таежная баня', sub: '2' + NB + '500' + H + ', от' + NB + '2' + NB + 'часов', price: 2500, min: 2, max: 8, unit: 'ч', msg: 'баня', img: 'dop-banya.jpg' },
+    chan: { name: 'Таежный чан', sub: '2' + NB + '500' + H + ', от' + NB + '2' + NB + 'часов', price: 2500, min: 2, max: 8, unit: 'ч', msg: 'таежный чан', icon: 'chan' },
     venik: { name: 'Веник', sub: '500' + NB + '₽', price: 500, msg: 'веник', toggle: true },
     masla: { name: 'Эфирные масла', sub: '500' + NB + '₽', price: 500, msg: 'эфирные масла', toggle: true },
     podushka: { name: 'Подушка с' + NB + 'сеном', sub: '500' + NB + '₽', price: 500, msg: 'подушка с сеном', toggle: true },
@@ -1769,7 +1780,7 @@
     kater10: { name: 'Катер на' + NB + '10' + NB + 'мест', sub: '8' + NB + '000' + H, price: 8000, min: 1, max: 6, unit: 'ч', msg: 'катер на 10 мест' },
     yurta: { name: 'Юрта', sub: '1' + NB + '500' + H + ', от' + NB + '2' + NB + 'часов', price: 1500, min: 2, max: 8, unit: 'ч', msg: 'юрта', img: 'dop-yurta.jpg' },
     ugol: { name: 'Уголь для мангала', sub: '800' + NB + '₽', price: 800, msg: 'уголь', toggle: true },
-    reshetka: { name: 'Решётка в' + NB + 'аренду', sub: '500' + NB + '₽', price: 500, msg: 'решетка в аренду', toggle: true }
+    reshetka: { name: 'Решетка в' + NB + 'аренду', sub: '500' + NB + '₽', price: 500, msg: 'решетка в аренду', toggle: true }
   };
   // Порядок плиток в окне допов
   var GROUPS = [
@@ -1780,9 +1791,9 @@
   var LINE_ORDER = ['guest', 'pet', 'banya', 'chan', 'venik', 'masla', 'podushka', 'snow', 'kvadro', 'kater4', 'kater10', 'yurta', 'ugol', 'reshetka'];
   // Завтраки из меню Аделии 15 ноя, цена за набор
   var FOOD = [
-    { id: 'z-firm', name: 'Фирменный', sub: 'панкейки, сезонные фрукты, ягоды, сгущёнка, малиновый джем, сметана', price: 690 },
+    { id: 'z-firm', name: 'Фирменный', sub: 'панкейки, сезонные фрукты, ягоды, сгущенка, малиновый джем, сметана', price: 690 },
     { id: 'z-klass', name: 'Классический', sub: 'каша на' + NB + 'молоке или' + NB + 'воде, сезонные фрукты, ягоды', price: 390 },
-    { id: 'z-legk', name: 'Лёгкий', sub: 'сырники, сырники с' + NB + 'вишней, малиновый джем, сметана', price: 590 },
+    { id: 'z-legk', name: 'Легкий', sub: 'сырники, сырники с' + NB + 'вишней, малиновый джем, сметана', price: 590 },
     { id: 'z-avt', name: 'Авторский', sub: 'блины с' + NB + 'творогом, малиновый джем, сметана, сезонные фрукты, ягоды', price: 690 },
     { id: 'z-ferm', name: 'Фермерский', sub: 'глазунья, омлет, хашбраун, свежие овощи', price: 590 },
     { id: 'z-dom', name: 'Домашний', sub: 'омлет, яйца вкрутую, роти, свежие овощи', price: 490 },
@@ -2006,7 +2017,7 @@
     if (desk.matches) { renderMonth(); return; }
     var d1 = new Date(firstM.getFullYear(), firstM.getMonth() + mv, 1);
     var el = box.children[Math.max(idx[iso(d1)], todayI)];
-    box.scrollTo({ left: el.offsetLeft - box.firstElementChild.offsetLeft, behavior: 'smooth' });
+    box.scrollTo({ left: el.offsetLeft - box.firstElementChild.offsetLeft, behavior: matchMedia('(prefers-reduced-motion: reduce)').matches ? 'auto' : 'smooth' });
   });
   // Листаешь ленту пальцем, и в списке меняется месяц, который виден слева
   var stripTick = 0;
@@ -2391,6 +2402,8 @@
       setTimeout(nextSlide, cur === 0 ? 7000 : 5000);
     }
     function startSlides() {
+      // «уменьшить движение» в настройках телефона: фото не меняются, остается первое с метками (22 ноя)
+      if (window.matchMedia && matchMedia('(prefers-reduced-motion: reduce)').matches) return;
       slides.forEach(function (im) { im.src = im.dataset.src; });
       setTimeout(nextSlide, 7000);
     }
@@ -2439,12 +2452,25 @@ document.querySelectorAll('.home').forEach(function (home) {
       t.setAttribute('aria-current', 'true');
       // Выбранная миниатюра целиком в ленте
       var strip = t.parentElement, sr = strip.getBoundingClientRect(), tr = t.getBoundingClientRect();
-      if (tr.left < sr.left || tr.right > sr.right) strip.scrollBy({ left: tr.left - sr.left - (sr.width - tr.width) / 2, behavior: 'smooth' });
+      if (tr.left < sr.left || tr.right > sr.right) strip.scrollBy({ left: tr.left - sr.left - (sr.width - tr.width) / 2, behavior: matchMedia('(prefers-reduced-motion: reduce)').matches ? 'auto' : 'smooth' });
       count.textContent = (i + 1) + ' / ' + thumbs.length;
       main.classList.add('is-out');
       setTimeout(function () { main.onload = function () { main.classList.remove("is-out"); }; main.src = t.dataset.src; main.alt = t.dataset.alt; }, 180);
     });
   });
 });
+</script>
+<script>
+/* меню на телефоне: открыть/закрыть, закрывается по пункту, по клику мимо и по Esc (22 ноя) */
+(function () {
+  var nav = document.querySelector('.hero .nav'), btn = nav && nav.querySelector('.menu');
+  if (!btn) return;
+  function set(open) { nav.classList.toggle('is-open', open); btn.setAttribute('aria-expanded', open ? 'true' : 'false'); btn.setAttribute('aria-label', open ? 'Закрыть меню' : 'Меню'); }
+  btn.addEventListener('click', function (e) { e.stopPropagation(); set(!nav.classList.contains('is-open')); });
+  nav.querySelector('.links').addEventListener('click', function (e) { if (e.target.closest('a')) set(false); });
+  document.addEventListener('click', function (e) { if (nav.classList.contains('is-open') && !nav.contains(e.target)) set(false); });
+  document.addEventListener('keydown', function (e) { if (e.key === 'Escape' && nav.classList.contains('is-open')) { set(false); btn.focus(); } });
+  window.addEventListener('scroll', function () { if (nav.classList.contains('is-open') && scrollY > innerHeight * .6) set(false); }, { passive: true });
+})();
 </script>
 </body></html>
