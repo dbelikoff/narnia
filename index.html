@@ -734,6 +734,7 @@
   .promo-c { font-weight: 600; font-variant-numeric: tabular-nums; color: #ffe3b8; white-space: nowrap; }
   .promo + .price { margin-top: 16px; }
   /* зачеркнутая цена крупнее и четче, линия янтарная, как акцент сайта (Дмитрий, 22 ноя) */
+  .price-ny { margin: 6px 0 0; font-size: 14px; line-height: 1.45; color: var(--snow-70); }
   .price .old, .sale-prices s { display: block; width: fit-content; font-family: var(--serif); font-weight: 600; font-size: 22px; line-height: 1.1; color: rgba(245, 242, 234, .78); text-decoration: line-through; text-decoration-color: var(--amber); text-decoration-thickness: 2.5px; font-variant-numeric: lining-nums; }
   .price .old { margin-top: 8px; }
   .price .old + dd { margin-top: 2px; color: var(--amber); }
@@ -937,7 +938,7 @@
   @media (max-width: 899px) {
     .home .info { display: flex; flex-direction: column; }
     .home .bk { order: 1; margin-top: 18px; }
-    .home .facts, .home .promo, .home .price, .home .price-note, .home .perks { order: 2; }
+    .home .facts, .home .promo, .home .price, .home .price-note, .home .price-ny, .home .perks { order: 2; }
     .home .facts { margin-top: 24px; }
   }
   /* свайп по большому фото */
@@ -1318,7 +1319,7 @@
     <div class="sale-text">
       <p class="sale-k">Акция до&nbsp;30&nbsp;ноября</p>
       <h2 class="h2" id="sale-h">Ноябрьские цены <em>на&nbsp;все дома</em></h2>
-      <p class="sale-lead">Ночи до&nbsp;30&nbsp;ноября по&nbsp;ноябрьской цене. С&nbsp;1&nbsp;декабря будни 15&nbsp;000&nbsp;₽, пятница и&nbsp;суббота 20&nbsp;000&nbsp;₽.</p>
+      <p class="sale-lead">Бронируйте до&nbsp;30&nbsp;ноября, и&nbsp;декабрь будет по&nbsp;тем&nbsp;же ценам.</p>
       <a class="cta sale-cta" href="#doma">Выбрать дом
         <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h13m-5-5 5 5-5 5" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
       </a>
@@ -1332,10 +1333,10 @@
         <div><b data-t="s">00</b><span data-l="s">секунд</span></div>
       </div>
       <dl class="sale-prices">
-        <div><dt>Пн–Чт и&nbsp;Вс</dt><dd><s>15&nbsp;000&nbsp;₽</s>10&nbsp;000&nbsp;₽</dd></div>
-        <div><dt>Пт и&nbsp;Сб</dt><dd><s>20&nbsp;000&nbsp;₽</s>12&nbsp;000&nbsp;₽</dd></div>
+        <div><dt>Пн–Чт и&nbsp;Вс</dt><dd>от&nbsp;8&nbsp;000&nbsp;₽</dd></div>
+        <div><dt>Пт и&nbsp;Сб</dt><dd>от&nbsp;10&nbsp;000&nbsp;₽</dd></div>
       </dl>
-      <p class="sale-note">за&nbsp;ночь в&nbsp;доме, цена одна для&nbsp;всех домов</p>
+      <p class="sale-note">за&nbsp;ночь в&nbsp;доме, цена зависит от&nbsp;дома</p>
     </div>
   </div>
 </section>
@@ -1356,6 +1357,7 @@
       <ul class="facts"><li><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="9" cy="8.5" r="3.2" fill="none" stroke="currentColor" stroke-width="1.6"/><path d="M3.5 19c.6-3.2 2.8-5 5.5-5s4.9 1.8 5.5 5" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/><path d="M15.5 5.6a3 3 0 0 1 0 5.8M17.5 14.3c1.6.6 2.7 2.2 3 4.7" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg>до&nbsp;6&nbsp;гостей</li><li><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 18.5V6.5M3 14h18v4.5M21 14v-2.5a3 3 0 0 0-3-3h-7V14" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/><circle cx="7" cy="11" r="1.8" fill="none" stroke="currentColor" stroke-width="1.6"/></svg>спальня и 2 дивана</li><li><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 20V10.5L12 4l8 6.5V20M9.5 20v-5.5h5V20" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round" stroke-linecap="round"/></svg>2 таких дома</li></ul>
       <dl class="price"><div><dt>Пн–Чт и Вс</dt><dd>10&nbsp;000&nbsp;₽</dd></div><div><dt>Пт и Сб</dt><dd>12&nbsp;000&nbsp;₽</dd></div></dl>
       <p class="price-note">за ночь в&nbsp;доме</p>
+      <p class="price-ny">На&nbsp;Новый год, 31&nbsp;декабря – 2&nbsp;января, 25&nbsp;000&nbsp;₽ за&nbsp;сутки</p>
       <ul class="perks"><li>Дом полностью ваш</li><li>К&nbsp;каждому дому своя мангальная зона</li><li>На&nbsp;берегу Павловского водохранилища</li></ul>
       <div class="bk" data-type="classic"></div>
     </div>
@@ -1369,8 +1371,9 @@
       <h3>Большой А-фрейм</h3>
       <p class="place"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 21s-6.5-5.6-6.5-11a6.5 6.5 0 0 1 13 0c0 5.4-6.5 11-6.5 11z" fill="none" stroke="currentColor" stroke-width="1.6"/><circle cx="12" cy="10" r="2.3" fill="currentColor"/></svg>Нарния Остров, у воды</p>
       <ul class="facts"><li><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="9" cy="8.5" r="3.2" fill="none" stroke="currentColor" stroke-width="1.6"/><path d="M3.5 19c.6-3.2 2.8-5 5.5-5s4.9 1.8 5.5 5" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/><path d="M15.5 5.6a3 3 0 0 1 0 5.8M17.5 14.3c1.6.6 2.7 2.2 3 4.7" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg>до&nbsp;8&nbsp;гостей</li><li><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 18.5V6.5M3 14h18v4.5M21 14v-2.5a3 3 0 0 0-3-3h-7V14" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/><circle cx="7" cy="11" r="1.8" fill="none" stroke="currentColor" stroke-width="1.6"/></svg>3&nbsp;спальни и диван</li><li><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 20V10.5L12 4l8 6.5V20M9.5 20v-5.5h5V20" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round" stroke-linecap="round"/></svg>2 таких дома</li></ul>
-      <dl class="price"><div><dt>Пн–Чт и Вс</dt><dd>10&nbsp;000&nbsp;₽</dd></div><div><dt>Пт и Сб</dt><dd>12&nbsp;000&nbsp;₽</dd></div></dl>
+      <dl class="price"><div><dt>Пн–Чт и Вс</dt><dd>10&nbsp;000&nbsp;₽</dd></div><div><dt>Пт и Сб</dt><dd>15&nbsp;000&nbsp;₽</dd></div></dl>
       <p class="price-note">за ночь в&nbsp;доме</p>
+      <p class="price-ny">На&nbsp;Новый год, 31&nbsp;декабря – 2&nbsp;января, 35&nbsp;000&nbsp;₽ за&nbsp;сутки</p>
       <ul class="perks"><li>Дом полностью ваш</li><li>К&nbsp;каждому дому своя мангальная зона</li><li>На&nbsp;берегу Павловского водохранилища</li></ul>
       <div class="bk" data-type="big"></div>
     </div>
@@ -1384,8 +1387,9 @@
       <h3>Малый А-фрейм</h3>
       <p class="place"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 21s-6.5-5.6-6.5-11a6.5 6.5 0 0 1 13 0c0 5.4-6.5 11-6.5 11z" fill="none" stroke="currentColor" stroke-width="1.6"/><circle cx="12" cy="10" r="2.3" fill="currentColor"/></svg>Нарния Остров, у воды</p>
       <ul class="facts"><li><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="9" cy="8.5" r="3.2" fill="none" stroke="currentColor" stroke-width="1.6"/><path d="M3.5 19c.6-3.2 2.8-5 5.5-5s4.9 1.8 5.5 5" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/><path d="M15.5 5.6a3 3 0 0 1 0 5.8M17.5 14.3c1.6.6 2.7 2.2 3 4.7" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg>до&nbsp;5&nbsp;гостей</li><li><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 18.5V6.5M3 14h18v4.5M21 14v-2.5a3 3 0 0 0-3-3h-7V14" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/><circle cx="7" cy="11" r="1.8" fill="none" stroke="currentColor" stroke-width="1.6"/></svg>кровать, кресло, диван</li><li><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 20V10.5L12 4l8 6.5V20M9.5 20v-5.5h5V20" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round" stroke-linecap="round"/></svg>1 такой дом</li></ul>
-      <dl class="price"><div><dt>Пн–Чт и Вс</dt><dd>10&nbsp;000&nbsp;₽</dd></div><div><dt>Пт и Сб</dt><dd>12&nbsp;000&nbsp;₽</dd></div></dl>
+      <dl class="price"><div><dt>Пн–Чт и Вс</dt><dd>8&nbsp;000&nbsp;₽</dd></div><div><dt>Пт и Сб</dt><dd>10&nbsp;000&nbsp;₽</dd></div></dl>
       <p class="price-note">за ночь в&nbsp;доме</p>
+      <p class="price-ny">На&nbsp;Новый год, 31&nbsp;декабря – 2&nbsp;января, 15&nbsp;000&nbsp;₽ за&nbsp;сутки</p>
       <ul class="perks"><li>Дом полностью ваш</li><li>К&nbsp;каждому дому своя мангальная зона</li><li>На&nbsp;берегу Павловского водохранилища</li></ul>
       <div class="bk" data-type="small"></div>
     </div>
@@ -1755,8 +1759,10 @@
 
   // Цены одни на все дома (Аделия, 14 ноя): ночи до 1 декабря 2026 по 10 000 / 12 000, дальше 15 000 / 20 000.
   // Будни Пн–Чт и Вс, выходные ночи на Пт и Сб.
-  var SEASONS = [{ until: new Date(2026, 11, 1), wd: 10000, we: 12000 }, { until: null, wd: 15000, we: 20000 }];
-  function priceOn(d) { for (var i = 0; i < SEASONS.length; i++) { if (!SEASONS[i].until || d < SEASONS[i].until) return SEASONS[i]; } }
+  // С 23 ноя цены по домам (Рома, чат 23 ноя), действуют до 15 декабря, дальше пришлют новые.
+  // Ночи 31 декабря и 1 января по новогодней цене за сутки.
+  var PRICES = { classic: { wd: 10000, we: 12000, ny: 25000 }, big: { wd: 10000, we: 15000, ny: 35000 }, small: { wd: 8000, we: 10000, ny: 15000 } };
+  function isNY(d) { return (d.getMonth() === 11 && d.getDate() === 31) || (d.getMonth() === 0 && d.getDate() === 1); }
   var TYPES = {
     classic: { name: 'Классический дом', acc: 'классический дом', place: 'Нарния, лесной берег', max: 6, img: 'dom-classic-1.jpg' },
     big: { name: 'Большой А‑фрейм', acc: 'большой А-фрейм', place: 'Нарния Остров, у воды', max: 8, img: 'dom-big-1.jpg' },
@@ -1822,29 +1828,13 @@
 
   // Полгода дат с понедельника текущей недели. На компьютере видно 14 дней, стрелки листают по две недели.
   var today = new Date(); today.setHours(0, 0, 0, 0);
-  // Карточки домов показывают цены текущего сезона: с 1 декабря сами переключаются на 15 000 / 20 000
-  function setCardPrices(p) {
-    [].forEach.call(document.querySelectorAll('.home .price'), function (dl) {
-      var dd = dl.querySelectorAll('dd'); dd[0].textContent = money(p.wd); dd[1].textContent = money(p.we);
-    });
-  }
-  (function () {
-    var now = priceOn(today);
-    if (now !== SEASONS[0]) setCardPrices(now);
-  })();
   // Акция до 30 ноября включительно (Юра, 21 ноя): ноябрьская цена как акционная, рядом зачеркнутая декабрьская
   // и отсчет до 1 декабря 00:00 по Уфе (UTC+5). После конца акции все это само пропадает, вечного таймера нет.
   (function () {
-    var END = Date.UTC(2026, 10, 30, 19, 0, 0), full = SEASONS[1];
+    var END = Date.UTC(2026, 10, 30, 19, 0, 0);
     if (Date.now() >= END) return;
     var promos = [], olds = [], cards = [];
     [].forEach.call(document.querySelectorAll('.home .price'), function (dl) {
-      var dd = dl.querySelectorAll('dd'), was = [full.wd, full.we];
-      [].forEach.call(dd, function (d, i) {
-        var o = document.createElement('s'); o.className = 'old'; o.textContent = money(was[i]);
-        o.setAttribute('aria-label', 'Без акции ' + money(was[i]));
-        d.parentNode.insertBefore(o, d); olds.push(o);
-      });
       var pr = document.createElement('p'); pr.className = 'promo';
       pr.innerHTML = '<span class="promo-t">До конца акции осталось</span> <b class="promo-c"></b>';
       dl.parentNode.insertBefore(pr, dl); cards.push(pr);
@@ -1860,7 +1850,6 @@
       if (left <= 0) {
         clearInterval(timer);
         promos.concat(olds, cards).forEach(function (el) { el.remove(); });
-        setCardPrices(full);
         return;
       }
       var v = { d: Math.floor(left / 86400), h: Math.floor(left % 86400 / 3600), m: Math.floor(left % 3600 / 60), s: left % 60 };
@@ -1926,9 +1915,9 @@
 
   // Цена дома за ночи с a по b-1: ночи на пятницу и субботу по выходной цене
   function cost(type, a, b) {
-    var wd = 0, we = 0, wdSum = 0, weSum = 0;
-    for (var k = a; k < b; k++) { var g = days[k].getDay(), pr = priceOn(days[k]); if (g === 5 || g === 6) { we++; weSum += pr.we; } else { wd++; wdSum += pr.wd; } }
-    return { wd: wd, we: we, wdSum: wdSum, weSum: weSum, sum: wdSum + weSum };
+    var wd = 0, we = 0, ny = 0, wdSum = 0, weSum = 0, nySum = 0, pr = PRICES[type] || PRICES.classic;
+    for (var k = a; k < b; k++) { var g = days[k].getDay(); if (isNY(days[k])) { ny++; nySum += pr.ny; } else if (g === 5 || g === 6) { we++; weSum += pr.we; } else { wd++; wdSum += pr.wd; } }
+    return { wd: wd, we: we, ny: ny, wdSum: wdSum, weSum: weSum, nySum: nySum, sum: wdSum + weSum + nySum };
   }
   // Ближайшие даты той же длины, когда дом этого типа свободен
   function nearest(type, n) {
@@ -2185,6 +2174,7 @@
     var p = cost(type, a, b), lines = '', extra = [], total = p.sum;
     if (p.wd) lines += line(nightsText(p.wd) + ' в' + NB + 'будни', money(p.wdSum));
     if (p.we) lines += line(nightsText(p.we) + ' на' + NB + 'Пт и' + NB + 'Сб', money(p.weSum));
+    if (p.ny) lines += line(nightsText(p.ny) + ' на' + NB + 'Новый год', money(p.nySum));
     LINE_ORDER.concat(FOOD.map(function (x) { return x.id; })).forEach(function (id) {
       var x = DOPS[id], q = qty[id];
       if (!q) return;
