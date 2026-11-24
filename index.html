@@ -79,7 +79,7 @@
   .brand { display: flex; align-items: center; gap: 12px; }
   .brand img { width: 42px; height: 42px; border-radius: 50%; display: block; box-shadow: 0 0 0 1px rgba(245, 242, 234, .4); }
   .brand b { display: block; font-weight: 600; font-size: 15px; letter-spacing: .3em; }
-  .brand small { display: block; font-size: 10px; letter-spacing: .34em; color: var(--snow-70); margin-top: 2px; }
+  .brand small { display: block; font-size: 11px; letter-spacing: .32em; color: var(--snow-70); margin-top: 2px; }
   .links { display: flex; gap: 30px; margin-left: auto; font-size: 14.5px; font-weight: 500; color: var(--snow); text-shadow: 0 1px 10px rgba(0, 0, 0, .55); }
   .nav-cta { display: inline-flex; align-items: center; gap: 9px; padding: 11px 18px; border-radius: 999px; border: 1px solid rgba(245, 242, 234, .42); background: rgba(9, 16, 29, .18); backdrop-filter: blur(10px); font-size: 14.5px; font-weight: 500; }
   .nav-cta svg { width: 18px; height: 18px; }
@@ -459,6 +459,7 @@
   /* ---------- отзывы ---------- */
   .rev { padding: 24px 0 140px; background: var(--night-2); }
   .rev-head { display: flex; align-items: flex-end; justify-content: space-between; gap: 48px; padding: 0 var(--pad); }
+  @media (min-width: 900px) { .rev-head { box-sizing: content-box; max-width: 1312px; margin-inline: auto; } }
   .rev .h2 em { display: block; }
   .rev-sum .faq-times { margin: 0; }
   .rev-note { margin: 10px 0 0; font-size: 17px; line-height: 1.5; color: var(--snow-70); }
@@ -727,14 +728,22 @@
     .sale-timer span { font-size: 12px; }
     .sale-prices dd { font-size: 30px; }
     .sale-prices div + div { padding-left: 16px; }
-    .sale + .homes { padding-top: 72px; }
   }
+  /* узкие телефоны: «от 10 000 ₽» не влезает в половину карточки, цены друг под другом (24 ноя) */
+  @media (max-width: 430px) {
+    .sale-prices { grid-template-columns: minmax(0, 1fr); }
+    .sale-prices div { display: flex; align-items: baseline; justify-content: space-between; gap: 12px; padding: 12px 0; }
+    .sale-prices div + div { padding-left: 0; border-left: 0; border-top: 1px solid rgba(245, 242, 234, .16); }
+    .sale-prices dd { margin: 0; font-size: 28px; white-space: nowrap; }
+  }
+  @media (max-width: 899px) { .sale + .homes { padding-top: 72px; } }
   /* акция до 30 ноября: плашка с отсчетом над ценами и зачеркнутая цена декабря (Юра, 21 ноя) */
   .promo { display: inline-flex; flex-wrap: wrap; align-items: baseline; align-self: flex-start; gap: 4px 8px; margin: 30px 0 0; padding: 8px 14px 9px; border-radius: 999px; background: rgba(244, 184, 96, .14); border: 1px solid rgba(244, 184, 96, .4); color: var(--amber); font-size: 14px; line-height: 1.3; }
-  .promo-c { font-weight: 600; font-variant-numeric: tabular-nums; color: #ffe3b8; white-space: nowrap; }
+  .promo-c { font-weight: 600; font-variant-numeric: lining-nums tabular-nums; color: #ffe3b8; white-space: nowrap; }
   .promo + .price { margin-top: 16px; }
   /* зачеркнутая цена крупнее и четче, линия янтарная, как акцент сайта (Дмитрий, 22 ноя) */
-  .price-ny { margin: 6px 0 0; font-size: 14px; line-height: 1.45; color: var(--snow-70); }
+  .price-ny { margin: 8px 0 0; font-size: 15.5px; line-height: 1.45; color: var(--snow-90); }
+  .price-ny .nw { white-space: nowrap; color: var(--amber); font-weight: 600; }
   .price .old, .sale-prices s { display: block; width: fit-content; font-family: var(--serif); font-weight: 600; font-size: 22px; line-height: 1.1; color: rgba(245, 242, 234, .78); text-decoration: line-through; text-decoration-color: var(--amber); text-decoration-thickness: 2.5px; font-variant-numeric: lining-nums; }
   .price .old { margin-top: 8px; }
   .price .old + dd { margin-top: 2px; color: var(--amber); }
@@ -1122,7 +1131,7 @@
   @media (min-width: 900px) {
     .book .days { display: none; }
     .mwd { display: grid; grid-template-columns: repeat(7, 1fr); gap: 4px; margin-bottom: 6px; }
-    .mwd span { text-align: center; font-size: 11px; letter-spacing: .06em; color: var(--snow-45); }
+    .mwd span { text-align: center; font-size: 12px; letter-spacing: .06em; color: var(--snow-45); }
     .mwd span:nth-child(n+6) { color: rgba(244, 184, 96, .75); }
     .mgrid { display: grid; grid-template-columns: repeat(7, 1fr); gap: 4px; }
     .mgrid .day { height: 34px; border-radius: 10px; font-size: 15px; animation: none; }
@@ -1238,36 +1247,36 @@
       <img class="slide sl-ban" data-src="hero-banya.jpg" alt="Таежная баня на лесном склоне зимой, терраса с огоньками">
     </div>
     <div class="pins pins-0">
-      <div class="pin pin--right" style="--x:52;--y:14;--mx:38;--my:11" data-img="1818 250" data-under="nav-doma">
+      <div class="pin pin--right" style="--x:52;--y:14;--mx:38;--my:11" data-img="1136 156" data-under="nav-doma">
         <i></i>
         <div class="tag"><b data-sunset>Сегодня закат в 16:30</b></div>
       </div>
-      <div class="pin pin--right pin--mleft" style="--x:65;--y:38;--mx:63;--my:38" data-mimg="2274 683">
+      <div class="pin pin--right pin--mleft" style="--x:65;--y:38;--mx:63;--my:38" data-mimg="1421 427">
         <i></i>
         <div class="tag"><b>Классический дом</b><span>до&nbsp;6&nbsp;гостей</span></div>
       </div>
-      <div class="pin pin--down pin--pool" style="--x:33;--y:65.4;--mx:24;--my:61" data-img="1500 1180" data-mimg="1364 1079" data-mfall="22">
+      <div class="pin pin--down pin--pool" style="--x:33;--y:65.4;--mx:24;--my:61" data-img="938 738" data-mimg="852 674" data-mfall="22">
         <i></i>
         <div class="tag"><b>Большая терраса</b><span>с видом на хвойный лес</span></div>
       </div>
     </div>
     <!-- Метки на фото А-фреймов и бани (Дмитрий, 22 ноя). Точки в пикселях своих фото: data-img для ПК, data-mimg для телефона -->
     <div class="pins pins-1" aria-hidden="true">
-      <div class="pin pin--right pin--mleft pin--left" style="--x:71;--y:42;--mx:74;--my:40" data-img="2048 960" data-mimg="2048 960">
+      <div class="pin pin--right pin--mleft pin--left" style="--x:71;--y:42;--mx:74;--my:40" data-img="1422 667" data-mimg="1422 667">
         <i></i>
         <div class="tag"><b>А-фреймы на&nbsp;Острове</b><span>у&nbsp;самой воды</span></div>
       </div>
-      <div class="pin pin--right pin--mleft pin--left" style="--x:77;--y:64;--mx:82;--my:62" data-img="2208 1440" data-mimg="2208 1440">
+      <div class="pin pin--right pin--mleft pin--left" style="--x:77;--y:64;--mx:82;--my:62" data-img="1533 1000" data-mimg="1533 1000">
         <i></i>
         <div class="tag"><b>Своя терраса</b><span>у&nbsp;каждого дома</span></div>
       </div>
     </div>
     <div class="pins pins-2" aria-hidden="true">
-      <div class="pin pin--right pin--mleft pin--left" style="--x:65;--y:50;--mx:66;--my:50" data-img="1821 720" data-mimg="1330 720">
+      <div class="pin pin--right pin--mleft pin--left" style="--x:65;--y:50;--mx:66;--my:50" data-img="1518 600" data-mimg="1108 600">
         <i></i>
         <div class="tag"><b>Таежная баня</b><span>бревенчатый сруб в&nbsp;лесу</span></div>
       </div>
-      <div class="pin pin--right pin--mleft pin--left" style="--x:76;--y:83;--mx:85;--my:83" data-img="1824 1121" data-mimg="1824 1121">
+      <div class="pin pin--right pin--mleft pin--left" style="--x:76;--y:83;--mx:85;--my:83" data-img="1520 934" data-mimg="1520 934">
         <i></i>
         <div class="tag"><b>Терраса у&nbsp;бани</b><span>остыть между заходами</span></div>
       </div>
@@ -1357,7 +1366,7 @@
       <ul class="facts"><li><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="9" cy="8.5" r="3.2" fill="none" stroke="currentColor" stroke-width="1.6"/><path d="M3.5 19c.6-3.2 2.8-5 5.5-5s4.9 1.8 5.5 5" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/><path d="M15.5 5.6a3 3 0 0 1 0 5.8M17.5 14.3c1.6.6 2.7 2.2 3 4.7" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg>до&nbsp;6&nbsp;гостей</li><li><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 18.5V6.5M3 14h18v4.5M21 14v-2.5a3 3 0 0 0-3-3h-7V14" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/><circle cx="7" cy="11" r="1.8" fill="none" stroke="currentColor" stroke-width="1.6"/></svg>спальня и 2 дивана</li><li><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 20V10.5L12 4l8 6.5V20M9.5 20v-5.5h5V20" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round" stroke-linecap="round"/></svg>2 таких дома</li></ul>
       <dl class="price"><div><dt>Пн–Чт и Вс</dt><dd>10&nbsp;000&nbsp;₽</dd></div><div><dt>Пт и Сб</dt><dd>12&nbsp;000&nbsp;₽</dd></div></dl>
       <p class="price-note">за ночь в&nbsp;доме</p>
-      <p class="price-ny">На&nbsp;Новый год, 31&nbsp;декабря – 2&nbsp;января, 25&nbsp;000&nbsp;₽ за&nbsp;сутки</p>
+      <p class="price-ny">На&nbsp;Новый год, 31&nbsp;декабря – 2&nbsp;января, <span class="nw">25&nbsp;000&nbsp;₽ за&nbsp;сутки</span></p>
       <ul class="perks"><li>Дом полностью ваш</li><li>К&nbsp;каждому дому своя мангальная зона</li><li>На&nbsp;берегу Павловского водохранилища</li></ul>
       <div class="bk" data-type="classic"></div>
     </div>
@@ -1373,7 +1382,7 @@
       <ul class="facts"><li><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="9" cy="8.5" r="3.2" fill="none" stroke="currentColor" stroke-width="1.6"/><path d="M3.5 19c.6-3.2 2.8-5 5.5-5s4.9 1.8 5.5 5" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/><path d="M15.5 5.6a3 3 0 0 1 0 5.8M17.5 14.3c1.6.6 2.7 2.2 3 4.7" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg>до&nbsp;8&nbsp;гостей</li><li><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 18.5V6.5M3 14h18v4.5M21 14v-2.5a3 3 0 0 0-3-3h-7V14" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/><circle cx="7" cy="11" r="1.8" fill="none" stroke="currentColor" stroke-width="1.6"/></svg>3&nbsp;спальни и диван</li><li><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 20V10.5L12 4l8 6.5V20M9.5 20v-5.5h5V20" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round" stroke-linecap="round"/></svg>2 таких дома</li></ul>
       <dl class="price"><div><dt>Пн–Чт и Вс</dt><dd>10&nbsp;000&nbsp;₽</dd></div><div><dt>Пт и Сб</dt><dd>15&nbsp;000&nbsp;₽</dd></div></dl>
       <p class="price-note">за ночь в&nbsp;доме</p>
-      <p class="price-ny">На&nbsp;Новый год, 31&nbsp;декабря – 2&nbsp;января, 35&nbsp;000&nbsp;₽ за&nbsp;сутки</p>
+      <p class="price-ny">На&nbsp;Новый год, 31&nbsp;декабря – 2&nbsp;января, <span class="nw">35&nbsp;000&nbsp;₽ за&nbsp;сутки</span></p>
       <ul class="perks"><li>Дом полностью ваш</li><li>К&nbsp;каждому дому своя мангальная зона</li><li>На&nbsp;берегу Павловского водохранилища</li></ul>
       <div class="bk" data-type="big"></div>
     </div>
@@ -1389,7 +1398,7 @@
       <ul class="facts"><li><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="9" cy="8.5" r="3.2" fill="none" stroke="currentColor" stroke-width="1.6"/><path d="M3.5 19c.6-3.2 2.8-5 5.5-5s4.9 1.8 5.5 5" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/><path d="M15.5 5.6a3 3 0 0 1 0 5.8M17.5 14.3c1.6.6 2.7 2.2 3 4.7" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg>до&nbsp;5&nbsp;гостей</li><li><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 18.5V6.5M3 14h18v4.5M21 14v-2.5a3 3 0 0 0-3-3h-7V14" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/><circle cx="7" cy="11" r="1.8" fill="none" stroke="currentColor" stroke-width="1.6"/></svg>кровать, кресло, диван</li><li><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 20V10.5L12 4l8 6.5V20M9.5 20v-5.5h5V20" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round" stroke-linecap="round"/></svg>1 такой дом</li></ul>
       <dl class="price"><div><dt>Пн–Чт и Вс</dt><dd>8&nbsp;000&nbsp;₽</dd></div><div><dt>Пт и Сб</dt><dd>10&nbsp;000&nbsp;₽</dd></div></dl>
       <p class="price-note">за ночь в&nbsp;доме</p>
-      <p class="price-ny">На&nbsp;Новый год, 31&nbsp;декабря – 2&nbsp;января, 15&nbsp;000&nbsp;₽ за&nbsp;сутки</p>
+      <p class="price-ny">На&nbsp;Новый год, 31&nbsp;декабря – 2&nbsp;января, <span class="nw">15&nbsp;000&nbsp;₽ за&nbsp;сутки</span></p>
       <ul class="perks"><li>Дом полностью ваш</li><li>К&nbsp;каждому дому своя мангальная зона</li><li>На&nbsp;берегу Павловского водохранилища</li></ul>
       <div class="bk" data-type="small"></div>
     </div>
@@ -1502,7 +1511,7 @@
 <section class="fun" id="fun" aria-labelledby="fun-h">
   <header class="homes-head">
     <h2 class="h2" id="fun-h">Снегоходы зимой, <em>катера летом</em></h2>
-    <p>Цена указана за час. Напишите&nbsp;в&nbsp;Telegram, и&nbsp;договоримся о&nbsp;времени.</p>
+    <p>Цена указана за час. Напишите&nbsp;в&nbsp;Telegram,&nbsp;и&nbsp;договоримся о&nbsp;времени.</p>
   </header>
   <div class="fun-grid">
     <article class="fun-main">
@@ -1565,17 +1574,16 @@
     <h2 class="h2" id="rev-h">Гости пишут, <em>что&nbsp;вернутся</em></h2>
     <div class="rev-sum">
       <dl class="faq-times"><div><dt>Отзывов гостей</dt><dd>25</dd></div></dl>
-      <p class="rev-note">Здесь семь из них, длинные сокращены.</p>
     </div>
   </header>
   <div class="rev-stage" id="rev-stage" role="group" aria-roledescription="карусель" aria-label="Отзывы гостей" aria-live="polite">
-    <figure class="rev-card"><div class="rev-top"><span class="rev-ava rev-ava--letter" aria-hidden="true">К</span><span class="rev-stars" role="img" aria-label="Оценка 5 из 5"></span></div><blockquote><p>Вернулись сюда второй раз за сезон, и это лучшее доказательство, как тут здорово! В&nbsp;августе покорила баня с выходом к реке (прыгать в воду после пара — просто кайф!) и теплые посиделки на веранде.</p></blockquote><figcaption>— Ксения, октябрь</figcaption></figure>
-    <figure class="rev-card"><div class="rev-top"><span class="rev-ava rev-ava--letter" aria-hidden="true">С</span><span class="rev-stars" role="img" aria-label="Оценка 5 из 5"></span></div><blockquote><p>Отличная туристическая база, шикарный дом: новый ремонт, интерьер, техника. Отличный&nbsp;вид на&nbsp;Павловское водохранилище, иллюминация. Развлечения на&nbsp;базе, баня на дровах. Сервис на&nbsp;высшем&nbsp;уровне!</p></blockquote><figcaption>— Сергей, февраль</figcaption></figure>
-    <figure class="rev-card"><div class="rev-top"><span class="rev-ava rev-ava--letter" aria-hidden="true">Д</span><span class="rev-stars" role="img" aria-label="Оценка 5 из 5"></span></div><blockquote><p>Выбирали Ваш комплекс из многочисленных вариантов, отмечали сразу 2 дня рождения. С&nbsp;первой же минуты поняли, что приехали не зря. У&nbsp;вас ПЕРВОКЛАСНЫЙ СЕРВИС!!! Отдельное&nbsp;спасибо за суперскую баньку и покатушки на квадриках. Обязательно вернемся&nbsp;вновь!</p></blockquote><figcaption>— Данила, июнь</figcaption></figure>
-    <figure class="rev-card"><div class="rev-top"><span class="rev-ava rev-ava--letter" aria-hidden="true">В</span><span class="rev-stars" role="img" aria-label="Оценка 5 из 5"></span></div><blockquote><p>Абсолютная перезагрузка. Легкое&nbsp;дыхание, глубочайший сон после бани и полное ощущение покоя. Здесь&nbsp;удивительным образом отдыхает не только тело, но и разум — мысли становятся ясными, а усталость исчезает без&nbsp;следа.</p></blockquote><figcaption>— Василиса, июль</figcaption></figure>
-    <figure class="rev-card"><div class="rev-top"><span class="rev-ava rev-ava--letter" aria-hidden="true">Р</span><span class="rev-stars" role="img" aria-label="Оценка 5 из 5"></span></div><blockquote><p>Очень сказочное место, тихо, красиво, в доме уютно, очень тепло. Продумано&nbsp;все до&nbsp;мелочей, баня отличная. Подросткам&nbsp;трудно угодить, но&nbsp;нашим&nbsp;понравилось.</p></blockquote><figcaption>— Регина, март</figcaption></figure>
-    <figure class="rev-card"><div class="rev-top"><span class="rev-ava rev-ava--letter" aria-hidden="true">Л</span><span class="rev-stars" role="img" aria-label="Оценка 5 из 5"></span></div><blockquote><p>Отличная база отдыха! Все&nbsp;свежее, новенькое, в домиках идеальная чистота и есть все необходимое. Очень&nbsp;красивое место, вокруг тишина и природа. Персонал&nbsp;приветливый, заботливый. Спасибо за&nbsp;классные&nbsp;выходные!</p></blockquote><figcaption>— Людмила, октябрь</figcaption></figure>
-    <figure class="rev-card"><div class="rev-top"><span class="rev-ava rev-ava--letter" aria-hidden="true">С</span><span class="rev-stars" role="img" aria-label="Оценка 5 из 5"></span></div><blockquote><p>Потрясающее место! Потрясающие&nbsp;виды, настоящая Нарния! Уютно. Идеально для&nbsp;семейного&nbsp;отдыха.</p></blockquote><figcaption>— Светлана, февраль</figcaption></figure>
+    <figure class="rev-card"><div class="rev-top"><span class="rev-ava rev-ava--letter" aria-hidden="true">К</span><span class="rev-stars" role="img" aria-label="Оценка 5 из 5"></span></div><blockquote><p>Вернулись сюда второй раз за сезон, и это лучшее доказательство, как тут здорово! В&nbsp;августе&nbsp;покорила баня с выходом к реке (прыгать в воду после пара — просто кайф!) и теплые посиделки на веранде.</p></blockquote><figcaption>— Ксения, октябрь</figcaption></figure>
+    <figure class="rev-card"><div class="rev-top"><span class="rev-ava rev-ava--letter" aria-hidden="true">С</span><span class="rev-stars" role="img" aria-label="Оценка 5 из 5"></span></div><blockquote><p>Отличная туристическая база, шикарный дом: новый ремонт, интерьер, техника. Отличный&nbsp;вид&nbsp;на&nbsp;Павловское водохранилище, иллюминация. Развлечения&nbsp;на&nbsp;базе, баня на дровах. Сервис&nbsp;на&nbsp;высшем&nbsp;уровне!</p></blockquote><figcaption>— Сергей, февраль</figcaption></figure>
+    <figure class="rev-card"><div class="rev-top"><span class="rev-ava rev-ava--letter" aria-hidden="true">Д</span><span class="rev-stars" role="img" aria-label="Оценка 5 из 5"></span></div><blockquote><p>Выбирали Ваш комплекс из многочисленных вариантов, отмечали сразу 2 дня рождения. С&nbsp;первой же минуты поняли, что приехали не зря. У&nbsp;вас&nbsp;ПЕРВОКЛАСНЫЙ СЕРВИС!!! Отдельное&nbsp;спасибо за суперскую баньку и покатушки на квадриках. Обязательно вернемся&nbsp;вновь!</p></blockquote><figcaption>— Данила, июнь</figcaption></figure>
+    <figure class="rev-card"><div class="rev-top"><span class="rev-ava rev-ava--letter" aria-hidden="true">В</span><span class="rev-stars" role="img" aria-label="Оценка 5 из 5"></span></div><blockquote><p>Абсолютная перезагрузка. Легкое&nbsp;дыхание, глубочайший сон после бани и полное ощущение покоя. Здесь&nbsp;удивительным&nbsp;образом отдыхает не только тело, но и разум — мысли становятся ясными, а усталость исчезает без&nbsp;следа.</p></blockquote><figcaption>— Василиса, июль</figcaption></figure>
+    <figure class="rev-card"><div class="rev-top"><span class="rev-ava rev-ava--letter" aria-hidden="true">Р</span><span class="rev-stars" role="img" aria-label="Оценка 5 из 5"></span></div><blockquote><p>Очень сказочное место, тихо, красиво, в доме уютно, очень тепло. Продумано&nbsp;все&nbsp;до&nbsp;мелочей, баня отличная. Подросткам&nbsp;трудно&nbsp;угодить, но&nbsp;нашим&nbsp;понравилось.</p></blockquote><figcaption>— Регина, март</figcaption></figure>
+    <figure class="rev-card"><div class="rev-top"><span class="rev-ava rev-ava--letter" aria-hidden="true">Л</span><span class="rev-stars" role="img" aria-label="Оценка 5 из 5"></span></div><blockquote><p>Отличная база отдыха! Все&nbsp;свежее,&nbsp;новенькое, в домиках идеальная чистота и есть все необходимое. Очень&nbsp;красивое место, вокруг тишина и природа. Персонал&nbsp;приветливый,&nbsp;заботливый. Спасибо за&nbsp;классные&nbsp;выходные!</p></blockquote><figcaption>— Людмила, октябрь</figcaption></figure>
+    <figure class="rev-card"><div class="rev-top"><span class="rev-ava rev-ava--letter" aria-hidden="true">С</span><span class="rev-stars" role="img" aria-label="Оценка 5 из 5"></span></div><blockquote><p>Потрясающее место! Потрясающие&nbsp;виды, настоящая Нарния! Уютно. Идеально&nbsp;для&nbsp;семейного&nbsp;отдыха.</p></blockquote><figcaption>— Светлана, февраль</figcaption></figure>
     <div class="rev-ctrl">
       <button class="rev-btn" type="button" id="rev-prev" aria-label="Предыдущий отзыв"><svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m15 18-6-6 6-6"/></svg></button>
       <button class="rev-btn" type="button" id="rev-next" aria-label="Следующий отзыв"><svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m9 18 6-6-6-6"/></svg></button>
@@ -1668,7 +1676,7 @@
         <summary><h3>Будут ли завтраки?</h3><span class="faq-plus" aria-hidden="true"></span></summary>
         <div class="faq-body">
           <p>Шеф-повар готовит завтраки каждый день с&nbsp;09:30. В&nbsp;меню панкейки, каши, сырники, блины и&nbsp;омлеты, от&nbsp;390 до&nbsp;690&nbsp;₽.</p>
-          <p>Повара можно заказать отдельно, из&nbsp;ваших продуктов или из&nbsp;продуктов Нарнии. Стоимость уточняйте при&nbsp;бронировании.</p>
+          <p>Повара можно заказать отдельно, из&nbsp;ваших продуктов или из&nbsp;продуктов Нарнии. Стоимость уточняйте&nbsp;при&nbsp;бронировании.</p>
         </div>
       </details>
       <details class="faq-item">
@@ -1689,8 +1697,8 @@
 <section class="final" aria-labelledby="final-h">
   <div class="final-in">
     <div>
-      <h2 class="final-h" id="final-h">Выберите даты, <em>покажем свободные&nbsp;дома</em></h2>
-      <p>Цена сразу за&nbsp;весь отдых, с&nbsp;баней&nbsp;и&nbsp;допами.</p>
+      <h2 class="final-h" id="final-h">Выберите даты, <em>покажем&nbsp;свободные&nbsp;дома</em></h2>
+      <p>Цена сразу за&nbsp;весь отдых,&nbsp;с&nbsp;баней&nbsp;и&nbsp;допами.</p>
     </div>
     <a class="cta" href="#daty"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="4" y="5.5" width="16" height="14" rx="3" fill="none" stroke="currentColor" stroke-width="1.7"/><path d="M4 10h16M8.5 3.5v4M15.5 3.5v4" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/></svg>Выбрать даты</a>
   </div>
@@ -1719,7 +1727,7 @@
   </div>
   <div class="foot-bottom">
     <span>© 2026 Нарния</span>
-    <p class="foot-note">* Instagram принадлежит компании Meta&nbsp;Platforms&nbsp;Inc., деятельность которой признана экстремистской и&nbsp;запрещена на&nbsp;территории Российской&nbsp;Федерации.</p>
+    <p class="foot-note">* Instagram принадлежит компании Meta&nbsp;Platforms&nbsp;Inc., деятельность которой признана экстремистской и&nbsp;запрещена на&nbsp;территории&nbsp;Российской&nbsp;Федерации.</p>
   </div>
 </footer>
 
@@ -1778,14 +1786,14 @@
     banya: { name: 'Таежная баня', sub: '2' + NB + '500' + H + ', от' + NB + '2' + NB + 'часов', price: 2500, min: 2, max: 8, unit: 'ч', msg: 'баня', img: 'dop-banya.jpg' },
     chan: { name: 'Таежный чан', sub: '2' + NB + '500' + H + ', от' + NB + '2' + NB + 'часов', price: 2500, min: 2, max: 8, unit: 'ч', msg: 'таежный чан', icon: 'chan' },
     venik: { name: 'Веник', sub: '500' + NB + '₽', price: 500, msg: 'веник', toggle: true },
-    masla: { name: 'Эфирные масла', sub: '500' + NB + '₽', price: 500, msg: 'эфирные масла', toggle: true },
+    masla: { name: 'Эфирные' + NB + 'масла', sub: '500' + NB + '₽', price: 500, msg: 'эфирные масла', toggle: true },
     podushka: { name: 'Подушка с' + NB + 'сеном', sub: '500' + NB + '₽', price: 500, msg: 'подушка с сеном', toggle: true },
     snow: { name: 'Снегоход', sub: '5' + NB + '000' + H, price: 5000, min: 1, max: 6, unit: 'ч', msg: 'снегоход', img: 'dop-snegohod.jpg' },
     kvadro: { name: 'Квадроцикл', sub: 'двухместный, 5' + NB + '000' + H, price: 5000, min: 1, max: 6, unit: 'ч', msg: 'квадроцикл', img: 'dop-kvadro.jpg' },
     kater4: { name: 'Катер на' + NB + '4' + NB + 'места', sub: '6' + NB + '000' + H, price: 6000, min: 1, max: 6, unit: 'ч', msg: 'катер на 4 места' },
     kater10: { name: 'Катер на' + NB + '10' + NB + 'мест', sub: '8' + NB + '000' + H, price: 8000, min: 1, max: 6, unit: 'ч', msg: 'катер на 10 мест' },
     yurta: { name: 'Юрта', sub: '1' + NB + '500' + H + ', от' + NB + '2' + NB + 'часов', price: 1500, min: 2, max: 8, unit: 'ч', msg: 'юрта', img: 'dop-yurta.jpg' },
-    ugol: { name: 'Уголь для мангала', sub: '800' + NB + '₽', price: 800, msg: 'уголь', toggle: true },
+    ugol: { name: 'Уголь' + NB + 'для' + NB + 'мангала', sub: '800' + NB + '₽', price: 800, msg: 'уголь', toggle: true },
     reshetka: { name: 'Решетка в' + NB + 'аренду', sub: '500' + NB + '₽', price: 500, msg: 'решетка в аренду', toggle: true }
   };
   // Порядок плиток в окне допов
@@ -2193,7 +2201,7 @@
     var t = TYPES[mType];
     var has = mStep === 'ex' ? start !== null && end !== null : mR.s !== null && mR.e !== null;
     var a = mStep === 'ex' ? start : mR.s, b = mStep === 'ex' ? end : mR.e;
-    $('sh-sub-t').textContent = has ? rangeI(a, b) + ', ' + nightsText(b - a) + ', ' + guestsText(guests) : t.place + ', до' + NB + t.max + NB + 'гостей';
+    $('sh-sub-t').textContent = has ? rangeI(a, b) + ', ' + nightsText(b - a) + ',' + NB + guestsText(guests) : t.place + ', до' + NB + t.max + NB + 'гостей';
     $('sh-edit').hidden = mStep !== 'ex';
     var next = $('sh-next'), cta = $('sh-cta');
     if (mStep === 'cal') {
