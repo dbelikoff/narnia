@@ -950,6 +950,11 @@
     .home .facts, .home .promo, .home .price, .home .price-note, .home .price-ny, .home .perks { order: 2; }
     .home .facts { margin-top: 24px; }
   }
+  /* Отель «Ковчег»: откроется 15 декабря, бронь через Telegram без календаря (25 ноя) */
+  .soon { display: inline-flex; align-items: center; gap: 8px; margin: 0 0 16px; padding: 7px 14px 8px; border-radius: 999px; background: rgba(244, 184, 96, .14); border: 1px solid rgba(244, 184, 96, .4); color: #ffe3b8; font-size: 14px; font-weight: 600; line-height: 1.2; }
+  .soon::before { content: ""; width: 7px; height: 7px; border-radius: 50%; background: var(--amber); box-shadow: 0 0 0 3px rgba(244, 184, 96, .22); }
+  .soon { align-self: flex-start; }
+  @media (max-width: 899px) { .soon { margin-bottom: 12px; font-size: 13.5px; } }
   /* свайп по большому фото */
   .gal-main { touch-action: pan-y; }
 
@@ -1403,6 +1408,27 @@
       <div class="bk" data-type="small"></div>
     </div>
   </article>
+  <article class="home home-soon" id="kovcheg">
+    <div class="gal">
+      <div class="gal-main"><img src="kovcheg-1.jpg" alt="Отель «Ковчег» в зимнем лесу, вечером свет в окнах" loading="lazy"><span class="gal-count">1 / 3</span></div>
+      <div class="gal-thumbs"><button class="thumb" type="button" data-src="kovcheg-1.jpg" data-alt="Отель «Ковчег» в зимнем лесу, вечером свет в окнах" aria-label="Фото 1 из 3" aria-current="true"><img src="kovcheg-1.jpg" alt="" loading="lazy"></button><button class="thumb" type="button" data-src="kovcheg-2.jpg" data-alt="Двухэтажный «Ковчег» с балконами вдоль номеров" aria-label="Фото 2 из 3"><img src="kovcheg-2.jpg" alt="" loading="lazy"></button><button class="thumb" type="button" data-src="kovcheg-nomer.jpg" data-alt="Номер сверху: кухня-гостиная с диваном, санузел и спальня" aria-label="Фото 3 из 3"><img src="kovcheg-nomer.jpg" alt="" loading="lazy"></button></div>
+    </div>
+    <div class="info">
+      <p class="soon">Откроется 15&nbsp;декабря</p>
+      <h3>Отель «Ковчег»</h3>
+      <p class="place"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 21s-6.5-5.6-6.5-11a6.5 6.5 0 0 1 13 0c0 5.4-6.5 11-6.5 11z" fill="none" stroke="currentColor" stroke-width="1.6"/><circle cx="12" cy="10" r="2.3" fill="currentColor"/></svg>Нарния, лесной берег</p>
+      <ul class="facts"><li><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="9" cy="8.5" r="3.2" fill="none" stroke="currentColor" stroke-width="1.6"/><path d="M3.5 19c.6-3.2 2.8-5 5.5-5s4.9 1.8 5.5 5" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/><path d="M15.5 5.6a3 3 0 0 1 0 5.8M17.5 14.3c1.6.6 2.7 2.2 3 4.7" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg>до&nbsp;4&nbsp;гостей</li><li><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 18.5V6.5M3 14h18v4.5M21 14v-2.5a3 3 0 0 0-3-3h-7V14" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/><circle cx="7" cy="11" r="1.8" fill="none" stroke="currentColor" stroke-width="1.6"/></svg>спальня и диван</li><li><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 20V10.5L12 4l8 6.5V20M9.5 20v-5.5h5V20" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round" stroke-linecap="round"/></svg>8&nbsp;номеров</li></ul>
+      <dl class="price"><div><dt>Пн–Чт и Вс</dt><dd>8&nbsp;000&nbsp;₽</dd></div><div><dt>Пт и Сб</dt><dd>10&nbsp;000&nbsp;₽</dd></div></dl>
+      <p class="price-note">за ночь в&nbsp;номере</p>
+      <p class="price-ny">На&nbsp;Новый год, 31&nbsp;декабря – 2&nbsp;января, <span class="nw">15&nbsp;000&nbsp;₽ за&nbsp;сутки</span></p>
+      <ul class="perks"><li>Кухня-гостиная со&nbsp;всей техникой и&nbsp;посудой</li><li>Отдельная спальня с&nbsp;двуспальной&nbsp;кроватью</li><li>Телевизор и&nbsp;wifi</li></ul>
+      <div class="bk bk-soon">
+        <div class="bk-row">
+          <a class="cta bk-go" href="https://t.me/narnia_pavlovka_reservation?text=%D0%97%D0%B4%D1%80%D0%B0%D0%B2%D1%81%D1%82%D0%B2%D1%83%D0%B9%D1%82%D0%B5%21%20%D0%A5%D0%BE%D1%87%D1%83%20%D0%B7%D0%B0%D0%B1%D1%80%D0%BE%D0%BD%D0%B8%D1%80%D0%BE%D0%B2%D0%B0%D1%82%D1%8C%20%D0%BD%D0%BE%D0%BC%D0%B5%D1%80%20%D0%B2%20%D0%BE%D1%82%D0%B5%D0%BB%D0%B5%20%C2%AB%D0%9A%D0%BE%D0%B2%D1%87%D0%B5%D0%B3%C2%BB.%20%D0%9F%D0%BE%D0%B4%D1%81%D0%BA%D0%B0%D0%B6%D0%B8%D1%82%D0%B5%2C%20%D0%BA%D0%B0%D0%BA%D0%B8%D0%B5%20%D0%B4%D0%B0%D1%82%D1%8B%20%D1%81%D0%B2%D0%BE%D0%B1%D0%BE%D0%B4%D0%BD%D1%8B%20%D1%81%2015%20%D0%B4%D0%B5%D0%BA%D0%B0%D0%B1%D1%80%D1%8F" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20.5 4.5 3.8 11c-.9.4-.9 1.6.1 1.9l4.1 1.3 1.6 5c.2.7 1.1.9 1.6.4l2.3-2.2 4.2 3.1c.6.4 1.4.1 1.6-.6l2.6-13.3c.2-.9-.6-1.5-1.4-1.1z" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/><path d="m8 14.2 8.6-6.1-6.6 7.3" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/></svg>Забронировать в&nbsp;Telegram</a>
+        </div>
+      </div>
+    </div>
+  </article>
 </section>
 <dialog class="sheet" id="sheet" aria-labelledby="sh-title">
   <header class="sh-head">
@@ -1493,15 +1519,15 @@
       <div class="ban-bottom">
         <div class="ban-book">
           <dl class="price">
-            <div><dt>За час</dt><dd>2&nbsp;500&nbsp;₽</dd></div>
-            <div><dt>Минимум 2&nbsp;часа</dt><dd>5&nbsp;000&nbsp;₽</dd></div>
+            <div><dt>За час</dt><dd data-price="banya">2&nbsp;500&nbsp;₽</dd></div>
+            <div><dt>Минимум 2&nbsp;часа</dt><dd data-price="banya" data-mult="2">5&nbsp;000&nbsp;₽</dd></div>
               </dl>
         </div>
         <a class="cta" href="https://t.me/narnia_pavlovka_reservation?text=%D0%97%D0%B4%D1%80%D0%B0%D0%B2%D1%81%D1%82%D0%B2%D1%83%D0%B9%D1%82%D0%B5%2C%20%D1%85%D0%BE%D1%87%D1%83%20%D0%B7%D0%B0%D0%B1%D1%80%D0%BE%D0%BD%D0%B8%D1%80%D0%BE%D0%B2%D0%B0%D1%82%D1%8C%20%D1%82%D0%B0%D0%B5%D0%B6%D0%BD%D1%83%D1%8E%20%D0%B1%D0%B0%D0%BD%D1%8E%E2%98%80%EF%B8%8F" target="_blank" rel="noopener">
           <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20.5 4.5 3.8 11c-.9.4-.9 1.6.1 1.9l4.1 1.3 1.6 5c.2.7 1.1.9 1.6.4l2.3-2.2 4.2 3.1c.6.4 1.4.1 1.6-.6l2.6-13.3c.2-.9-.6-1.5-1.4-1.1z" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/><path d="m8 14.2 8.6-6.1-6.6 7.3" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/></svg>
           Забронировать баню
         </a>
-        <p class="ban-note">Отдельно можно взять веник, хвойный, дубовый или березовый, эфирные масла и&nbsp;подушку с&nbsp;сеном в&nbsp;аренду, по&nbsp;500&nbsp;₽.</p>
+        <p class="ban-note" id="ban-note">Отдельно можно взять веник, хвойный, дубовый или березовый, эфирные масла и&nbsp;подушку с&nbsp;сеном в&nbsp;аренду, по&nbsp;500&nbsp;₽.</p>
         <p class="ban-also">Живете на&nbsp;острове? Там две модульные бани по&nbsp;той же цене. <a href="https://t.me/narnia_pavlovka_reservation?text=%D0%97%D0%B4%D1%80%D0%B0%D0%B2%D1%81%D1%82%D0%B2%D1%83%D0%B9%D1%82%D0%B5%2C%20%D1%85%D0%BE%D1%87%D1%83%20%D0%B7%D0%B0%D0%B1%D1%80%D0%BE%D0%BD%D0%B8%D1%80%D0%BE%D0%B2%D0%B0%D1%82%D1%8C%20%D0%BC%D0%BE%D0%B4%D1%83%D0%BB%D1%8C%D0%BD%D1%83%D1%8E%20%D0%B1%D0%B0%D0%BD%D1%8E%E2%98%80%EF%B8%8F" target="_blank" rel="noopener">Спросить&nbsp;про&nbsp;модульную&nbsp;баню</a></p>
       </div>
     </div>
@@ -1518,7 +1544,7 @@
       <figure class="fun-photo"><img src="fun-snegohod.jpg" alt="Черный снегоход с включенными фарами на заснеженной дороге в лесу" loading="lazy"></figure>
       <h3>Снегоход</h3>
       <p>Катаетесь по зимнему лесу и заснеженным дорогам вокруг водохранилища.</p>
-      <dl class="fun-prices"><div><dt>в час</dt><dd>5&nbsp;000&nbsp;₽</dd></div></dl>
+      <dl class="fun-prices"><div><dt>в час</dt><dd data-price="snow">5&nbsp;000&nbsp;₽</dd></div></dl>
       <a class="pick" href="https://t.me/narnia_pavlovka_reservation?text=%D0%97%D0%B4%D1%80%D0%B0%D0%B2%D1%81%D1%82%D0%B2%D1%83%D0%B9%D1%82%D0%B5%2C%20%D1%85%D0%BE%D1%87%D1%83%20%D0%B7%D0%B0%D0%B1%D1%80%D0%BE%D0%BD%D0%B8%D1%80%D0%BE%D0%B2%D0%B0%D1%82%D1%8C%20%D1%81%D0%BD%D0%B5%D0%B3%D0%BE%D1%85%D0%BE%D0%B4%E2%98%80%EF%B8%8F" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20.5 4.5 3.8 11c-.9.4-.9 1.6.1 1.9l4.1 1.3 1.6 5c.2.7 1.1.9 1.6.4l2.3-2.2 4.2 3.1c.6.4 1.4.1 1.6-.6l2.6-13.3c.2-.9-.6-1.5-1.4-1.1z" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/><path d="m8 14.2 8.6-6.1-6.6 7.3" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/></svg>Забронировать снегоход</a>
     </article>
     <div class="fun-list">
@@ -1527,7 +1553,7 @@
         <div>
           <h3>Катер</h3>
           <p>Выходите на&nbsp;Павловское водохранилище и&nbsp;смотрите на&nbsp;берега с&nbsp;воды.</p>
-          <dl class="fun-prices"><div><dt>в час, 4&nbsp;места</dt><dd>6&nbsp;000&nbsp;₽</dd></div><div><dt>в час, 10&nbsp;мест</dt><dd>8&nbsp;000&nbsp;₽</dd></div></dl>
+          <dl class="fun-prices"><div><dt>в час, 4&nbsp;места</dt><dd data-price="kater4">6&nbsp;000&nbsp;₽</dd></div><div><dt>в час, 10&nbsp;мест</dt><dd data-price="kater10">8&nbsp;000&nbsp;₽</dd></div></dl>
           <a class="fun-link" href="https://t.me/narnia_pavlovka_reservation?text=%D0%97%D0%B4%D1%80%D0%B0%D0%B2%D1%81%D1%82%D0%B2%D1%83%D0%B9%D1%82%D0%B5%2C%20%D1%85%D0%BE%D1%87%D1%83%20%D0%B7%D0%B0%D0%B1%D1%80%D0%BE%D0%BD%D0%B8%D1%80%D0%BE%D0%B2%D0%B0%D1%82%D1%8C%20%D0%BA%D0%B0%D1%82%D0%B5%D1%80%E2%98%80%EF%B8%8F" target="_blank" rel="noopener">Забронировать катер</a>
         </div>
       </article>
@@ -1536,7 +1562,7 @@
         <div>
           <h3>Квадроцикл</h3>
           <p>Двухместный, маршруты идут по&nbsp;охотничьим угодьям.</p>
-          <dl class="fun-prices"><div><dt>в час</dt><dd>5&nbsp;000&nbsp;₽</dd></div></dl>
+          <dl class="fun-prices"><div><dt>в час</dt><dd data-price="kvadro">5&nbsp;000&nbsp;₽</dd></div></dl>
           <a class="fun-link" href="https://t.me/narnia_pavlovka_reservation?text=%D0%97%D0%B4%D1%80%D0%B0%D0%B2%D1%81%D1%82%D0%B2%D1%83%D0%B9%D1%82%D0%B5%2C%20%D1%85%D0%BE%D1%87%D1%83%20%D0%B7%D0%B0%D0%B1%D1%80%D0%BE%D0%BD%D0%B8%D1%80%D0%BE%D0%B2%D0%B0%D1%82%D1%8C%20%D0%BA%D0%B2%D0%B0%D0%B4%D1%80%D0%BE%D1%86%D0%B8%D0%BA%D0%BB%E2%98%80%EF%B8%8F" target="_blank" rel="noopener">Забронировать квадроцикл</a>
         </div>
       </article>
@@ -1545,7 +1571,7 @@
         <div>
           <h3>Юрта</h3>
           <p>Стоит на&nbsp;Нарнии Остров. Можно взять от&nbsp;2&nbsp;часов.</p>
-          <dl class="fun-prices"><div><dt>в час</dt><dd>1&nbsp;500&nbsp;₽</dd></div></dl>
+          <dl class="fun-prices"><div><dt>в час</dt><dd data-price="yurta">1&nbsp;500&nbsp;₽</dd></div></dl>
           <a class="fun-link" href="https://t.me/narnia_pavlovka_reservation?text=%D0%97%D0%B4%D1%80%D0%B0%D0%B2%D1%81%D1%82%D0%B2%D1%83%D0%B9%D1%82%D0%B5%2C%20%D1%85%D0%BE%D1%87%D1%83%20%D0%B7%D0%B0%D0%B1%D1%80%D0%BE%D0%BD%D0%B8%D1%80%D0%BE%D0%B2%D0%B0%D1%82%D1%8C%20%D1%8E%D1%80%D1%82%D1%83%E2%98%80%EF%B8%8F" target="_blank" rel="noopener">Забронировать юрту</a>
         </div>
       </article>
@@ -1554,7 +1580,7 @@
         <div>
           <h3>Можно&nbsp;с&nbsp;собакой</h3>
           <p>Ждем собак до&nbsp;10&nbsp;кг. В&nbsp;доме&nbsp;для&nbsp;нее будут лежанка, игрушка и&nbsp;миска.</p>
-          <dl class="fun-prices"><div><dt>за питомца</dt><dd>1&nbsp;500&nbsp;₽</dd></div></dl>
+          <dl class="fun-prices"><div><dt>за питомца</dt><dd data-price="pet">1&nbsp;500&nbsp;₽</dd></div></dl>
           <a class="fun-link" href="https://t.me/narnia_pavlovka_reservation?text=%D0%97%D0%B4%D1%80%D0%B0%D0%B2%D1%81%D1%82%D0%B2%D1%83%D0%B9%D1%82%D0%B5%2C%20%D1%85%D0%BE%D1%87%D1%83%20%D0%BF%D1%80%D0%B8%D0%B5%D1%85%D0%B0%D1%82%D1%8C%20%D1%81%20%D1%81%D0%BE%D0%B1%D0%B0%D0%BA%D0%BE%D0%B9%E2%98%80%EF%B8%8F" target="_blank" rel="noopener">Забронировать с&nbsp;собакой</a>
         </div>
       </article>
@@ -1663,19 +1689,19 @@
         <div class="faq-body">
           <p>У&nbsp;каждого дома своя мангальная зона. Уголь,&nbsp;решетку и&nbsp;розжиг оплачиваете отдельно.</p>
           <dl class="faq-prices">
-            <div><dt>Уголь</dt><dd>800 ₽</dd></div>
-            <div><dt>Решетка, купить</dt><dd>1 500 ₽</dd></div>
-            <div><dt>Решетка, в аренду</dt><dd>500 ₽</dd></div>
-            <div><dt>Розжиг</dt><dd>500 ₽ за штуку</dd></div>
-            <div><dt>Горелка</dt><dd>500 ₽ за штуку</dd></div>
-            <div><dt>Газ</dt><dd>300 ₽ за штуку</dd></div>
+            <div><dt>Уголь</dt><dd data-price="ugol">800 ₽</dd></div>
+            <div><dt>Решетка, купить</dt><dd data-price="reshetka_buy">1 500 ₽</dd></div>
+            <div><dt>Решетка, в аренду</dt><dd data-price="reshetka">500 ₽</dd></div>
+            <div><dt>Розжиг</dt><dd data-price="rozhig" data-suf=" за штуку">500 ₽ за штуку</dd></div>
+            <div><dt>Горелка</dt><dd data-price="gorelka" data-suf=" за штуку">500 ₽ за штуку</dd></div>
+            <div><dt>Газ</dt><dd data-price="gaz" data-suf=" за штуку">300 ₽ за штуку</dd></div>
           </dl>
         </div>
       </details>
       <details class="faq-item">
         <summary><h3>Будут ли завтраки?</h3><span class="faq-plus" aria-hidden="true"></span></summary>
         <div class="faq-body">
-          <p>Шеф-повар готовит завтраки каждый день с&nbsp;09:30. В&nbsp;меню панкейки, каши, сырники, блины и&nbsp;омлеты, от&nbsp;390 до&nbsp;690&nbsp;₽.</p>
+          <p>Шеф-повар готовит завтраки каждый день с&nbsp;09:30. В&nbsp;меню панкейки, каши, сырники, блины и&nbsp;омлеты, <span id="food-range">от&nbsp;390 до&nbsp;690&nbsp;₽</span>.</p>
           <p>Повара можно заказать отдельно, из&nbsp;ваших продуктов или из&nbsp;продуктов Нарнии. Стоимость уточняйте&nbsp;при&nbsp;бронировании.</p>
         </div>
       </details>
@@ -1821,6 +1847,19 @@
   });
   GROUPS.push({ title: 'Завтраки, каждый день с' + NB + '09:30', tiles: FOOD.map(function (x) { return x.id; }), note: 'Подача может отличаться от фото' });
   var qty = {};
+  // Подписи с ценой собираются из цены (24 ноя), чтобы цену можно было менять в админке. {p} = «2 500 ₽»
+  var SUBT = {
+    guest: '{p}, дополнительное спальное место', pet: '{p}, лежанка, игрушка и' + NB + 'миска',
+    banya: '{p} в' + NB + 'час, от' + NB + '2' + NB + 'часов', chan: '{p} в' + NB + 'час, от' + NB + '2' + NB + 'часов',
+    venik: '{p}', masla: '{p}', podushka: '{p}',
+    snow: '{p} в' + NB + 'час', kvadro: 'двухместный, {p} в' + NB + 'час', kater4: '{p} в' + NB + 'час', kater10: '{p} в' + NB + 'час',
+    yurta: '{p} в' + NB + 'час, от' + NB + '2' + NB + 'часов', ugol: '{p}', reshetka: '{p}'
+  };
+  FOOD.forEach(function (x) { SUBT[x.id] = '{p} за' + NB + 'набор'; });
+  function setSubs() { Object.keys(SUBT).forEach(function (id) { DOPS[id].sub = SUBT[id].replace('{p}', money(DOPS[id].price)); }); }
+  // Цены, которые есть только в «Вопросах» (мангал), не в допах
+  var EXTRA = { reshetka_buy: 1500, rozhig: 500, gorelka: 500, gaz: 300 };
+  function priceOf(id) { return DOPS[id] ? DOPS[id].price : EXTRA[id]; }
   Object.keys(DOPS).forEach(function (k) { qty[k] = 0; });
 
   var TG = 'https://t.me/narnia_pavlovka_reservation';
@@ -1842,7 +1881,7 @@
     var END = Date.UTC(2026, 10, 30, 19, 0, 0);
     if (Date.now() >= END) return;
     var promos = [], olds = [], cards = [];
-    [].forEach.call(document.querySelectorAll('.home .price'), function (dl) {
+    [].forEach.call(document.querySelectorAll('.home:not(.home-soon) .price'), function (dl) {
       var pr = document.createElement('p'); pr.className = 'promo';
       pr.innerHTML = '<span class="promo-t">До конца акции осталось</span> <b class="promo-c"></b>';
       dl.parentNode.insertBefore(pr, dl); cards.push(pr);
@@ -2297,12 +2336,14 @@
   }
   function makeSmall(id) {
     var x = DOPS[id], b = document.createElement('button');
-    b.type = 'button'; b.className = 'ds'; b.setAttribute('aria-pressed', 'false');
+    b.type = 'button'; b.className = 'ds'; b.setAttribute('aria-pressed', qty[id] ? 'true' : 'false');
     b.innerHTML = '<i aria-hidden="true"></i><span><b>' + x.name + '</b><small>' + x.sub + '</small></span>';
     b.addEventListener('click', function () { qty[id] = qty[id] ? 0 : 1; b.setAttribute('aria-pressed', !!qty[id]); renderSheet(); });
     return b;
   }
   var groupsEl = $('ex-groups');
+  function buildGroups() {
+  groupsEl.innerHTML = '';
   GROUPS.forEach(function (g) {
     var wrap = document.createElement('section');
     wrap.className = 'dg';
@@ -2311,6 +2352,8 @@
     if (g.small) g.small.forEach(function (id) { wrap.querySelector('.dg-small').appendChild(makeSmall(id)); });
     groupsEl.appendChild(wrap);
   });
+  }
+  buildGroups();
 
   render();
   scrollStrip();
@@ -2330,6 +2373,55 @@
     if (sheet.open) mBusy = busyMap(mType);
     render();
   }).catch(function () { load = 'err'; render(); });
+
+  // Цены из админки (24 ноя): страница /admin пишет api/prices.json, сайт берет цены оттуда.
+  // В файле homes (дома: будни, выходные, Новый год) и items (баня, развлечения, допы, мангал, завтраки).
+  // Нет файла, он битый или цена странная — остается цена из кода выше.
+  function okPrice(v, low) { return typeof v === 'number' && v % 1 === 0 && v >= low && v <= 500000; }
+  fetch('api/prices.json', { cache: 'no-store' }).then(function (r) { return r.ok ? r.json() : null; }).then(function (p) {
+    if (!p) return;
+    var homes = p.homes || p, items = p.items || {};
+    ORDER.forEach(function (t) {
+      ['wd', 'we', 'ny'].forEach(function (k) { var v = homes[t] && homes[t][k]; if (okPrice(v, 500)) PRICES[t][k] = v; });
+    });
+    Object.keys(items).forEach(function (id) {
+      var v = items[id];
+      if (!okPrice(v, 50)) return;
+      if (DOPS[id]) DOPS[id].price = v; else if (id in EXTRA) EXTRA[id] = v;
+    });
+    // Карточки домов: будни, выходные, строка Нового года
+    BK.forEach(function (c) {
+      var home = c.el.closest('.home'), pr = PRICES[c.type];
+      if (!home) return;
+      var dd = home.querySelectorAll('.price dd'), ny = home.querySelector('.price-ny .nw');
+      if (dd[0]) dd[0].textContent = money(pr.wd);
+      if (dd[1]) dd[1].textContent = money(pr.we);
+      if (ny) ny.textContent = money(pr.ny) + ' за' + NB + 'сутки';
+    });
+    // Блок акции: «от» самой низкой цены
+    var sp = document.querySelectorAll('.sale-prices dd');
+    if (sp.length === 2) {
+      var low = function (k) { return Math.min.apply(null, ORDER.map(function (t) { return PRICES[t][k]; })); };
+      sp[0].textContent = 'от' + NB + money(low('wd'));
+      sp[1].textContent = 'от' + NB + money(low('we'));
+    }
+    // Баня, развлечения, мангал в «Вопросах»
+    [].forEach.call(document.querySelectorAll('[data-price]'), function (el) {
+      var v = priceOf(el.dataset.price);
+      if (v) el.textContent = money(v * (+el.dataset.mult || 1)) + (el.dataset.suf || '');
+    });
+    var note = $('ban-note'), vp = [DOPS.venik.price, DOPS.masla.price, DOPS.podushka.price];
+    if (note) note.innerHTML = vp[0] === vp[1] && vp[1] === vp[2]
+      ? 'Отдельно можно взять веник, хвойный, дубовый или березовый, эфирные масла и&nbsp;подушку с&nbsp;сеном в&nbsp;аренду, по&nbsp;' + money(vp[0]) + '.'
+      : 'Отдельно можно взять веник, хвойный, дубовый или березовый, за&nbsp;' + money(vp[0]) + ', эфирные масла за&nbsp;' + money(vp[1]) + ' и&nbsp;подушку с&nbsp;сеном в&nbsp;аренду за&nbsp;' + money(vp[2]) + '.';
+    var fr = $('food-range'), fp = FOOD.map(function (x) { return DOPS[x.id].price; });
+    var fmin = Math.min.apply(null, fp), fmax = Math.max.apply(null, fp);
+    if (fr) fr.innerHTML = fmin === fmax ? 'по&nbsp;' + money(fmin) : 'от&nbsp;' + String(fmin).replace(/\B(?=(\d{3})+(?!\d))/g, NB) + ' до&nbsp;' + money(fmax);
+    // Окно допов: подписи и плитки с новыми ценами
+    setSubs();
+    buildGroups();
+    render();
+  }).catch(function () {});
 
   // Закат над Павловкой сегодня, по местному времени
   function sunsetHours(date, lat, lng) {

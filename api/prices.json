@@ -1,0 +1,48 @@
+{
+    "homes": {
+        "classic": {
+            "wd": 10000,
+            "we": 12000,
+            "ny": 25000
+        },
+        "big": {
+            "wd": 10000,
+            "we": 15000,
+            "ny": 35000
+        },
+        "small": {
+            "wd": 8000,
+            "we": 10000,
+            "ny": 15000
+        }
+    },
+    "items": {
+        "banya": 2500,
+        "chan": 2500,
+        "venik": 500,
+        "masla": 500,
+        "podushka": 500,
+        "snow": 5000,
+        "kvadro": 5000,
+        "kater4": 6000,
+        "kater10": 8000,
+        "yurta": 1500,
+        "guest": 1500,
+        "pet": 1500,
+        "ugol": 800,
+        "reshetka": 500,
+        "reshetka_buy": 1500,
+        "rozhig": 500,
+        "gorelka": 500,
+        "gaz": 300,
+        "z-firm": 690,
+        "z-klass": 390,
+        "z-legk": 590,
+        "z-avt": 690,
+        "z-ferm": 590,
+        "z-dom": 490,
+        "z-trad": 690,
+        "z-syt": 590
+    },
+    "updated": 1795533018
+}
